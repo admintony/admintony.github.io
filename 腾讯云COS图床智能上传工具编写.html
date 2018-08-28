@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="Python,原创工具,腾讯云COS,图床智能上传工具," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="编写意图在百度上能够找到的都是七牛云的图床上传工具，但是七牛云现在申请图床空间需要拿手持身份证照片来认证，所以果断放弃了七牛云，于是找到了腾讯云的COS，免费额度就够用了。但是，缺点在于，每一个图片都要自己手动上传，没有像七牛云那样的智能上传工具，所以自己用Python编写一款。">
+<meta name="keywords" content="Python,原创工具,腾讯云COS,图床智能上传工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="腾讯云COS图床智能上传工具编写">
+<meta property="og:url" content="http://www.admintony.com/腾讯云COS图床智能上传工具编写.html">
+<meta property="og:site_name" content="AdminTony&#39;s Blog">
+<meta property="og:description" content="编写意图在百度上能够找到的都是七牛云的图床上传工具，但是七牛云现在申请图床空间需要拿手持身份证照片来认证，所以果断放弃了七牛云，于是找到了腾讯云的COS，免费额度就够用了。但是，缺点在于，每一个图片都要自己手动上传，没有像七牛云那样的智能上传工具，所以自己用Python编写一款。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/201803/1520211020.1448267.png">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/201803/20180305085907.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1520257712.6010993.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1520257761.4938865.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1520257958.352451.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1520350006.9453623.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1520350041.3905983.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1520350165.5010228.png">
+<meta property="og:updated_time" content="2018-03-06T15:50:11.465Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="腾讯云COS图床智能上传工具编写">
+<meta name="twitter:description" content="编写意图在百度上能够找到的都是七牛云的图床上传工具，但是七牛云现在申请图床空间需要拿手持身份证照片来认证，所以果断放弃了七牛云，于是找到了腾讯云的COS，免费额度就够用了。但是，缺点在于，每一个图片都要自己手动上传，没有像七牛云那样的智能上传工具，所以自己用Python编写一款。">
+<meta name="twitter:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/201803/1520211020.1448267.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'AdminTony'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.admintony.com/腾讯云COS图床智能上传工具编写.html"/>
+
+
+
+
+
+  <title>腾讯云COS图床智能上传工具编写 | AdminTony's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AdminTony's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">学无止境苦与乐</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.admintony.com/腾讯云COS图床智能上传工具编写.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AdminTony">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AdminTony's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">腾讯云COS图床智能上传工具编写</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-05T08:33:16-08:00">
+                2018-03-05
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/原创工具/" itemprop="url" rel="index">
+                    <span itemprop="name">原创工具</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/原创工具/腾讯云COS图床智能上传工具/" itemprop="url" rel="index">
+                    <span itemprop="name">腾讯云COS图床智能上传工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,243 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="编写意图"><a href="#编写意图" class="headerlink" title="编写意图"></a>编写意图</h1><p>在百度上能够找到的都是七牛云的图床上传工具，但是七牛云现在申请图床空间需要拿手持身份证照片来认证，所以果断放弃了七牛云，于是找到了腾讯云的COS，免费额度就够用了。但是，缺点在于，每一个图片都要自己手动上传，没有像七牛云那样的智能上传工具，所以自己用Python编写一款。</p>
+<a id="more"></a>
+<h2 id="更新说明"><a href="#更新说明" class="headerlink" title="更新说明"></a>更新说明</h2><p><strong>当前版本：</strong> V2.0 Beta</p>
+<p><strong>更新内容：</strong></p>
+<pre><code>1. API接口信息从外部吸取(confing.conf)
+2. 修复目录下无image目录报错
+3. 生成EXE避免用户安装过多的第三方库
+</code></pre><h1 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h1><p>主要流程：</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/201803/1520211020.1448267.png" alt=""></p>
+<p>上传函数流程：</p>
+<h1 id="相关功能实现"><a href="#相关功能实现" class="headerlink" title="相关功能实现"></a>相关功能实现</h1><h2 id="将粘贴板的图片保存到本地"><a href="#将粘贴板的图片保存到本地" class="headerlink" title="将粘贴板的图片保存到本地"></a>将粘贴板的图片保存到本地</h2><p><strong>使用win32clipboard</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">win32clipboard.OpenClipboard()</span><br><span class="line">data = win32clipboard.GetClipboardData(win32clipboard.CF_DIB)</span><br><span class="line">win32clipboard.CloseClipboard()</span><br></pre></td></tr></table></figure>
+<p>但是直接将data写入bmp文件中，发现无法打开，百度以后找到解决办法(参考文章1)，代码量很长，这里不附上了，简单说下它的问题：</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/201803/20180305085907.png" alt=""></p>
+<p>可以看到，一个全屏截图竟然达到了3.96M ，腾讯云免费空间才50G ， 要是上传这样的图片上去，我可吃不消啊。</p>
+<p><strong>使用PIL对图像处理</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageGrab</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从粘贴板获取内容</span></span><br><span class="line">im = ImageGrab.grabclipboard()</span><br><span class="line"><span class="comment"># 判断内容是不是图片</span></span><br><span class="line"><span class="keyword">if</span> isinstance(im,Image.Image):</span><br><span class="line">    im.save(<span class="string">"admintony.png"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="上传到COS并获取地址"><a href="#上传到COS并获取地址" class="headerlink" title="上传到COS并获取地址"></a>上传到COS并获取地址</h2><p><strong>腾讯COS SDK</strong></p>
+<p>腾讯对开发者提供了SDK，但是这个SDK只支持python2.6和python2.7，由于我的环境只有python3.6，所以没办法用了。<a href="https://cloud.tencent.com/document/product/436/12269" target="_blank" rel="noopener">腾讯云COS SDK</a></p>
+<p><strong>第三方支持python3的SDK库</strong></p>
+<p>本来想自己写，可是那个数字签名认证没写过，在网上找了找，还是看到了支持py3的第三方库了，直接用第三方库吧，方便。</p>
+<p>第三方库地址：</p>
+<pre><code>https://github.com/imu-hupeng/cos-python3-sdk/
+</code></pre><p>这个第三方库不是腾讯开发的，但是也是功能很齐全，例如上传文件实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cos = cos_lib3.Cos(app_id, secret_id,</span><br><span class="line">                secket_key, region)</span><br><span class="line">bucket = cos.get_bucket(<span class="string">"blog"</span>)</span><br><span class="line">json_data = bucket.upload_file(real_file_path=file_name, file_name=name, dir_name=folder)</span><br><span class="line">print(json_data)</span><br></pre></td></tr></table></figure>
+<p>输出结果是返回的json数组，里面包含了上传后的地址</p>
+<h2 id="将返回的图片地址复制到粘贴板"><a href="#将返回的图片地址复制到粘贴板" class="headerlink" title="将返回的图片地址复制到粘贴板"></a>将返回的图片地址复制到粘贴板</h2><p><strong>实现剪切板的写入</strong></p>
+<p>还是用的pywin32中的win32clipboard库，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">setText</span><span class="params">(aString)</span>:</span></span><br><span class="line">    w.OpenClipboard()</span><br><span class="line">    w.EmptyClipboard()</span><br><span class="line">    w.SetClipboardData(win32con.CF_UNICODETEXT, aString)</span><br><span class="line">    w.CloseClipboard()</span><br></pre></td></tr></table></figure>
+<p>这里有一个坑，百度上百度到的代码第三行使用的是win32con.CF_TEXT，但是测试发现CF_TEXT只能写入首字母，比如<a href="http://baidu.com" target="_blank" rel="noopener">http://baidu.com</a> 只能写入h。</p>
+<p>查阅相关资料以后，发现有一个CF_UNICODETEXT，测试可以写入完整字符串。</p>
+<p><strong>对图片地址处理</strong></p>
+<p>在写入粘贴板之前，对图片地址做一个处理，处理成markdown格式的，![](PicUrl)然后放入剪切板。</p>
+<p>代码实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">json_data = sub(bucket.upload_file(real_file_path=file_name, file_name=name, dir_name=folder))</span><br><span class="line">dict = json.loads(json_data)</span><br><span class="line">setText(<span class="string">r'![](&#123;&#125;)'</span>.format(dict[<span class="string">'source_url'</span>]))</span><br></pre></td></tr></table></figure>
+<p>其中sub函数是将单引号替换成双引号的函数，因为该第三方库返回的json数组使用的是单引号，json.loads()不识别单引号。</p>
+<p>sub函数代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sub</span><span class="params">(string)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> re.sub(<span class="string">'\''</span>,<span class="string">'\"'</span>,string)</span><br></pre></td></tr></table></figure>
+<h2 id="腾讯云COS的一处忽略"><a href="#腾讯云COS的一处忽略" class="headerlink" title="腾讯云COS的一处忽略"></a>腾讯云COS的一处忽略</h2><p>我发现复制到粘贴板的字符串都是http协议的，然而却防在markdown编辑器中却加载不到图片，看了下手动传的生成的地址，现在COS已经采用https协议了，所以还要对返回的地址做一个处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sub_http</span><span class="params">(string)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> re.sub(<span class="string">'http:'</span>,<span class="string">'https:'</span>,string)</span><br></pre></td></tr></table></figure>
+<h1 id="成品展示"><a href="#成品展示" class="headerlink" title="成品展示"></a>成品展示</h1><h2 id="使用展示"><a href="#使用展示" class="headerlink" title="使用展示"></a>使用展示</h2><p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1520257712.6010993.png" alt=""></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1520257761.4938865.png" alt=""></p>
+<h2 id="依赖的第三方库说明"><a href="#依赖的第三方库说明" class="headerlink" title="依赖的第三方库说明"></a>依赖的第三方库说明</h2><ul>
+<li><p>win32con 和 win32clipboard ：安装了pywin32即可使用</p>
+</li>
+<li><p>PIL ：图像处理库</p>
+</li>
+<li><p>cos_lib3 : 腾讯云COS支持Python3的库，非官方库(github : <a href="https://github.com/imu-hupeng/cos-python3-sdk/" target="_blank" rel="noopener">https://github.com/imu-hupeng/cos-python3-sdk/</a>)</p>
+</li>
+<li><p>httplib2 : cos_lib3中使用了，因此安装</p>
+</li>
+</ul>
+<p><strong>安装库：</strong></p>
+<pre><code>pip install pywin32
+pip install PIL
+cos_lib3 : 已经放在了同目录下进行引用，无需安装
+pip install httplib2
+</code></pre><h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><p><strong>V1.0版本</strong></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1520257958.352451.png" alt=""></p>
+<p>在腾讯云的COS中申请API密钥，然后填写进去即可。</p>
+<p>特别说明一下region：</p>
+<pre><code>cos地址与对应园区的关系
+
+tj -- 华北(天津园区)
+sh -- 华东(上海园区)
+gz -- 华南(广州园区)
+sgp -- 新加坡园区
+bj -- 北京园区
+</code></pre><p>官方只给出了前四个，可能现在更新出了北京园区，官方还没写上去吧。</p>
+<p><strong>V2.0 Beta版</strong></p>
+<p>监听界面：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1520350006.9453623.png" alt=""></p>
+<p>上传图片：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1520350041.3905983.png" alt=""></p>
+<p>配置文件：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201803/1520350165.5010228.png" alt=""></p>
+<pre><code>app_id = 125*******0
+secret_id = AKIDa1G*******************fHeslSu
+secret_key = MSIs**********************dJYaR4U
+region = bj
+</code></pre><p>API信息获取请看V1.0版本的介绍。</p>
+<h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a href="https://github.com/admintony/COSIntelligentUpload" target="_blank" rel="noopener">https://github.com/admintony/COSIntelligentUpload</a></p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://www.cnblogs.com/xieqiankun/p/usePythonForScreenShot.html" target="_blank" rel="noopener">使用Python保存屏幕截图（不使用PIL）</a></p>
+<p><a href="http://blog.csdn.net/huplion/article/details/54995090" target="_blank" rel="noopener">腾讯云对象存储服务(COS) Python3 SDK</a></p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p>另外一种操作粘贴板的方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Tkinter <span class="keyword">import</span> Tk</span><br><span class="line">r = Tk()</span><br><span class="line">r.withdraw()</span><br><span class="line">r.clipboard_clear()</span><br><span class="line">r.clipboard_append(<span class="string">'http://www.admintony.com'</span>)</span><br><span class="line">r.destroy()</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/原创工具/" rel="tag"># 原创工具</a>
+          
+            <a href="/tags/腾讯云COS/" rel="tag"># 腾讯云COS</a>
+          
+            <a href="/tags/图床智能上传工具/" rel="tag"># 图床智能上传工具</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/打造一款专属的Bypass菜刀.html" rel="next" title="打造一款专属的Bypass菜刀">
+                <i class="fa fa-chevron-left"></i> 打造一款专属的Bypass菜刀
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Linux实验系统某洞导致获取Root权限.html" rel="prev" title="Linux实验系统某洞导致获取Root权限">
+                Linux实验系统某洞导致获取Root权限 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="AdminTony" />
+            
+              <p class="site-author-name" itemprop="name">AdminTony</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://t00ls.net/index.php" title="T00ls.net" target="_blank">T00ls.net</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.sqlsec.com/" title="国光" target="_blank">国光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://eternalsakura13.com/" title="Sakura" target="_blank">Sakura</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ares-x.com" title="ares-x" target="_blank">ares-x</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://paper.seebug.org" title="Paper" target="_blank">Paper</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.e-wolf.top/" title="A." target="_blank">A.</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#编写意图"><span class="nav-number">1.</span> <span class="nav-text">编写意图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更新说明"><span class="nav-number">1.1.</span> <span class="nav-text">更新说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流程图"><span class="nav-number">2.</span> <span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关功能实现"><span class="nav-number">3.</span> <span class="nav-text">相关功能实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#将粘贴板的图片保存到本地"><span class="nav-number">3.1.</span> <span class="nav-text">将粘贴板的图片保存到本地</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上传到COS并获取地址"><span class="nav-number">3.2.</span> <span class="nav-text">上传到COS并获取地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将返回的图片地址复制到粘贴板"><span class="nav-number">3.3.</span> <span class="nav-text">将返回的图片地址复制到粘贴板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#腾讯云COS的一处忽略"><span class="nav-number">3.4.</span> <span class="nav-text">腾讯云COS的一处忽略</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#成品展示"><span class="nav-number">4.</span> <span class="nav-text">成品展示</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用展示"><span class="nav-number">4.1.</span> <span class="nav-text">使用展示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖的第三方库说明"><span class="nav-number">4.2.</span> <span class="nav-text">依赖的第三方库说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用说明"><span class="nav-number">4.3.</span> <span class="nav-text">使用说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目地址"><span class="nav-number">4.4.</span> <span class="nav-text">项目地址</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章"><span class="nav-number">5.</span> <span class="nav-text">参考文章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-number">6.</span> <span class="nav-text">附录</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AdminTony</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">69.2k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" rel="external nofollow" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" rel="external nofollow" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<br><span>Hosted by <a rel="external nofollow" target="_blank" href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

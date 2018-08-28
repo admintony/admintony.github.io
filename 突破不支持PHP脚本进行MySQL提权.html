@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="渗透测试,提权,MySQL提权," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.说明本文首发T00ls，原本在博客上也有的，重建了博客，加上这次迁移博客到github上面，图片丢失了，图片全部从T00ls上面拿的。下面请欣赏故事！">
+<meta name="keywords" content="渗透测试,提权,MySQL提权">
+<meta property="og:type" content="article">
+<meta property="og:title" content="突破不支持PHP脚本进行MySQL提权">
+<meta property="og:url" content="http://www.admintony.com/突破不支持PHP脚本进行MySQL提权.html">
+<meta property="og:site_name" content="AdminTony&#39;s Blog">
+<meta property="og:description" content="1.说明本文首发T00ls，原本在博客上也有的，重建了博客，加上这次迁移博客到github上面，图片丢失了，图片全部从T00ls上面拿的。下面请欣赏故事！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/f3db7cf82cf8457aae18fccc9866fa68.png">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/87ccf6bde3684a1d968694754fd83d45.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/36cf758e01b14de4adcad3c1cb6bbe65.png">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/58972c24826f4e1c9ae8b722e4fede12.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/c54cc31d71fe4c44b7ba5473cfc9f1ab.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/49de80b8e2b949e9b705150c1cd7e70f.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/5a2a32a0a03842ef9781400897090852.png">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/8b3a55f31f424bf5b81e89f5aca69844.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/fc8aee120a154aaabcdfdf5455b0e93c.png">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/4af48c3846fa4f3cadba89368b385983.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/2873c89bcd48490093926e848f7e561c.png">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/90b3669ec5df4a99be619dd9d147592a.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/9c02a4d44cf24346aaf7e65eeaaa4d44.png">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/57a111b7d576422daefd870565d237db.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/d2db4c92ef444ff2a365d67e503d67bb.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/fc1b495b4ef64b7e8caef75f6861b49e.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/5ac4e4c12546414d92cfd0909032f590.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/eadb241104c7491599a3cda414913745.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/6b3dcf2d5ec6400b8e4eb125aba0bc37.png">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/d3a84a7490334e009d6c9f846c37318e.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/9435edbc9471498fb6330cc36fd486e0.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/8801911eab83418c84623afbbedd798a.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/f385371c2d6346d0a19e22a080eae7c4.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/fdc165032b5146369d7fd43539abbf8c.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/3f7c800494814b3aa17d16158872336f.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/2061155d6df841e49c8a0436f2f9862c.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/cd3a221380584a02bee6c7b2fb00e2c1.png">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/018503a985dc41668701502ff6cc69b2.jpeg">
+<meta property="og:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/cd4d39f2816742dd9f54324a8ab83b24.jpeg">
+<meta property="og:updated_time" content="2018-03-06T15:51:18.275Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="突破不支持PHP脚本进行MySQL提权">
+<meta name="twitter:description" content="1.说明本文首发T00ls，原本在博客上也有的，重建了博客，加上这次迁移博客到github上面，图片丢失了，图片全部从T00ls上面拿的。下面请欣赏故事！">
+<meta name="twitter:image" content="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/f3db7cf82cf8457aae18fccc9866fa68.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'AdminTony'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.admintony.com/突破不支持PHP脚本进行MySQL提权.html"/>
+
+
+
+
+
+  <title>突破不支持PHP脚本进行MySQL提权 | AdminTony's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AdminTony's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">学无止境苦与乐</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.admintony.com/突破不支持PHP脚本进行MySQL提权.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AdminTony">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AdminTony's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">突破不支持PHP脚本进行MySQL提权</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-04T19:45:47-08:00">
+                2017-03-04
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/渗透测试/" itemprop="url" rel="index">
+                    <span itemprop="name">渗透测试</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/渗透测试/提权/" itemprop="url" rel="index">
+                    <span itemprop="name">提权</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/渗透测试/提权/MySQL-UDF提权/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL_UDF提权</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,082 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-说明"><a href="#1-说明" class="headerlink" title="1.说明"></a>1.说明</h1><p>本文首发T00ls，原本在博客上也有的，重建了博客，加上这次迁移博客到github上面，图片丢失了，图片全部从T00ls上面拿的。下面请欣赏故事！</p>
+<a id="more"></a>
+<h1 id="2-提权前信息收集"><a href="#2-提权前信息收集" class="headerlink" title="2.提权前信息收集"></a>2.提权前信息收集</h1><h2 id="2-1-菜刀是否可以执行cmd命令"><a href="#2-1-菜刀是否可以执行cmd命令" class="headerlink" title="2.1 菜刀是否可以执行cmd命令"></a>2.1 菜刀是否可以执行cmd命令</h2><p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/f3db7cf82cf8457aae18fccc9866fa68.png" alt=""></p>
+<h2 id="2-2-支持哪些脚本"><a href="#2-2-支持哪些脚本" class="headerlink" title="2.2 支持哪些脚本"></a>2.2 支持哪些脚本</h2><p>探测结果：</p>
+<ul>
+<li>支持aspx  (aspx可以执行cmd)</li>
+<li>不支持PHP (直接原样输出代码)</li>
+</ul>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/87ccf6bde3684a1d968694754fd83d45.jpeg" alt=""></p>
+<h2 id="2-3-ASPX中CMD的权限"><a href="#2-3-ASPX中CMD的权限" class="headerlink" title="2.3 ASPX中CMD的权限"></a>2.3 ASPX中CMD的权限</h2><p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/36cf758e01b14de4adcad3c1cb6bbe65.png" alt=""></p>
+<h2 id="2-4-系统版本"><a href="#2-4-系统版本" class="headerlink" title="2.4 系统版本"></a>2.4 系统版本</h2><p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/58972c24826f4e1c9ae8b722e4fede12.jpeg" alt=""></p>
+<h2 id="2-5-端口开放情况"><a href="#2-5-端口开放情况" class="headerlink" title="2.5 端口开放情况"></a>2.5 端口开放情况</h2><p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/c54cc31d71fe4c44b7ba5473cfc9f1ab.jpeg" alt=""></p>
+<p>开启的端口</p>
+<pre><code>21 80 135 445 1025 1030 3306 3311 3312 3313 5555
+</code></pre><p>3312是kangle这个程序的端口，并且kangle程序的管理后台是php脚本的，为何站点不支持php呢？先放一放！5555未知端口，很有可能是远程端口</p>
+<h1 id="2-6-进程情况"><a href="#2-6-进程情况" class="headerlink" title="2.6 进程情况"></a>2.6 进程情况</h1><p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/49de80b8e2b949e9b705150c1cd7e70f.jpeg" alt=""></p>
+<p>服务器上面存在云锁 和 360 ，防护软件倒是不少!</p>
+<p>再看下teamserivice的PID</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/5a2a32a0a03842ef9781400897090852.png" alt=""></p>
+<p>返回netstat -ano 看端口的PID</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/8b3a55f31f424bf5b81e89f5aca69844.jpeg" alt=""></p>
+<p>结论：</p>
+<ul>
+<li>存在防护软件：云锁 、 360</li>
+<li>远程端口没开启</li>
+</ul>
+<h2 id="2-7-IP探测"><a href="#2-7-IP探测" class="headerlink" title="2.7 IP探测"></a>2.7 IP探测</h2><p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/fc8aee120a154aaabcdfdf5455b0e93c.png" alt=""></p>
+<h2 id="2-8-目录探测"><a href="#2-8-目录探测" class="headerlink" title="2.8 目录探测"></a>2.8 目录探测</h2><p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/4af48c3846fa4f3cadba89368b385983.jpeg" alt=""></p>
+<p>serv-U 和 MySQL可能能够利用!</p>
+<h2 id="2-9-思路总结"><a href="#2-9-思路总结" class="headerlink" title="2.9 思路总结"></a>2.9 思路总结</h2><ul>
+<li>思路1 ： network service+windows2003 –&gt;pr秒杀！–&gt;由于有云锁和360，失败可能性极大</li>
+<li>思路2 ： servu提权—&gt;servu的端口也可能是5555</li>
+<li>思路3 ： mysql的root解密，用udf或者mof提权！</li>
+</ul>
+<h1 id="3-开始提权"><a href="#3-开始提权" class="headerlink" title="3.开始提权"></a>3.开始提权</h1><h2 id="3-1-思路1"><a href="#3-1-思路1" class="headerlink" title="3.1 思路1"></a>3.1 思路1</h2><p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/2873c89bcd48490093926e848f7e561c.png" alt=""></p>
+<p>PR提权失败，其实到这里可以猜测到用EXP基本上都会失败，毕竟有两个杀软嘛。</p>
+<h2 id="3-2-思路2"><a href="#3-2-思路2" class="headerlink" title="3.2 思路2"></a>3.2 思路2</h2><p>先探测一下服务，看看是不是有servu的服务，免得到头来白费劲<br><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/90b3669ec5df4a99be619dd9d147592a.jpeg" alt=""></p>
+<p>并未找到serv-U的服务!</p>
+<p>但是看到了MySQL的服务</p>
+<h2 id="3-3-思路3"><a href="#3-3-思路3" class="headerlink" title="3.3 思路3"></a>3.3 思路3</h2><p>由系统服务看到了这么一串代码：</p>
+<pre><code>&quot;C:Program FilesMySQLMySQL Server 5.1binmysqld&quot; --defaults-file=&quot;C:Program FilesMySQLMySQL Server 5.1my.ini&quot; MySQL
+</code></pre><p>百度了一下知道：</p>
+<p>这是将数据库和mysql主程序分离的手段，但是my.ini中一样暴露了mysql的数据路径：ps:搜索datadir就可以找到数据地址！</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/9c02a4d44cf24346aaf7e65eeaaa4d44.png" alt=""></p>
+<p>去找root密码吧！</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/57a111b7d576422daefd870565d237db.jpeg" alt=""></p>
+<p>下载user.MYD成功解密了root的密码！但是问题来了，不支持php，我如何去连接mysql数据库呢？</p>
+<h2 id="3-4-思考方法"><a href="#3-4-思考方法" class="headerlink" title="3.4 思考方法"></a>3.4 思考方法</h2><ul>
+<li>1.aspx大马—&gt;我仔细看了一遍我有的aspx大马，里面都只是支持mssql和access语句执行，并不支持mysql！</li>
+<li>2.菜刀的数据库管理连接mysql数据库！结果如下：</li>
+</ul>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/d2db4c92ef444ff2a365d67e503d67bb.jpeg" alt=""></p>
+<h1 id="4-踏上走向寻找kangle的道路"><a href="#4-踏上走向寻找kangle的道路" class="headerlink" title="4.踏上走向寻找kangle的道路"></a>4.踏上走向寻找kangle的道路</h1><p>因为我以前博客的空间是朋友用kangle搭建给我的，所以对kangle有所了解！</p>
+<p>kangle后台存放于3312端口，页面如下：</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/fc1b495b4ef64b7e8caef75f6861b49e.jpeg" alt=""></p>
+<p>这是我朋友博客的一个截图，通过这个截图可以看出，kangle的后台存放于一个vhost的文件夹下，翻翻目录：</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/5ac4e4c12546414d92cfd0909032f590.jpeg" alt=""></p>
+<p>找到了vhost了，并且将大马写入！访问目标站点的3312端口：</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/eadb241104c7491599a3cda414913745.jpeg" alt=""></p>
+<p>很有可能这个端口开放在内网！那好办，上lcx.exe将3312转发到我博客的服务器：</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/6b3dcf2d5ec6400b8e4eb125aba0bc37.png" alt=""></p>
+<p>然后访问admintony.top的3312–&gt;这里我博客的lcx将51的流量转发到了3312！ps：各位大牛高抬贵手，不要搞我博客哦，这里就不打码了！(现在博客地址是:admintony.com)然后访问大马：</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/d3a84a7490334e009d6c9f846c37318e.jpeg" alt=""></p>
+<p>ok，访问到我的php大马了！进去执行命令：</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/9435edbc9471498fb6330cc36fd486e0.jpeg" alt=""></p>
+<p>可以执行命令，直接上udf提权</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/8801911eab83418c84623afbbedd798a.jpeg" alt=""></p>
+<p>提升到system权限了，顺利加了用户</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/f385371c2d6346d0a19e22a080eae7c4.jpeg" alt=""></p>
+<h1 id="5-开3389"><a href="#5-开3389" class="headerlink" title="5.开3389"></a>5.开3389</h1><p>现在经过T00ls的前辈们的指导，我开3389已经轻车熟路了，很好办的：</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/fdc165032b5146369d7fd43539abbf8c.jpeg" alt=""></p>
+<p>貌似是失败了，看3389，的确没开！</p>
+<p>换命令：</p>
+<pre><code>wmic RDTOGGLE WHERE ServerName=&apos;%COMPUTERNAME%&apos; call SetAllowTSConnections 1
+</code></pre><p>这个命令在大马里面执行不了,因为貌似这个大马过滤%，上次就是这种情况，只能反弹shell了！</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/3f7c800494814b3aa17d16158872336f.jpeg" alt=""></p>
+<p>反弹shell出了问题 : 到这里有点焦急了，因为怕直接用php大马的反弹连接反弹的shell不是system权限还是无法开启远程端口，先试试吧，不行了再想办法：</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/2061155d6df841e49c8a0436f2f9862c.jpeg" alt=""></p>
+<p>还好，反弹来的shell是system权限！</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/cd3a221380584a02bee6c7b2fb00e2c1.png" alt=""></p>
+<p>执行命令失败了！又翻了一下之前在论坛发的开3389求助贴，然后试了下另外一条命令：</p>
+<pre><code>REG ADD HKLMSYSTEMCurrentControlSetControlTerminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f
+</code></pre><p>操作完成，估计是开了吧！</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/018503a985dc41668701502ff6cc69b2.jpeg" alt=""></p>
+<p>3389开了，直接一个转发，就可以连接到目标服务器了！</p>
+<p><img src="https://blog-1252108140.cos.ap-beijing.myqcloud.com/20180304/cd4d39f2816742dd9f54324a8ab83b24.jpeg" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/渗透测试/" rel="tag"># 渗透测试</a>
+          
+            <a href="/tags/提权/" rel="tag"># 提权</a>
+          
+            <a href="/tags/MySQL提权/" rel="tag"># MySQL提权</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Python命令行模块optparse学习记录.html" rel="next" title="Python命令行模块optparse学习记录">
+                <i class="fa fa-chevron-left"></i> Python命令行模块optparse学习记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/AWD西石油线下赛总结.html" rel="prev" title="AWD西石油线下赛总结">
+                AWD西石油线下赛总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="AdminTony" />
+            
+              <p class="site-author-name" itemprop="name">AdminTony</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://t00ls.net/index.php" title="T00ls.net" target="_blank">T00ls.net</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.sqlsec.com/" title="国光" target="_blank">国光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://eternalsakura13.com/" title="Sakura" target="_blank">Sakura</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ares-x.com" title="ares-x" target="_blank">ares-x</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://paper.seebug.org" title="Paper" target="_blank">Paper</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.e-wolf.top/" title="A." target="_blank">A.</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-说明"><span class="nav-number">1.</span> <span class="nav-text">1.说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-提权前信息收集"><span class="nav-number">2.</span> <span class="nav-text">2.提权前信息收集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-菜刀是否可以执行cmd命令"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 菜刀是否可以执行cmd命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-支持哪些脚本"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 支持哪些脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-ASPX中CMD的权限"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 ASPX中CMD的权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-系统版本"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 系统版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-端口开放情况"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 端口开放情况</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-6-进程情况"><span class="nav-number">3.</span> <span class="nav-text">2.6 进程情况</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-IP探测"><span class="nav-number">3.1.</span> <span class="nav-text">2.7 IP探测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-8-目录探测"><span class="nav-number">3.2.</span> <span class="nav-text">2.8 目录探测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-9-思路总结"><span class="nav-number">3.3.</span> <span class="nav-text">2.9 思路总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-开始提权"><span class="nav-number">4.</span> <span class="nav-text">3.开始提权</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-思路1"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 思路1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-思路2"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 思路2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-思路3"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 思路3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-思考方法"><span class="nav-number">4.4.</span> <span class="nav-text">3.4 思考方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-踏上走向寻找kangle的道路"><span class="nav-number">5.</span> <span class="nav-text">4.踏上走向寻找kangle的道路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-开3389"><span class="nav-number">6.</span> <span class="nav-text">5.开3389</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AdminTony</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">69.2k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" rel="external nofollow" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" rel="external nofollow" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<br><span>Hosted by <a rel="external nofollow" target="_blank" href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

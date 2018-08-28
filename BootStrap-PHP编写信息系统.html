@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="信息系统开发,PHP,BootStrap," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="目录结构12345678910111213141516171819202122232425262728293031|- bs # Bootstrap3的js|- config # 系统配置文件|- css # Bootstrap4的js|- fonts # Bootstrap4的fonts|- js # Bootstrap4的js||- showItem # 显示物品|  |- addMes.ph">
+<meta name="keywords" content="信息系统开发,PHP,BootStrap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BootStrap+PHP编写信息系统">
+<meta property="og:url" content="http://www.admintony.com/BootStrap-PHP编写信息系统.html">
+<meta property="og:site_name" content="AdminTony&#39;s Blog">
+<meta property="og:description" content="目录结构12345678910111213141516171819202122232425262728293031|- bs # Bootstrap3的js|- config # 系统配置文件|- css # Bootstrap4的js|- fonts # Bootstrap4的fonts|- js # Bootstrap4的js||- showItem # 显示物品|  |- addMes.ph">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1526097173.5282793.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1526097308.687683.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1526097197.1114693.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1526097214.996352.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525270816.0935013.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525270833.8028576.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525270846.625024.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525270864.5231586.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525270893.0892932.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525855693.7297196.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525855729.4648597.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525855772.4984453.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525936903.226629.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525948752.1614928.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1526020594.7631373.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525934974.8735754.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525935053.6865647.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525935091.7127435.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525935161.028474.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1526092940.7710042.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1526093214.3500247.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1526093413.1070821.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1526093428.797047.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1526093831.3873842.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1526093973.066564.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1526094254.5606003.png">
+<meta property="og:updated_time" content="2018-05-12T03:55:32.271Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BootStrap+PHP编写信息系统">
+<meta name="twitter:description" content="目录结构12345678910111213141516171819202122232425262728293031|- bs # Bootstrap3的js|- config # 系统配置文件|- css # Bootstrap4的js|- fonts # Bootstrap4的fonts|- js # Bootstrap4的js||- showItem # 显示物品|  |- addMes.ph">
+<meta name="twitter:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1526097173.5282793.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'AdminTony'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.admintony.com/BootStrap-PHP编写信息系统.html"/>
+
+
+
+
+
+  <title>BootStrap+PHP编写信息系统 | AdminTony's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AdminTony's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">学无止境苦与乐</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.admintony.com/BootStrap-PHP编写信息系统.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AdminTony">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AdminTony's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">BootStrap+PHP编写信息系统</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-12T11:25:16-07:00">
+                2018-05-12
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/信息系统开发/" itemprop="url" rel="index">
+                    <span itemprop="name">信息系统开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,534 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  22 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">|- bs # Bootstrap3的js</span><br><span class="line">|- config # 系统配置文件</span><br><span class="line">|- css # Bootstrap4的js</span><br><span class="line">|- fonts # Bootstrap4的fonts</span><br><span class="line">|- js # Bootstrap4的js</span><br><span class="line">|</span><br><span class="line">|- showItem # 显示物品</span><br><span class="line">|  |- addMes.php # 添加留言</span><br><span class="line">|  |- favorite.php # 收藏物品</span><br><span class="line">|  |- index.php # 显示物品</span><br><span class="line">|</span><br><span class="line">|- uploads # 上传图片存放的目录</span><br><span class="line">|</span><br><span class="line">|- user # 用户相关的目录</span><br><span class="line">|  |- checklogin.php # 登录验证</span><br><span class="line">|  |- delFavo.php # 取消收藏</span><br><span class="line">|  |- delGood.php # 删除物品</span><br><span class="line">|  |- index.php  # 用户首页</span><br><span class="line">|  |- login.php  # 登录界面</span><br><span class="line">|  |- loginout.php # 注销登录</span><br><span class="line">|  |- myFavorite.php # 查看我的收藏</span><br><span class="line">|  |- myGood.php # 查看我发布的物品</span><br><span class="line">|  |- register.php # 注册</span><br><span class="line">|  |- resetPass.php # 修改密码</span><br><span class="line">|</span><br><span class="line">|- addGood.php # 发布物品</span><br><span class="line">|- addMess.php # 发布留言</span><br><span class="line">|- header.php  # 站点头部文件</span><br><span class="line">|- index.php # 主页</span><br><span class="line">|- upload_file.php # 上传文件</span><br><span class="line">|- db.sql # 数据库文件</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h1 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h1><h2 id="user-用户表"><a href="#user-用户表" class="headerlink" title="user 用户表"></a>user 用户表</h2><p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1526097173.5282793.png" alt=""></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	user 用户信息表</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">user</span>(</span><br><span class="line"><span class="keyword">id</span> <span class="built_in">int</span> auto_increment primary <span class="keyword">key</span>,</span><br><span class="line">username <span class="built_in">char</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">unique</span>,</span><br><span class="line"><span class="keyword">password</span> <span class="built_in">char</span>(<span class="number">40</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">email <span class="built_in">char</span>(<span class="number">40</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">unique</span>,</span><br><span class="line">photo <span class="built_in">char</span>(<span class="number">88</span>) <span class="keyword">default</span> <span class="string">'img/nophoto.gif'</span>,</span><br><span class="line">reg_date <span class="keyword">TIMESTAMP</span>  <span class="keyword">default</span> <span class="keyword">CURRENT_TIMESTAMP</span>  </span><br><span class="line"><span class="comment">-- 自动获取默认创建时间，不需要可以添加</span></span><br><span class="line">)<span class="built_in">character</span> <span class="keyword">set</span> utf8;</span><br></pre></td></tr></table></figure>
+<h2 id="good-物品表"><a href="#good-物品表" class="headerlink" title="good 物品表"></a>good 物品表</h2><p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1526097308.687683.png" alt=""></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	good 物品表</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> good(</span><br><span class="line"><span class="keyword">id</span> <span class="built_in">int</span> auto_increment primary <span class="keyword">key</span>,</span><br><span class="line">title <span class="built_in">char</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line"><span class="keyword">descr</span> <span class="built_in">varchar</span>(<span class="number">500</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">newOld <span class="built_in">char</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">wanted <span class="built_in">char</span>(<span class="number">80</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">qq <span class="built_in">char</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">tel <span class="built_in">char</span>(<span class="number">20</span>),</span><br><span class="line">city <span class="built_in">char</span>(<span class="number">20</span>),</span><br><span class="line">image <span class="built_in">char</span>(<span class="number">60</span>),</span><br><span class="line">username <span class="built_in">char</span>(<span class="number">40</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">insert_date <span class="keyword">TIMESTAMP</span>  <span class="keyword">default</span> <span class="keyword">CURRENT_TIMESTAMP</span>  </span><br><span class="line">)<span class="built_in">character</span> <span class="keyword">set</span> utf8;</span><br></pre></td></tr></table></figure>
+<h2 id="message-物品留言表"><a href="#message-物品留言表" class="headerlink" title="message 物品留言表"></a>message 物品留言表</h2><p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1526097197.1114693.png" alt=""></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	message 留言表	</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> message(</span><br><span class="line"><span class="keyword">mid</span> <span class="built_in">int</span> auto_increment primary <span class="keyword">key</span>,</span><br><span class="line">username <span class="built_in">char</span>(<span class="number">40</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line"><span class="keyword">content</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">insert_date <span class="keyword">TIMESTAMP</span>  <span class="keyword">default</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</span><br><span class="line">pid <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> </span><br><span class="line">)<span class="built_in">character</span> <span class="keyword">set</span> utf8;</span><br></pre></td></tr></table></figure>
+<h2 id="favorite-收藏表"><a href="#favorite-收藏表" class="headerlink" title="favorite 收藏表"></a>favorite 收藏表</h2><p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1526097214.996352.png" alt=""><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	favorite 收藏表</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> favorite(</span><br><span class="line"><span class="keyword">id</span> <span class="built_in">int</span> auto_increment primary <span class="keyword">key</span>,</span><br><span class="line">username <span class="built_in">char</span>(<span class="number">40</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">pid <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span></span><br><span class="line">)<span class="built_in">character</span> <span class="keyword">set</span> utf8;</span><br></pre></td></tr></table></figure></p>
+<h1 id="系统功能实现"><a href="#系统功能实现" class="headerlink" title="系统功能实现"></a>系统功能实现</h1><h2 id="头部代码header-php"><a href="#头部代码header-php" class="headerlink" title="头部代码header.php"></a>头部代码header.php</h2><h3 id="is-login检测"><a href="#is-login检测" class="headerlink" title="is_login检测"></a>is_login检测</h3><p>&emsp;&emsp;is_login检测是用来检测用户是否登陆的代码，存放在header.php中。检测用户是否登陆的方法：启动session，然后检测session数组中是否存在username键，username键的值就是用户名。</p>
+<p>&emsp;&emsp;<strong>检测登陆的目的：</strong></p>
+<ul>
+<li><p>1.决定输出注册和登陆按钮还是输出用户的个人下拉菜单</p>
+</li>
+<li><p>2.很多登陆后才具有权限操作的地方要判断是否登陆(可直接包含header.php)，比如：登陆界面、修改个人信息界面、添加留言界面、发布物品界面。</p>
+</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$is_login = <span class="keyword">false</span>;</span><br><span class="line">session_start();</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_SESSION[<span class="string">'username'</span>]))&#123;</span><br><span class="line">	$username = $_SESSION[<span class="string">'username'</span>];</span><br><span class="line">	$is_login = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="导航栏"><a href="#导航栏" class="headerlink" title="导航栏"></a>导航栏</h3><p>&emsp;&emsp;如果用户未登陆，则右侧导航栏显示”注册”、”登陆” 按钮，如果用户登陆则右侧显示下拉菜单(个人中心，我的发布，我的收藏，注销登陆)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">if</span>($is_login)&#123;<span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">// html 下拉菜单</span></span><br><span class="line"><span class="meta">&lt;?php</span> &#125;<span class="keyword">else</span>&#123;<span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">// html 登陆 、注册按钮</span></span><br><span class="line"><span class="meta">&lt;?php</span> &#125;<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;导航栏的active(设置哪个按钮被选中)管理：在每个页面中加入自己的标志，存放于$here中，然后在header中用switch case语句进行选择。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  注意$here赋值要在包含header.php前面</span></span><br><span class="line"><span class="keyword">switch</span>($here)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'login'</span>:</span><br><span class="line">        <span class="comment">//登陆按钮 ative</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    ....</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="comment">//主页按钮 active</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1525270816.0935013.png" alt=""></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1525270833.8028576.png" alt=""></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1525270846.625024.png" alt=""></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1525270864.5231586.png" alt=""></p>
+<p><strong>注意事项：</strong></p>
+<p>&emsp;&emsp;/user/login.php 包含 header.php而header.php包含config/config.php的问题：此时当前目录会变成/user/ 如果header中包含./config/config.php,则会在/user/config/中寻找config.php，而如果header中包含config/config.php，那么先会/user/config/寻找，如果没有则以header所在目录为根目录寻找config/config.php</p>
+<h2 id="登陆相关"><a href="#登陆相关" class="headerlink" title="登陆相关"></a>登陆相关</h2><p>&emsp;&emsp;涉及文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user/login.php</span><br><span class="line">user/checklogin.php</span><br></pre></td></tr></table></figure>
+<h3 id="user-login-php-登陆表单"><a href="#user-login-php-登陆表单" class="headerlink" title="user/login.php 登陆表单"></a>user/login.php 登陆表单</h3><p>&emsp;&emsp;login.php中有登陆表单，并且包含header.php。</p>
+<p>&emsp;&emsp;login.php中直接调用header.php中的变量$is_login来判断用户是否登陆，如果已登陆则直接跳转到”个人中心”，否则显示登陆表单(表单的action属性指向checklogin.php)。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">require</span>(<span class="string">'./../config/config.php'</span>);<span class="meta">?&gt;</span></span><br><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">$here = <span class="string">'login'</span>;</span><br><span class="line"><span class="keyword">require</span>(<span class="string">'../header.php'</span>);</span><br><span class="line"><span class="keyword">if</span>($is_login)&#123;</span><br><span class="line">    <span class="keyword">die</span>(header(<span class="string">"Location: "</span>.$basedir.<span class="string">"user/index.php"</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;html&gt;</span><br><span class="line">...(表单html)</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1525270893.0892932.png" alt=""></p>
+<h3 id="user-checklogin-php-登陆验证"><a href="#user-checklogin-php-登陆验证" class="headerlink" title="user/checklogin.php 登陆验证"></a>user/checklogin.php 登陆验证</h3><p>&emsp;&emsp;登陆验证主要做两个方面：</p>
+<ul>
+<li>1.判断账号密码是否正确</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">	1.判断账号密码是否正确</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1.1 接收登陆界面传递来的数据 </span></span><br><span class="line">$username = $_POST[<span class="string">'username'</span>];</span><br><span class="line">$password = md5($_POST[<span class="string">'password'</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1.2 拼接SQL语句，带入数据库查询</span></span><br><span class="line"></span><br><span class="line">$sql = <span class="string">"select * from user where username='$username' and password='$password'"</span>;</span><br><span class="line">$res = mysql_query($sql) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"&lt;script&gt;alert('数据库查询出错!');&lt;/script&gt;"</span>);</span><br><span class="line">$row = mysql_fetch_assoc($res);</span><br><span class="line"><span class="keyword">if</span>(!$row)&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('账号或密码错误！');&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.设置session</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   session_start();</span><br><span class="line">$_SESSION[<span class="string">'username'</span>]=$username;</span><br><span class="line">header(<span class="string">"Location: $basedir"</span>.<span class="string">'user/login.php'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="上传图片upload-php"><a href="#上传图片upload-php" class="headerlink" title="上传图片upload.php"></a>上传图片upload.php</h2><p>&emsp;&emsp;上传图片的功能单独写到一个php中，因为站点内有多处图片上传点，这样可以复用代码，不用过多的写重复代码。</p>
+<ul>
+<li>1.检测是存在file</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_FILES[<span class="string">'file'</span>]))&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.安全性检测1 - Content-type验证</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((($_FILES[<span class="string">"file"</span>][<span class="string">"type"</span>] == <span class="string">"image/png"</span>)|| ($_FILES[<span class="string">"file"</span>][<span class="string">"type"</span>] == <span class="string">"image/jpeg"</span>)|| ($_FILES[<span class="string">"file"</span>][<span class="string">"type"</span>] == <span class="string">"image/gif"</span>)))</span><br><span class="line">&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('Invalid file!');&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3.获取上传文件的信息</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$uploaded_name = $_FILES[ <span class="string">'file'</span> ][ <span class="string">'name'</span> ]; <span class="comment">// 从数据包获取上传的文件名</span></span><br><span class="line">$uploaded_ext  = substr( $uploaded_name, strrpos( $uploaded_name, <span class="string">'.'</span> ) + <span class="number">1</span>); <span class="comment">// 提取文件名中的后缀，用于后面检测后缀</span></span><br><span class="line">$target_name = md5( uniqid() . $uploaded_name ) . <span class="string">'.'</span> . $uploaded_ext; <span class="comment">// 生成一个独一无二的md5作为文件名存放在本地</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>4.安全性检测2 - 后缀名检测</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( ( strtolower( $uploaded_ext ) == <span class="string">"jpg"</span> || strtolower( $uploaded_ext ) == <span class="string">"jpeg"</span> || strtolower( $uploaded_ext ) == <span class="string">"png"</span> ))&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('Invalid file!');&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>5.移动临时文件，并将图片完整路径赋值给$result</li>
+</ul>
+<p>&emsp;&emsp;PHP的文件上传，上传后的文件是一个临时文件<code>.tmp</code>文件,需要将其移动到指定目录下，并重命名。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$dir = <span class="string">"uploads/"</span>;</span><br><span class="line"><span class="keyword">if</span> (file_exists(<span class="string">"$dir"</span> . $target_name))</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">echo</span> $_FILES[<span class="string">"file"</span>][<span class="string">"name"</span>] . <span class="string">" already exists. "</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line"> 	move_uploaded_file($_FILES[<span class="string">"file"</span>][<span class="string">"tmp_name"</span>],<span class="string">"$dir"</span> . $target_name);</span><br><span class="line">	$result = $dir . $target_name;</span><br><span class="line">	<span class="comment">//echo "$result";</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="发布物品addGood-php"><a href="#发布物品addGood-php" class="headerlink" title="发布物品addGood.php"></a>发布物品addGood.php</h2><ul>
+<li>1.包含header.php并检测用户是否登录</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span>(<span class="string">'config/config.php'</span>);</span><br><span class="line">$here = <span class="string">'addGood'</span>;</span><br><span class="line"><span class="keyword">include</span>(<span class="string">'header.php'</span>);</span><br><span class="line"><span class="keyword">if</span>(!$is_login)&#123;</span><br><span class="line">	header(<span class="string">'location:'</span>.$basedir.<span class="string">'user/login.php'</span>);</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line">header(<span class="string">'Content-type:text/html;charset=utf8'</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.如果存在$_POST[‘submit’]则接收数据，并检测数据</li>
+</ul>
+<p>&emsp;&emsp;因为表单也是像这个界面提交的，所以我们需要判断是访问物品发布界面还是已经填写完信息后的发布物品，使用<code>isset($_POST[&#39;submit&#39;])</code>可以判断，因为如果在addGood.php点击<code>发布物品</code>按钮产生的访问请求中，存在该参数，而从主页或其他地方进入发布物品界面则不会有<code>$_POST[&#39;submit&#39;]</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'submit'</span>]))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 第一步：接收参数</span></span><br><span class="line">	$title = $_POST[<span class="string">'title'</span>];</span><br><span class="line">	$desc = $_POST[<span class="string">'desc'</span>];</span><br><span class="line">	$newOld = $_POST[<span class="string">'newOld'</span>];</span><br><span class="line">	$wanted = $_POST[<span class="string">'wanted'</span>];</span><br><span class="line">	$qq = $_POST[<span class="string">'qq'</span>];</span><br><span class="line">	$tel = $_POST[<span class="string">'tel'</span>];</span><br><span class="line">	$city = $_POST[<span class="string">'city'</span>];</span><br><span class="line">	<span class="comment">// 第二步：数据判断</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">empty</span>($title)&amp;&amp;<span class="keyword">empty</span>($desc)&amp;&amp;<span class="keyword">empty</span>($newOld)&amp;&amp;<span class="keyword">empty</span>($wanted)&amp;&amp;<span class="keyword">empty</span>($qq)&amp;&amp;<span class="keyword">empty</span>($city))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('请先将所有必填项填写后再提交!');&lt;/script&gt;"</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;script&gt;history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">		<span class="keyword">exit</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3.在尾部添加向数据库插入数据的代码</li>
+</ul>
+<p>&emsp;&emsp;插入数据库代码必须在包含<code>upload_file.php</code>后面，否则无法访问到<code>$result</code>变量的值。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">		<span class="comment">//echo"$title &amp;&amp; $desc &amp;&amp; $newOld &amp;&amp; $wanted &amp;&amp; $qq &amp;&amp; $tel &amp;&amp; $city &amp;&amp; $result &amp;&amp; username";</span></span><br><span class="line">		$sql = <span class="string">"INSERT INTO good(title,descr,newOld,wanted,qq,tel,city,image,username) VALUES('$title','$desc','$newOld','$wanted','$qq','$tel','$city','$result','$username')"</span>;</span><br><span class="line">		$res = mysql_query($sql);</span><br><span class="line">		<span class="keyword">if</span>(!$res)&#123;</span><br><span class="line">			<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('插入失败!');&lt;/script&gt;"</span>;</span><br><span class="line">			<span class="keyword">echo</span> <span class="string">"&lt;script&gt;history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">			<span class="comment">//echo $sql;</span></span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			$sql = <span class="string">"select id from good where image='$result'"</span>;</span><br><span class="line">			$res = mysql_query($sql);</span><br><span class="line">			$row = mysql_fetch_assoc($res);</span><br><span class="line">			$id = $row[<span class="string">'id'</span>];</span><br><span class="line">			<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('插入成功!');window.location.href='showItem/index.php?id=$id';&lt;/script&gt;"</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="查看物品相关功能"><a href="#查看物品相关功能" class="headerlink" title="查看物品相关功能"></a>查看物品相关功能</h2><p>&emsp;&emsp;涉及文件：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">showItem/index.php # 显示物品</span><br><span class="line">showItem/addMess.php # 添加留言</span><br></pre></td></tr></table></figure>
+<h3 id="显示物品信息"><a href="#显示物品信息" class="headerlink" title="显示物品信息"></a>显示物品信息</h3><ul>
+<li>1.检测URL中是否存在id参数</li>
+</ul>
+<p>&emsp;&emsp;如果没有id参数就结束程序。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>($_GET[<span class="string">'id'</span>]))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 没有id参数</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('Error id!');window.location.href='../index.php';&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1525855693.7297196.png" alt=""></p>
+<ul>
+<li>2.从good表中查询信息</li>
+</ul>
+<p>&emsp;&emsp;如果信息不为空，那么说明记录存在，则把查询出来的记录存放在<code>$row</code>变量中，供后面调用。如果信息为空，说明该id在数据库中不存在，则提示<code>Error id!</code>程序退出。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$id = $_GET[<span class="string">'id'</span>];</span><br><span class="line">$sql = <span class="string">"select * from good where id='$id'"</span>;</span><br><span class="line">$res = mysql_query($sql);</span><br><span class="line">$row = mysql_fetch_assoc($res);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据库不存在的id</span></span><br><span class="line"><span class="keyword">if</span>(!$row)&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('Error id!');window.location.href='../index.php';&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1525855729.4648597.png" alt=""></p>
+<ul>
+<li>3.拼接html和数据库的信息，以期望交换的物品为例</li>
+</ul>
+<p>&emsp;&emsp;因为多个期望交换的物品是以<code>;</code>隔开的，因此我们需要先以<code>;</code>为单位，分割字符串，分割后的每一个子串就是一个期望的物品，然后用<code>foreach</code>遍历数据，将数据中的信息打印到html的指定位置。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class="col-md-4"&gt;</span><br><span class="line">	&lt;div class="card"&gt;</span><br><span class="line">		&lt;h5 class="card-header"&gt;</span><br><span class="line">			期望交换的物品</span><br><span class="line">		&lt;/h5&gt;</span><br><span class="line">		<span class="meta">&lt;?php</span> $wanted = explode(<span class="string">";"</span>,$row[<span class="string">'wanted'</span>]);<span class="meta">?&gt;</span></span><br><span class="line">		&lt;div class="card-body"&gt;</span><br><span class="line">			<span class="meta">&lt;?php</span> <span class="keyword">foreach</span>($wanted <span class="keyword">as</span> $k=&gt;$v)&#123;<span class="meta">?&gt;</span></span><br><span class="line">			&lt;p class="card-footer"&gt;</span><br><span class="line">				<span class="meta">&lt;?php</span> <span class="keyword">echo</span> $v;<span class="meta">?&gt;</span></span><br><span class="line">			&lt;/p&gt;</span><br><span class="line">			<span class="meta">&lt;?php</span> &#125;<span class="meta">?&gt;</span></span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1525855772.4984453.png" alt=""></p>
+<ul>
+<li>4.发表留言按钮</li>
+</ul>
+<p>&emsp;&emsp;设置留言块<code>div</code>的<code>id</code>为<code>message</code>,然后将发布留言按钮的<code>href</code>指向<code>#message</code>锚点即可。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#message"</span> <span class="attr">class</span>=<span class="string">"btn btn-secondary btn-block btn-lg"</span> <span class="attr">type</span>=<span class="string">"button"</span>&gt;</span>发布留言<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>5.收藏物品按钮</li>
+</ul>
+<p>&emsp;&emsp;将该物品的<code>username</code>字段内容作为<code>user/showuser.php?user=</code>的值查询即可。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"favorite.php?pid=&lt;?php echo $id;?&gt;"</span> <span class="attr">class</span>=<span class="string">"btn btn-secondary btn-lg btn-block"</span> <span class="attr">type</span>=<span class="string">"button"</span>&gt;</span>收藏物品<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="添加物品留言addMes-php"><a href="#添加物品留言addMes-php" class="headerlink" title="添加物品留言addMes.php"></a>添加物品留言addMes.php</h3><ul>
+<li>1.将留言内容和物品id提交给showItem/addMes.php界面</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1525936903.226629.png" alt=""></p>
+<ul>
+<li>2.showItem/addMes.php检测提交信息，并补全username</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">include</span>(<span class="string">'../config/config.php'</span>);</span><br><span class="line">header(<span class="string">'Content-type:text/html;charset=utf8'</span>);</span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>($_POST[<span class="string">'content'</span>]))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('非法访问!');history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">empty</span>($_POST[<span class="string">'content'</span>]))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('留言内容不能为空!');history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( (!<span class="keyword">isset</span>($_POST[<span class="string">'pid'</span>])) || <span class="keyword">empty</span>($_POST[<span class="string">'pid'</span>]))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('非法访问!');history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SESSION_START();</span><br><span class="line"><span class="keyword">if</span>($_SESSION[<span class="string">'username'</span>]==<span class="string">''</span>)</span><br><span class="line">&#123;</span><br><span class="line">	header(<span class="string">'location:'</span>.$basedir.<span class="string">'user/login.php'</span>);</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$username = $_SESSION[<span class="string">'username'</span>];</span><br><span class="line">$content = $_POST[<span class="string">'content'</span>];</span><br><span class="line">$pid = $_POST[<span class="string">'pid'</span>];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3.数据检测并插入数据库后返回显示物品界面</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">"INSERT INTO message(pid,content,username) VALUES('$pid','$content','$username')"</span>;</span><br><span class="line">$res = mysql_query($sql);</span><br><span class="line"><span class="keyword">if</span>(!$res)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('留言失败!');history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('留言成功!');window.location.href='$basedir/showItem/?id=$pid#message';&lt;/script&gt;"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="显示物品留言"><a href="#显示物品留言" class="headerlink" title="显示物品留言"></a>显示物品留言</h3><ul>
+<li>1.从message表中查询并显示留言每页3条</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第一步：查询当前物品的留言条数确定$page_max</span><br><span class="line">第二步：根据page确定显示哪3条</span><br><span class="line">第三步：将内容打印在对应html中</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询当前物品的留言条数确定$page_max</span></span><br><span class="line">$page = <span class="keyword">isset</span>($page) ? $page : <span class="string">'1'</span>;</span><br><span class="line">$sql = <span class="string">"select count(*) as num from message where pid=$id"</span>;</span><br><span class="line">$res = mysql_query($sql);</span><br><span class="line"><span class="keyword">if</span>(!$res)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('数据库查询失败!');window.location.href='../index.php';&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line">$row1 = mysql_fetch_assoc($res);</span><br><span class="line">$page_max = ceil($row1[<span class="string">'num'</span>]/<span class="number">3</span>);</span><br><span class="line"><span class="keyword">if</span>($page &gt; $page_max)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('Page num illegal!');history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据page确定显示哪3条</span></span><br><span class="line">$offset = ($page<span class="number">-1</span>)*<span class="number">3</span>;</span><br><span class="line">$sql = <span class="string">"select * from message where pid=$id limit $offset,3"</span>;</span><br><span class="line">$res = mysql_query($sql);</span><br><span class="line"><span class="keyword">if</span>(!$res)&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('数据库查询失败!');window.location.href='../index.php';&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line">$rows = <span class="keyword">array</span>();</span><br><span class="line"><span class="keyword">while</span>($row2 = mysql_fetch_assoc($res))</span><br><span class="line">&#123;</span><br><span class="line">	$rows[] = $row2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.显示留言翻页</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1525948752.1614928.png" alt=""></p>
+<p>&emsp;&emsp;无留言情况：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1526020594.7631373.png" alt=""></p>
+<h3 id="收藏物品favorite-php"><a href="#收藏物品favorite-php" class="headerlink" title="收藏物品favorite.php"></a>收藏物品favorite.php</h3><p>&emsp;&emsp;把物品的id作为GET参数传递给favorite.php，然后再获取用户的用户名，一并存入favorite表中。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">header(<span class="string">"Content-type:text/html;charset=utf8"</span>);</span><br><span class="line">@<span class="keyword">include</span>(<span class="string">'../config/config.php'</span>);</span><br><span class="line"><span class="keyword">if</span>( (!<span class="keyword">isset</span>($_GET[<span class="string">'pid'</span>])) || <span class="keyword">empty</span>($_GET[<span class="string">'pid'</span>]) )</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('非法访问!');history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SESSION_START();</span><br><span class="line"><span class="keyword">if</span>($_SESSION[<span class="string">'username'</span>]==<span class="string">''</span>)</span><br><span class="line">&#123;</span><br><span class="line">	header(<span class="string">'location:'</span>.$basedir.<span class="string">'user/login.php'</span>);</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line">$username = $_SESSION[<span class="string">'username'</span>];</span><br><span class="line">$pid = $_GET[<span class="string">'pid'</span>];</span><br><span class="line"></span><br><span class="line">$sql = <span class="string">"INSERT INTO favorite(username,pid) VALUES('$username','$pid')"</span>;</span><br><span class="line"></span><br><span class="line">$res = mysql_query($sql);</span><br><span class="line"><span class="keyword">if</span>(!$res)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('收藏失败!');history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('收藏成功!');history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="主页-index-php"><a href="#主页-index-php" class="headerlink" title="主页 index.php"></a>主页 index.php</h2><ul>
+<li>1.轮播图的设置</li>
+</ul>
+<p>&emsp;&emsp;把数据库中按照id的降序排序，查询出3条记录，然后将此3条记录中的<code>tilte</code> 、 <code>descr</code> 和 <code>image</code>输出到轮播图的前端中。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.先查询轮播图的信息</span></span><br><span class="line">$sql = <span class="string">'select * from good order by id desc limit 0,3'</span>;</span><br><span class="line">$res = mysql_query($sql);</span><br><span class="line"><span class="keyword">if</span>(!$res)&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('数据库查询出错，请检查数据库配置!');&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line">$rows=<span class="keyword">array</span>();</span><br><span class="line"><span class="keyword">while</span>($row=mysql_fetch_assoc($res))</span><br><span class="line">&#123;</span><br><span class="line">	$rows[] = $row;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.每页显示6个物品</li>
+</ul>
+<p>&emsp;&emsp;每页显示6个物品，设置偏移量<code>offset</code>来从数据库查询指定页面的条目。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$page = <span class="keyword">isset</span>($_GET[<span class="string">'page'</span>]) ? $_GET[<span class="string">'page'</span>] : <span class="string">'1'</span>;</span><br><span class="line">$offset = ($page<span class="number">-1</span>) * <span class="number">6</span>;</span><br><span class="line">$sql = <span class="string">"select * from good order by id desc limit $offset,6"</span>;</span><br><span class="line">$res = mysql_query($sql);</span><br><span class="line"><span class="keyword">if</span>(!$res)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('数据库查询出错，请检查数据库配置!');&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line">$card_rows = <span class="keyword">array</span>();</span><br><span class="line"><span class="keyword">while</span>($row=mysql_fetch_assoc($res))</span><br><span class="line">&#123;</span><br><span class="line">	$card_rows[] = $row;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;然后将条目中的内容输出到前端的指定位置，但<code>descr</code>只输出36个汉字(108字节)的数据。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1525934974.8735754.png" alt=""></p>
+<p>&emsp;&emsp;查看和分享</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1525935053.6865647.png" alt=""></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1525935091.7127435.png" alt=""></p>
+<ul>
+<li>3.翻页设置</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3.翻页 - 从数据库中查出所有的记录数量，然后/6 = pageMax</span></span><br><span class="line">$sql = <span class="string">"select count(*) as num from good"</span>;</span><br><span class="line">$res = mysql_query($sql);</span><br><span class="line"><span class="keyword">if</span>(!$res)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('数据库查询出错，请检查数据库配置!');&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line">$row = mysql_fetch_assoc($res);</span><br><span class="line">$pageMax = ceil($row[<span class="string">'num'</span>]/<span class="number">6</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1525935161.028474.png" alt=""></p>
+<h2 id="用户后台相关"><a href="#用户后台相关" class="headerlink" title="用户后台相关"></a>用户后台相关</h2><p>&emsp;&emsp;涉及文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">user/index.php   <span class="comment">#用户后台主页</span></span><br><span class="line">user/delFavo.php <span class="comment"># 删除收藏</span></span><br><span class="line">user/delGood.php <span class="comment"># 删除发布的物品</span></span><br><span class="line">user/myGood.php  <span class="comment"># 显示用户自己发布的物品</span></span><br><span class="line">user/myFavorite.php <span class="comment"># 显示用户的收藏</span></span><br><span class="line">user/resetPass.php  <span class="comment"># 重置密码</span></span><br><span class="line">user/loginout.php   <span class="comment"># 退出登录</span></span><br></pre></td></tr></table></figure>
+<h3 id="用户后台主页user-index-php"><a href="#用户后台主页user-index-php" class="headerlink" title="用户后台主页user/index.php"></a>用户后台主页user/index.php</h3><ul>
+<li>1.检测用户是否登录</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">session_start();</span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>($_SESSION[<span class="string">'username'</span>]))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">die</span>(Header(<span class="string">'Location: '</span>.$basedir.<span class="string">'user/login.php'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.查询用户的信息并打印到指定的HTML位置</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$username=$_SESSION[<span class="string">'username'</span>];</span><br><span class="line">@<span class="keyword">include</span>(<span class="string">'../config/config.php'</span>);</span><br><span class="line">$sql = <span class="string">"select * from user where username='$username'"</span>;</span><br><span class="line">$res = mysql_query($sql);</span><br><span class="line">$row = mysql_fetch_assoc($res);</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1526092940.7710042.png" alt=""></p>
+<h3 id="我的物品"><a href="#我的物品" class="headerlink" title="我的物品"></a>我的物品</h3><p>&emsp;&emsp;为了将用户发布的物品展示到后台，采用action参数决定后台的显示。</p>
+<ul>
+<li>1.接收action参数</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'action'</span>]))</span><br><span class="line">&#123;</span><br><span class="line">	$page=$_GET[<span class="string">'action'</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.根据参数来包含文件</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1526093214.3500247.png" alt=""></p>
+<ul>
+<li>3.显示物品功能的实现myGood.php</li>
+</ul>
+<p>&emsp;&emsp;先判断用户是否登录，然后将用户的用户名作为引索到good表中查询。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span>(<span class="string">'../config/config.php'</span>);</span><br><span class="line">session_start();</span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>($_SESSION[<span class="string">'username'</span>]))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">die</span>(Header(<span class="string">'Location: '</span>.$basedir.<span class="string">'user/login.php'</span>));</span><br><span class="line">&#125;</span><br><span class="line">$username = $_SESSION[<span class="string">'username'</span>];</span><br><span class="line">$sql = <span class="string">"select * from good where username='$username' order by id desc"</span>;</span><br><span class="line">$res = mysql_query($sql);</span><br><span class="line">$rows_table = <span class="keyword">array</span>();</span><br><span class="line"><span class="keyword">while</span>($row_table=mysql_fetch_assoc($res))</span><br><span class="line">&#123;</span><br><span class="line">	$rows_table[]=$row_table;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;用一个table来显示结果</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1526093413.1070821.png" alt=""></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1526093428.797047.png" alt=""></p>
+<p>&emsp;&emsp;其中，查看物品引一个链接到<code>showItem/index.php</code>,删除物品的实现：接收一个参数物品的id，然后先检测物品的主人是不是当前登录的用户，如果是则删除该物品，如果不是则提示非法访问，代码实现如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Header(<span class="string">'Content-type:text/html;charset=utf-8'</span>);</span><br><span class="line">@<span class="keyword">include</span>(<span class="string">'../config/config.php'</span>);</span><br><span class="line">$id = $_GET[<span class="string">'id'</span>];</span><br><span class="line">$sql = <span class="string">"select username from good where id=$id"</span>;</span><br><span class="line">$res = mysql_query($sql);</span><br><span class="line">$row = mysql_fetch_assoc($res);</span><br><span class="line">SESSION_START();</span><br><span class="line"><span class="keyword">if</span>($_SESSION[<span class="string">'username'</span>]!==$row[<span class="string">'username'</span>])</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;非法操作&lt;/script&gt;"</span>;</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line">$sql = <span class="string">"delete from good where id=$id"</span>;</span><br><span class="line">$res = mysql_query($sql);</span><br><span class="line"><span class="keyword">if</span>($res)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('删除成功!');window.location.href='$basedir/user/?action=showItem';&lt;/script&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('删除失败');history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>4.物品发布</li>
+</ul>
+<p>&emsp;&emsp;直接一个超链接到addGood.php即可。</p>
+<h3 id="我的收藏"><a href="#我的收藏" class="headerlink" title="我的收藏"></a>我的收藏</h3><p>&emsp;&emsp;收藏列表也是通过<code>action</code>参数，将收藏显示实现界面包含在后台主页的。</p>
+<ul>
+<li>1.查询用户的收藏</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">include</span>(<span class="string">'../config/config.php'</span>);</span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>($_SESSION[<span class="string">'username'</span>]))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">die</span>(Header(<span class="string">'Location: '</span>.$basedir.<span class="string">'user/login.php'</span>));</span><br><span class="line">&#125;</span><br><span class="line">$username = $_SESSION[<span class="string">'username'</span>];</span><br><span class="line">$sql = <span class="string">"select * from favorite where username='$username'"</span>;</span><br><span class="line">$res = mysql_query($sql);</span><br><span class="line"><span class="comment">//var_dump($res);</span></span><br><span class="line">$rows_table1 = <span class="keyword">array</span>();</span><br><span class="line"><span class="keyword">while</span>($row_table1 = mysql_fetch_assoc($res))</span><br><span class="line">&#123;</span><br><span class="line">	$rows_table1[]=$row_table1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.将收藏信息打印到表格中</li>
+</ul>
+<p>&emsp;&emsp;由于收藏表只记录了用户名和收藏的物品id，所以需要到good表中去查询具体的物品信息。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1526093831.3873842.png" alt=""></p>
+<ul>
+<li>3.查看收藏的物品详情</li>
+</ul>
+<p>&emsp;&emsp;打印出的表格会有一个按钮，是查看收藏物品的详情的，如下图：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1526093973.066564.png" alt=""></p>
+<p>&emsp;&emsp;其实现方法就是把物品id作为参数，超链接到<code>showItem/index.php</code></p>
+<ul>
+<li>4.取消收藏</li>
+</ul>
+<p>&emsp;&emsp;其实现方法就是把物品id作为参数，超链接到<code>user/delFavo.php</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	Header(<span class="string">'Content-type:text/html;charset=utf-8'</span>);</span><br><span class="line">	@<span class="keyword">include</span>(<span class="string">'../config/config.php'</span>);</span><br><span class="line">	$id = $_GET[<span class="string">'id'</span>];</span><br><span class="line">	$sql = <span class="string">"select username from favorite where id=$id"</span>;</span><br><span class="line">	$res = mysql_query($sql);</span><br><span class="line">	$row = mysql_fetch_assoc($res);</span><br><span class="line">	SESSION_START();</span><br><span class="line">	<span class="keyword">if</span>($_SESSION[<span class="string">'username'</span>]!==$row[<span class="string">'username'</span>])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;script&gt;非法操作&lt;/script&gt;"</span>;</span><br><span class="line">		<span class="keyword">exit</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	$sql = <span class="string">"delete from favorite where id=$id"</span>;</span><br><span class="line">	$res = mysql_query($sql);</span><br><span class="line">	<span class="keyword">if</span>($res)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('取消收藏成功!');window.location.href='$basedir/user/?action=favorite';&lt;/script&gt;"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('取消收藏失败');history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="用户操作"><a href="#用户操作" class="headerlink" title="用户操作"></a>用户操作</h3><ul>
+<li>1.修改密码</li>
+</ul>
+<p>&emsp;&emsp;在用户主页包含<code>resetPass.php</code>，<code>resetPass.php</code>的实现：1.接收参数，检查参数；2.检测旧密码是否正确；3.新密码是否相同，如果相同则修改。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span>(<span class="string">'../config/config.php'</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'submit'</span>]))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 1.接收参数，检查参数</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'oldPass'</span>]) &amp;&amp; <span class="keyword">isset</span>($_POST[<span class="string">'newPass'</span>]) &amp;&amp; <span class="keyword">isset</span>($_POST[<span class="string">'newPass1'</span>]))</span><br><span class="line">	&#123;</span><br><span class="line">		$oldPass = $_POST[<span class="string">'oldPass'</span>];</span><br><span class="line">		$newPass = $_POST[<span class="string">'newPass'</span>];</span><br><span class="line">		$newPass1 = $_POST[<span class="string">'newPass1'</span>];</span><br><span class="line">		<span class="keyword">if</span>($oldPass &amp;&amp; $newPass &amp;&amp; $newPass1)</span><br><span class="line">		&#123;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('密码不能为空!');history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">			<span class="keyword">exit</span>();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('非法访问!');history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">		<span class="keyword">exit</span>();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 2.检测旧密码是否正确</span></span><br><span class="line">	session_start();</span><br><span class="line">	$username = $_SESSION[<span class="string">'username'</span>];</span><br><span class="line">	$oldPass = md5($oldPass);</span><br><span class="line">	$sql = <span class="string">"select password from user where username='$username'"</span>;</span><br><span class="line">	$res = mysql_query($sql);</span><br><span class="line">	$row = mysql_fetch_assoc($res);</span><br><span class="line">	<span class="keyword">if</span>($row[<span class="string">'password'</span>]!==$oldPass)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('旧密码不正确!');history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">		<span class="keyword">exit</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 3.新密码是否相同，如果相同则修改</span></span><br><span class="line">	<span class="keyword">if</span>($newPass!==$newPass1)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('新密码与重复新密码不同!');history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">		<span class="keyword">exit</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	$newPass = md5($newPass);</span><br><span class="line">	$sql = <span class="string">"UPDATE user SET password='$newPass' where username='$username'"</span>;</span><br><span class="line">	$res = mysql_query($sql);</span><br><span class="line">	<span class="keyword">if</span>($res)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('修改密码成功!');window.location.href='$basedir/user/index.php';&lt;/script&gt;"</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;script&gt;alert('修改密码失败!');history.go(-1);&lt;/script&gt;"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1526094254.5606003.png" alt=""></p>
+<ul>
+<li>2.注销登录</li>
+</ul>
+<p>&emsp;&emsp;超链接到loginout.php，其实现方法就是把<code>session</code>删掉。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">'../config/config.php'</span>);</span><br><span class="line">session_start();</span><br><span class="line"><span class="keyword">unset</span>($_SESSION[<span class="string">'username'</span>]);</span><br><span class="line">header(<span class="string">"Location: "</span>.$basedir);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="成品地址"><a href="#成品地址" class="headerlink" title="成品地址"></a>成品地址</h1><p><a href="http://github.com/admintony/easegood" target="_blank" rel="noopener">easegood</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/信息系统开发/" rel="tag"># 信息系统开发</a>
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/BootStrap/" rel="tag"># BootStrap</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/MySQL的逻辑运算符-and-or-xor-的工作机制.html" rel="next" title="MySQL的逻辑运算符(and_or_xor)的工作机制">
+                <i class="fa fa-chevron-left"></i> MySQL的逻辑运算符(and_or_xor)的工作机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/关于上传中的00截断分析.html" rel="prev" title="关于上传中的00截断分析">
+                关于上传中的00截断分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="AdminTony" />
+            
+              <p class="site-author-name" itemprop="name">AdminTony</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://t00ls.net/index.php" title="T00ls.net" target="_blank">T00ls.net</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.sqlsec.com/" title="国光" target="_blank">国光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://eternalsakura13.com/" title="Sakura" target="_blank">Sakura</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ares-x.com" title="ares-x" target="_blank">ares-x</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://paper.seebug.org" title="Paper" target="_blank">Paper</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.e-wolf.top/" title="A." target="_blank">A.</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目录结构"><span class="nav-number">1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库设计"><span class="nav-number">2.</span> <span class="nav-text">数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#user-用户表"><span class="nav-number">2.1.</span> <span class="nav-text">user 用户表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#good-物品表"><span class="nav-number">2.2.</span> <span class="nav-text">good 物品表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#message-物品留言表"><span class="nav-number">2.3.</span> <span class="nav-text">message 物品留言表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#favorite-收藏表"><span class="nav-number">2.4.</span> <span class="nav-text">favorite 收藏表</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统功能实现"><span class="nav-number">3.</span> <span class="nav-text">系统功能实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#头部代码header-php"><span class="nav-number">3.1.</span> <span class="nav-text">头部代码header.php</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#is-login检测"><span class="nav-number">3.1.1.</span> <span class="nav-text">is_login检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导航栏"><span class="nav-number">3.1.2.</span> <span class="nav-text">导航栏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登陆相关"><span class="nav-number">3.2.</span> <span class="nav-text">登陆相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#user-login-php-登陆表单"><span class="nav-number">3.2.1.</span> <span class="nav-text">user/login.php 登陆表单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#user-checklogin-php-登陆验证"><span class="nav-number">3.2.2.</span> <span class="nav-text">user/checklogin.php 登陆验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上传图片upload-php"><span class="nav-number">3.3.</span> <span class="nav-text">上传图片upload.php</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布物品addGood-php"><span class="nav-number">3.4.</span> <span class="nav-text">发布物品addGood.php</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看物品相关功能"><span class="nav-number">3.5.</span> <span class="nav-text">查看物品相关功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#显示物品信息"><span class="nav-number">3.5.1.</span> <span class="nav-text">显示物品信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加物品留言addMes-php"><span class="nav-number">3.5.2.</span> <span class="nav-text">添加物品留言addMes.php</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示物品留言"><span class="nav-number">3.5.3.</span> <span class="nav-text">显示物品留言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#收藏物品favorite-php"><span class="nav-number">3.5.4.</span> <span class="nav-text">收藏物品favorite.php</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主页-index-php"><span class="nav-number">3.6.</span> <span class="nav-text">主页 index.php</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户后台相关"><span class="nav-number">3.7.</span> <span class="nav-text">用户后台相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户后台主页user-index-php"><span class="nav-number">3.7.1.</span> <span class="nav-text">用户后台主页user/index.php</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的物品"><span class="nav-number">3.7.2.</span> <span class="nav-text">我的物品</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我的收藏"><span class="nav-number">3.7.3.</span> <span class="nav-text">我的收藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户操作"><span class="nav-number">3.7.4.</span> <span class="nav-text">用户操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#成品地址"><span class="nav-number">4.</span> <span class="nav-text">成品地址</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AdminTony</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">69.2k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" rel="external nofollow" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" rel="external nofollow" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<br><span>Hosted by <a rel="external nofollow" target="_blank" href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

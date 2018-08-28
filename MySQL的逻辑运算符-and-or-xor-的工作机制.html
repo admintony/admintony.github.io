@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="MySQL,and,or,xor," />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="MySQL,and,or,xor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL的逻辑运算符(and_or_xor)的工作机制">
+<meta property="og:url" content="http://www.admintony.com/MySQL的逻辑运算符-and-or-xor-的工作机制.html">
+<meta property="og:site_name" content="AdminTony&#39;s Blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1524846648.9156046.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1524841761.6835358.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1524840418.2538288.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1524840552.0746193.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1524840679.3423498.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1524840762.4514246.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1524840897.263286.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1524841219.9111414.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1524845318.9740362.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1524843796.720636.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1524844904.3262117.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1524844957.8018613.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1523494198.6020398.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1524846369.4777515.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1524846648.9156046.png">
+<meta property="og:updated_time" content="2018-04-27T16:59:51.804Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL的逻辑运算符(and_or_xor)的工作机制">
+<meta name="twitter:image" content="https://blog-1252108140.cosbj.myqcloud.com/201804/1524846648.9156046.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'AdminTony'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.admintony.com/MySQL的逻辑运算符-and-or-xor-的工作机制.html"/>
+
+
+
+
+
+  <title>MySQL的逻辑运算符(and_or_xor)的工作机制 | AdminTony's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AdminTony's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">学无止境苦与乐</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.admintony.com/MySQL的逻辑运算符-and-or-xor-的工作机制.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AdminTony">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AdminTony's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">MySQL的逻辑运算符(and_or_xor)的工作机制</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T22:38:16-07:00">
+                2018-04-27
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/MySQL/and-or-xor/" itemprop="url" rel="index">
+                    <span itemprop="name">and_or_xor</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,629 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1524846648.9156046.png" alt=""></p>
+<a id="more"></a>
+<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>&emsp;&emsp;在做基于时间盲注测试的时候，发现sleep的时间和预想的时间不同，为了解释此现象，于是乎就开始探究and、or、xor的工作机制。</p>
+<p>&emsp;&emsp;如果你以前以为 and sleep(5) 、or sleep(5)就是延时5秒，那恭喜你，这篇文章会让你学到一些东西。</p>
+<h1 id="数据库中的内容"><a href="#数据库中的内容" class="headerlink" title="数据库中的内容"></a>数据库中的内容</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--MySQL.user 表</span></span><br><span class="line"></span><br><span class="line">host          user     password</span><br><span class="line">localhost     root     mysql5('root')</span><br><span class="line">127.0.0.1     root     mysql5('root')</span><br><span class="line">192.168.0.100 root     mysql5('root')</span><br><span class="line">localhost     aaa      mysql5('root')</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1524841761.6835358.png" alt=""></p>
+<h1 id="测试语句及结果"><a href="#测试语句及结果" class="headerlink" title="测试语句及结果"></a>测试语句及结果</h1><h2 id="测试语句1"><a href="#测试语句1" class="headerlink" title="测试语句1"></a>测试语句1</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user,password from user where user='root' and sleep(5);</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1524840418.2538288.png" alt=""></p>
+<p>&emsp;&emsp;疑问1：为什么这里是延时了15秒?</p>
+<h2 id="测试语句2"><a href="#测试语句2" class="headerlink" title="测试语句2"></a>测试语句2</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user,password from user where user='aaa' or sleep(5);</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1524840552.0746193.png" alt=""></p>
+<p>&emsp;&emsp;疑问2：为什么这里也是延时了15秒？</p>
+<h2 id="测试语句3"><a href="#测试语句3" class="headerlink" title="测试语句3"></a>测试语句3</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user,password from user where user='root' and host='localhost' or sleep(5);</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1524840679.3423498.png" alt=""></p>
+<p>&emsp;&emsp;疑问3：为什么又是15秒？</p>
+<h2 id="测试语句4"><a href="#测试语句4" class="headerlink" title="测试语句4"></a>测试语句4</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user,password from user where user='root' or sleep(5) and host='localhost';</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1524840762.4514246.png" alt=""></p>
+<p>&emsp;&emsp;终于是5秒了，我仿佛又看到了春天。</p>
+<h2 id="测试语句5"><a href="#测试语句5" class="headerlink" title="测试语句5"></a>测试语句5</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user,password from user where host='localhost' or sleep(5) and user='root';</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1524840897.263286.png" alt=""></p>
+<p>&emsp;&emsp;疑问4：纳尼？怎么又是10秒了？这究竟发生了什么？</p>
+<h2 id="测试语句6"><a href="#测试语句6" class="headerlink" title="测试语句6"></a>测试语句6</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user,password from user where host='localhost' or user='root' or sleep(5);</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1524841219.9111414.png" alt=""></p>
+<p>&emsp;&emsp;疑问5：纳尼？前面的延时时间比预期的时间长就算了，这个怎么还不延迟了呢？</p>
+<h2 id="测试语句7"><a href="#测试语句7" class="headerlink" title="测试语句7"></a>测试语句7</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user,password from user where host='localhost' or false and user='root' and sleep(5);</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1524845318.9740362.png" alt=""></p>
+<p>&emsp;&emsp;疑问6：0秒？楼主你的MySQL是假的吧。</p>
+<p>&emsp;&emsp;让我来一一回答这六个疑问。</p>
+<h1 id="and-、or的工作机制"><a href="#and-、or的工作机制" class="headerlink" title="and 、or的工作机制"></a>and 、or的工作机制</h1><p>&emsp;&emsp;这里要先说明一个问题：sleep(5)&lt;=&gt;false</p>
+<h2 id="第一个问题"><a href="#第一个问题" class="headerlink" title="第一个问题"></a>第一个问题</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user,password from user where user='root' and sleep(5);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;以上语句执行时间为什么是15秒？</p>
+<p>&emsp;&emsp;这个问题涉及到了MySQL中and的工作机制，比如where A and B。MySQL会先进行查询满足条件A的结果集：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> A; <span class="comment">-- 假设返回结果集1</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;然后从结果集1中查询满足条件B的：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> 结果集<span class="number">1</span> <span class="keyword">where</span> B;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;由于满足user=’root’的结果集中包含3个数据，所以sleep(5)被执行了3次，因此延时15秒。</p>
+<h2 id="第二个问题"><a href="#第二个问题" class="headerlink" title="第二个问题"></a>第二个问题</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user,password from user where user='aaa' or sleep(5);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这个语句为什么也是延时15秒？</p>
+<p>&emsp;&emsp;这个问题涉及到了MySQL or的工作机制，比如where A or B，MySQL会先查询出非A的结果集1：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">not</span> A;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;然后在结果集1中查询出非B的结果集2：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> 结果集<span class="number">1</span> <span class="keyword">where</span> <span class="keyword">not</span> B;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;第三步是从user表中查询非结果集2的结果，也就是最终结果：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">not</span> 结果集<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;我们构造的环境中，user!=’aaa’的有3条记录，所以sleep(5)被执行了3次，因此延时15秒</p>
+<h2 id="第三个问题"><a href="#第三个问题" class="headerlink" title="第三个问题"></a>第三个问题</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user,password from user where user='root' and host='localhost' or sleep(5);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这条语句为什么延时15秒？</p>
+<p>&emsp;&emsp;这条语句先查询出满足user=’root’的结果集1[3条]，然后再从结果集1中查询出满足host=’localhost’的结果集2[1条]，接着从非结果集2[3条]中查询非sleep(5)得到结果集3，最后查询非结果集3的即可获得最终数据，此过程中sleep(5)被执行了3次，因此延时15秒</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1524843796.720636.png" alt=""></p>
+<h2 id="第四个问题"><a href="#第四个问题" class="headerlink" title="第四个问题"></a>第四个问题</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user,password from user where host='localhost' or sleep(5) and user='root';</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;为什么会延时10秒？</p>
+<p>&emsp;&emsp;这条语句先查询出host=’localhost’的结果集1，然后再对非结果集1进行(sleep(5) and user=’root’)的筛选得出结果集2，结果集1和结果集2的并集就是最终结果集。</p>
+<p>&emsp;&emsp;而从非结果集1中进行where sleep(5) and user=’root’的查询又分为以下两步：1.从非结果集1中查询满足sleep(5) 的结果集2_1 然后从结果集2_1中查询满足user=’root’的结果集得到结果集2</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1524844904.3262117.png" alt=""></p>
+<p>&emsp;&emsp;另外从该语句的执行结果我们可以看出的是and的优先级要高于or。如果两者优先级相同的话，结果应该是只有一条数据：localhost root的这条。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user,password from user where host='localhost' or user='xxxx' and sleep(5);</span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1524844957.8018613.png" alt=""></p>
+<p>&emsp;&emsp;原因是非结果集1中满足user=’xxxx’的结果集2_1为空，所以sleep(5)未执行。</p>
+<h2 id="第五个问题"><a href="#第五个问题" class="headerlink" title="第五个问题"></a>第五个问题</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user,password from user where host='localhost' or user='root' or sleep(5);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;为什么执行结果是0秒呢？</p>
+<p>&emsp;&emsp;因为host=’localhost’ or user=’root’已经是全集了，非全集则为空集，所以sleep(5)没有被执行。</p>
+<h2 id="第六个问题"><a href="#第六个问题" class="headerlink" title="第六个问题"></a>第六个问题</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user,password from user where host='localhost' or false and user='root' and sleep(5);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;为什么执行结果是0秒呢？</p>
+<p>&emsp;&emsp;因为false and user=’root’的结果集已经是空集，所以sleep(5)并没有被执行。</p>
+<h1 id="xor的工作机制"><a href="#xor的工作机制" class="headerlink" title="xor的工作机制"></a>xor的工作机制</h1><p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1523494198.6020398.png" alt=""></p>
+<h1 id="对时间盲注的影响"><a href="#对时间盲注的影响" class="headerlink" title="对时间盲注的影响"></a>对时间盲注的影响</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 情况1：</span></span><br><span class="line">id and if(1=1,sleep(5),0)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;如果这里你填写的ID是在数据库中不存在的ID，则这个payload不会延时，那么你将错过一个基于时间的盲注注入点。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 情况2：</span></span><br><span class="line">id or if(1=1,sleep(5),0)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;如果这里有100个id，而你只写了1个id，那么你将进行99次sleep(5),同志，你想想你等待的会不会花儿都谢了？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 情况3：</span></span><br><span class="line">keyword%' and if(1=1,sleep(5),0) or '%a%'='%a</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这种情况会延时0秒，MySQL会从简单的一方先开始查询，显然’%a%’=’%a%’已经占了全集，那么or左边的sleep(5)</p>
+<p>&emsp;&emsp;and 左右一旦出现明显的false则不会执行另一次，or 左右一旦出现明显true则不会执行另一侧，这是我在写第三种情况的时候发现的</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1524846369.4777515.png" alt=""></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1524846648.9156046.png" alt=""></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 情况4：</span></span><br><span class="line">keyword%' or if(1=1,sleep(5),0) or '%a%'='%a</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;此情况延时也为0秒，因为最右侧出现了明显的true</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 情况5：</span></span><br><span class="line">keyword%' and if(1=1,sleep(5),0) or '%a%'='%a</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;此情况延时也为0秒，因为最右侧出现了明显的true</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>&emsp;&emsp;1.在不需要闭合的注入场景中尽量使用id and if(1=1,sleep(5),0) 并且注意id要填写为数据库中存在的id</p>
+<p>&emsp;&emsp;2.在需要闭合的注入场景中，keyword最好填写能查询数据，并且查询的条目不多的keyword，两个连接符都用and来进行连接。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+            <a href="/tags/and/" rel="tag"># and</a>
+          
+            <a href="/tags/or/" rel="tag"># or</a>
+          
+            <a href="/tags/xor/" rel="tag"># xor</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/CVE-2018-2628-WebLogic反序列化漏洞复现.html" rel="next" title="CVE-2018-2628 WebLogic反序列化漏洞复现">
+                <i class="fa fa-chevron-left"></i> CVE-2018-2628 WebLogic反序列化漏洞复现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/BootStrap-PHP编写信息系统.html" rel="prev" title="BootStrap+PHP编写信息系统">
+                BootStrap+PHP编写信息系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="AdminTony" />
+            
+              <p class="site-author-name" itemprop="name">AdminTony</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://t00ls.net/index.php" title="T00ls.net" target="_blank">T00ls.net</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.sqlsec.com/" title="国光" target="_blank">国光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://eternalsakura13.com/" title="Sakura" target="_blank">Sakura</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ares-x.com" title="ares-x" target="_blank">ares-x</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://paper.seebug.org" title="Paper" target="_blank">Paper</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.e-wolf.top/" title="A." target="_blank">A.</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库中的内容"><span class="nav-number">2.</span> <span class="nav-text">数据库中的内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试语句及结果"><span class="nav-number">3.</span> <span class="nav-text">测试语句及结果</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试语句1"><span class="nav-number">3.1.</span> <span class="nav-text">测试语句1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试语句2"><span class="nav-number">3.2.</span> <span class="nav-text">测试语句2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试语句3"><span class="nav-number">3.3.</span> <span class="nav-text">测试语句3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试语句4"><span class="nav-number">3.4.</span> <span class="nav-text">测试语句4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试语句5"><span class="nav-number">3.5.</span> <span class="nav-text">测试语句5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试语句6"><span class="nav-number">3.6.</span> <span class="nav-text">测试语句6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试语句7"><span class="nav-number">3.7.</span> <span class="nav-text">测试语句7</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#and-、or的工作机制"><span class="nav-number">4.</span> <span class="nav-text">and 、or的工作机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个问题"><span class="nav-number">4.1.</span> <span class="nav-text">第一个问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二个问题"><span class="nav-number">4.2.</span> <span class="nav-text">第二个问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三个问题"><span class="nav-number">4.3.</span> <span class="nav-text">第三个问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四个问题"><span class="nav-number">4.4.</span> <span class="nav-text">第四个问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五个问题"><span class="nav-number">4.5.</span> <span class="nav-text">第五个问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六个问题"><span class="nav-number">4.6.</span> <span class="nav-text">第六个问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xor的工作机制"><span class="nav-number">5.</span> <span class="nav-text">xor的工作机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对时间盲注的影响"><span class="nav-number">6.</span> <span class="nav-text">对时间盲注的影响</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AdminTony</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">69.2k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" rel="external nofollow" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" rel="external nofollow" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<br><span>Hosted by <a rel="external nofollow" target="_blank" href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

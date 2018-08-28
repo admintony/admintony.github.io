@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="Hexo,SEO优化,网站改版" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;emsp;&amp;emsp;最近想对博客做一下SEO优化，但是里面还是遇到了一些坑的，写来记录一下。">
+<meta name="keywords" content="Hexo,SEO优化,网站改版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo做SEO优化遇到的坑">
+<meta property="og:url" content="http://www.admintony.com/Hexo做SEO优化遇到的坑.html">
+<meta property="og:site_name" content="AdminTony&#39;s Blog">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;最近想对博客做一下SEO优化，但是里面还是遇到了一些坑的，写来记录一下。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1527014981.938484.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1527018013.5511634.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1527018566.6256611.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1527074533.1044018.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1527075119.102919.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1527075652.2164114.png">
+<meta property="og:updated_time" content="2018-05-23T15:19:23.583Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo做SEO优化遇到的坑">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;最近想对博客做一下SEO优化，但是里面还是遇到了一些坑的，写来记录一下。">
+<meta name="twitter:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1527014981.938484.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'AdminTony'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.admintony.com/Hexo做SEO优化遇到的坑.html"/>
+
+
+
+
+
+  <title>Hexo做SEO优化遇到的坑 | AdminTony's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AdminTony's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">学无止境苦与乐</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.admintony.com/Hexo做SEO优化遇到的坑.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AdminTony">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AdminTony's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Hexo做SEO优化遇到的坑</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-23T02:42:26-07:00">
+                2018-05-23
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/SEO优化/" itemprop="url" rel="index">
+                    <span itemprop="name">SEO优化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,470 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1527014981.938484.png" alt=""></p>
+<p>&emsp;&emsp;最近想对博客做一下SEO优化，但是里面还是遇到了一些坑的，写来记录一下。</p>
+<a id="more"></a>
+<h1 id="Hexo做SEO优化"><a href="#Hexo做SEO优化" class="headerlink" title="Hexo做SEO优化"></a>Hexo做SEO优化</h1><p>&emsp;&emsp;对Hexo做SEO优化主要做了以下几个部分：</p>
+<h2 id="首页title优化"><a href="#首页title优化" class="headerlink" title="首页title优化"></a>首页title优化</h2><p>&emsp;&emsp;更改index.swig文件(<code>your-hexo-site\themes\next\layout\index.swig</code>),将</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block title %&#125; &#123;&#123; config.title &#125;&#125; &#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block title %&#125;  &#123;&#123; config.title &#125;&#125; - &#123;&#123; theme.description &#125;&#125;  &#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这样更符合<code>网站名称 - 网站描述</code>这种格式。</p>
+<h2 id="生成sitemap并提交百度"><a href="#生成sitemap并提交百度" class="headerlink" title="生成sitemap并提交百度"></a>生成sitemap并提交百度</h2><ul>
+<li>1.安装sitemap自动生成插件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.在<code>主题配置</code>文件中添加配置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sitemap: </span><br><span class="line">  path: sitemap.xml</span><br><span class="line">baidusitemap:</span><br><span class="line">  path: baidusitemap.xml</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3.在<code>站点配置</code>文件中修改URL</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: http://www.admintony.com</span><br></pre></td></tr></table></figure>
+<h2 id="添加nofollow标签"><a href="#添加nofollow标签" class="headerlink" title="添加nofollow标签"></a>添加nofollow标签</h2><p>&emsp;&emsp;nofollow标签是由谷歌领头创新的一个“反垃圾链接”的标签，并被百度、yahoo等各大搜索引擎广泛支持，引用nofollow标签的目的是：用于指示搜索引擎不要追踪（即抓取）网页上的带有nofollow属性的任何出站链接，以减少垃圾链接的分散网站权重。</p>
+<p>&emsp;&emsp;以hexo的NexT主题为例，需要修改两处:</p>
+<ul>
+<li>1.找到footer.swig，路径在<code>your-hexo-site\themes\next\layout\_partials</code></li>
+</ul>
+<p>&emsp;&emsp;将下面代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; __('footer.powered', '<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"theme-link"</span> <span class="attr">href</span>=<span class="string">"http://hexo.io"</span>&gt;</span>Hexo<span class="tag">&lt;/<span class="name">a</span>&gt;</span>') &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;改成</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; __('footer.powered', '<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"theme-link"</span> <span class="attr">href</span>=<span class="string">"http://hexo.io"</span> <span class="attr">rel</span>=<span class="string">"external nofollow"</span>&gt;</span>Hexo<span class="tag">&lt;/<span class="name">a</span>&gt;</span>') &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;将下面代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"theme-link"</span> <span class="attr">href</span>=<span class="string">"https://github.com/iissnan/hexo-theme-next"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;改成</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"theme-link"</span> <span class="attr">href</span>=<span class="string">"https://github.com/iissnan/hexo-theme-next"</span> <span class="attr">rel</span>=<span class="string">"external nofollow"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.修改sidebar.swig文件，路径在<code>your-hexo-site\themes\next\layout_macro</code></li>
+</ul>
+<p>&emsp;&emsp;将下面代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;&#123; link &#125;&#125;"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>&#123;&#123; name &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;改成</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;&#123; link &#125;&#125;"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">rel</span>=<span class="string">"external nofollow"</span>&gt;</span>&#123;&#123; name &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;将下面代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://creativecommons.org/licenses/&#123;&#123; theme.creative_commons &#125;&#125;/4.0"</span> <span class="attr">class</span>=<span class="string">"cc-opacity"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;改成</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://creativecommons.org/licenses/&#123;&#123; theme.creative_commons &#125;&#125;/4.0"</span> <span class="attr">class</span>=<span class="string">"cc-opacity"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">rel</span>=<span class="string">"external nofollow"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;可以使用chinaz站长工具进行各项检测。</p>
+<h2 id="添加robots-txt"><a href="#添加robots-txt" class="headerlink" title="添加robots.txt"></a>添加robots.txt</h2><ul>
+<li>1.添加蜘蛛协议（放在<code>blog\source</code>目录下）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># hexo robots.txt</span><br><span class="line">User-agent: *</span><br><span class="line">Allow: /</span><br><span class="line">Allow: /archives/</span><br><span class="line"></span><br><span class="line">Disallow: /vendors/</span><br><span class="line">Disallow: /js/</span><br><span class="line">Disallow: /css/</span><br><span class="line">Disallow: /fonts/</span><br><span class="line">Disallow: /vendors/</span><br><span class="line">Disallow: /fancybox/</span><br><span class="line"></span><br><span class="line">Sitemap: http://www.admintony.com/sitemap.xml</span><br><span class="line">Sitemap: http://www.admintony.com/baidusitemap.xml</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.在百度站长平台监测并更新Robots</li>
+</ul>
+<h2 id="修改文章链接"><a href="#修改文章链接" class="headerlink" title="修改文章链接"></a>修改文章链接</h2><p>&emsp;&emsp;HEXO默认的文章链接形式为<code>domain/year/month/day/postname</code>，默认就是一个四级url，并且可能造成url过长，对搜索引擎是十分不友好的，我们可以改成 <code>domain/postname</code>的形式。编辑站点<code>_config.yml</code>文件，修改其中的<code>permalink</code>字段改为<code>permalink: :title.html</code>即可。</p>
+<h2 id="keywords和description"><a href="#keywords和description" class="headerlink" title="keywords和description"></a>keywords和description</h2><p>&emsp;&emsp;在<code>\scaffolds\post.md</code>中添加如下代码，用于生成的文章中添加关键字和描述。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">keywords: </span><br><span class="line">description:</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;在<code>\themes\next\layout\_partials\head.swig</code>有如下代码，用于生成文章的<code>keywords</code>。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if page.keywords %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">"&#123;&#123; page.keywords &#125;&#125;"</span> /&gt;</span></span><br><span class="line">&#123;% elif page.tags and page.tags.length %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">"&#123;% for tag in page.tags %&#125;&#123;&#123; tag.name &#125;&#125;,&#123;% endfor %&#125;"</span> /&gt;</span></span><br><span class="line">&#123;% elif theme.keywords %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">"&#123;&#123; theme.keywords &#125;&#125;"</span> /&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;文章的<code>摘要</code>会变为<code>description</code>。</p>
+<h2 id="主动推送插件"><a href="#主动推送插件" class="headerlink" title="主动推送插件"></a>主动推送插件</h2><ul>
+<li>1.安装<code>hexo-baidu-url-submit</code>插件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-baidu-url-submit --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.配置站点的<code>_config.yml</code>文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">baidu_url_submit:</span><br><span class="line">  count: 3 ## 比如3，代表提交最新的三个链接</span><br><span class="line">  host: www.admintony.com ## 在百度站长平台中注册的域名</span><br><span class="line">  token: your_token ## 请注意这是您的秘钥， 请不要发布在公众仓库里!</span><br><span class="line">  path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3.加入新的deployer(站点的<code>_config.yml</code>文件)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">- type: git</span><br><span class="line">  repo:</span><br><span class="line">    coding: https://用户名:密码@git.coding.net/TinyJay/blog.git,master</span><br><span class="line">- type: baidu_url_submitter # 新加入的</span><br></pre></td></tr></table></figure>
+<h2 id="从github迁至coding"><a href="#从github迁至coding" class="headerlink" title="从github迁至coding"></a>从github迁至coding</h2><p>&emsp;&emsp;github是禁止百度蜘蛛爬行的，所以无法收录，因此将博客从Github迁移到了coding上，coding没有屏蔽百度蜘蛛，很方便被收录。</p>
+<h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><p>&emsp;&emsp;主要遇到了以下几点问题：</p>
+<ul>
+<li>1.<code>admintony.com</code>和<code>wwww.admintony.com</code>收录情况不同</li>
+</ul>
+<p>&emsp;&emsp;不加www的属于顶级域名；加www的属于顶级域名的子域名，对搜索引擎来说这两种域名是不同的站点。从而自然收录也会不一样。查收录时加www查到的数据是带www的这个制定网址网站的收录量；不加www的则还包括所有的二级域名网页收录在内。所以一般情况下，不加www比加www的收录量要大。</p>
+<ul>
+<li>2.URL规则已经改成<code>http://域名/文章名.html</code>，但收录URL却是<code>http://域名/年份/月份/天/文章名/</code></li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1527018013.5511634.png" alt=""></p>
+<p>&emsp;&emsp;咨询了李春以后，得知，百度先将url对应的内容爬取到百度的数据库，然后再从数据库中去看内容是否符合百度的展示要求，因此爬去URL的内容和收录是有时间间隔的，所以我更换了URL规则，却收录的还是旧的URL规则。并且李春提示我要在百度进行<code>网站改版</code>。</p>
+<h1 id="网站改版"><a href="#网站改版" class="headerlink" title="网站改版"></a>网站改版</h1><h2 id="规则改版"><a href="#规则改版" class="headerlink" title="规则改版"></a>规则改版</h2><p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1527018566.6256611.png" alt=""></p>
+<h2 id="新旧链接301"><a href="#新旧链接301" class="headerlink" title="新旧链接301"></a>新旧链接301</h2><p>&emsp;&emsp;要在旧链接中添加301跳转到新链接，301状态码表示永久性的迁移到新链接，用html实现代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">META</span> <span class="attr">HTTP-EQUIV</span>=<span class="string">REFRESH</span> <span class="attr">CONTENT</span>=<span class="string">"5;URL=http://www.admintony.com/SVN源代码泄露利用工具.html"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;也就意味着，把17个链接都做一下301则需要在<code>source目录</code>下，创建<code>年份/月份/日期/标题/index.html</code>，且index.html中的跳转链接必须是新的链接，一个一个写的话会累死，所以写了一个代码实现，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding = utf-8</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">  用户输入数据：/2018/03/05/腾讯云COS图床智能上传工具编写/</span></span><br><span class="line"><span class="string">  然后在当前目录下创建：依次创建这2018、03、05、腾讯云COS图床智能上传工具编写 这几个目录，并且在目录下创建一个index.html</span></span><br><span class="line"><span class="string">  其内容如下，其中&#123;&#125; 表示根据用户输入来更变的</span></span><br><span class="line"><span class="string">    &lt;html&gt;</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    &lt;head&gt;</span></span><br><span class="line"><span class="string">    &lt;META HTTP-EQUIV=REFRESH CONTENT="5;URL=http://www.admintony.com/&#123;&#125;.html"&gt;</span></span><br><span class="line"><span class="string">    &lt;/head&gt;</span></span><br><span class="line"><span class="string">    &lt;body&gt;</span></span><br><span class="line"><span class="string">    很抱歉给您带来不便，由于站点URL规则更变，您可访问&lt;a href="http://www.admintony.com/&#123;&#125;.html"&gt;&#123;&#125;&lt;/a&gt;来进行文章阅读，也可以等待5秒后自动跳转到该页面。   </span></span><br><span class="line"><span class="string">    &lt;br&gt;</span></span><br><span class="line"><span class="string">    &lt;span&gt;感谢您对AdminTony的关注与支持&lt;/span&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">    &lt;/html&gt;</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os,re,sys</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">makeDir</span><span class="params">(str)</span>:</span></span><br><span class="line">    re_ = re.compile(<span class="string">r'/(\d+)/(\d+)/(\d+)/(.+)/'</span>)</span><br><span class="line">    list = re_.findall(str)</span><br><span class="line">    year = list[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">    mouth = list[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">    day = list[<span class="number">0</span>][<span class="number">2</span>]</span><br><span class="line">    title = list[<span class="number">0</span>][<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建年份目录</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(year):</span><br><span class="line">        os.mkdir(year)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建月份目录</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(year+<span class="string">"/"</span>+mouth):</span><br><span class="line">        os.mkdir(year+<span class="string">"/"</span>+mouth)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建日期目录</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(year+<span class="string">"/"</span>+mouth+<span class="string">"/"</span>+day):</span><br><span class="line">        os.mkdir(year+<span class="string">"/"</span>+mouth+<span class="string">"/"</span>+day)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建名称目录</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(year+<span class="string">"/"</span>+mouth+<span class="string">"/"</span>+day+<span class="string">"/"</span>+title):</span><br><span class="line">        os.mkdir(year+<span class="string">"/"</span>+mouth+<span class="string">"/"</span>+day+<span class="string">"/"</span>+title)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 在日期目录下创建index.html</span></span><br><span class="line">    <span class="keyword">with</span> open(year+<span class="string">"/"</span>+mouth+<span class="string">"/"</span>+day+<span class="string">"/"</span>+title+<span class="string">"/"</span>+<span class="string">"index.html"</span>,<span class="string">"wb+"</span>) <span class="keyword">as</span> file:</span><br><span class="line">        content = <span class="string">"""&lt;html&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;head&gt;</span></span><br><span class="line"><span class="string">&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;</span></span><br><span class="line"><span class="string">&lt;META HTTP-EQUIV=REFRESH CONTENT="5;URL=http://admintony.com/&#123;&#125;.html"&gt;</span></span><br><span class="line"><span class="string">&lt;/head&gt;</span></span><br><span class="line"><span class="string">&lt;body&gt;</span></span><br><span class="line"><span class="string">很抱歉给您带来不便，由于站点URL规则更变，您可访问&lt;a href="http://www.admintony.com/&#123;&#125;.html"&gt;&#123;&#125;&lt;/a&gt;来进行文章阅读，也可以等待5秒后自动跳转到该页面。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;br&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;span&gt;感谢您对AdminTony的关注与支持&lt;/span&gt;</span></span><br><span class="line"><span class="string">&lt;br&gt;</span></span><br><span class="line"><span class="string">&lt;br&gt;</span></span><br><span class="line"><span class="string">&lt;span align="right"&gt;AdminTony 致上&lt;/span&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br><span class="line"><span class="string">        """</span>.format(title,title,title)</span><br><span class="line">        <span class="comment">#print(content)</span></span><br><span class="line">        file.write(content.encode(<span class="string">"utf-8"</span>))</span><br><span class="line">        print(<span class="string">"[+] 已创建完成"</span>)</span><br><span class="line">    <span class="comment">#print(list[0][1])</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(sys.argv)==<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            path = input(<span class="string">"[+] Please Enter URL:"</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">"exit"</span> <span class="keyword">in</span> path:</span><br><span class="line">                print(<span class="string">"[+] Bye ~ "</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            makeDir(path)</span><br><span class="line">    <span class="keyword">elif</span> len(sys.argv)==<span class="number">2</span>:</span><br><span class="line">        <span class="keyword">with</span> open(sys.argv[<span class="number">1</span>],<span class="string">"r+"</span>,encoding=<span class="string">'UTF-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            line = f.readlines()</span><br><span class="line">            i = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> l <span class="keyword">in</span> line:</span><br><span class="line">                i = i+<span class="number">1</span></span><br><span class="line">                makeDir(l)</span><br><span class="line">            print(<span class="string">"[+] 共创建记录&#123;&#125;条"</span>.format(i))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><p>&emsp;&emsp;昨天把规则提交以后出现了一些状况，如下：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1527074533.1044018.png" alt=""></p>
+<ul>
+<li>1.跳转关系与规则不符</li>
+</ul>
+<p>&emsp;&emsp;对于这个错误我想了想具体是哪里出错了，后来想到在做301跳转的时候，把<code>admintony.com</code>的url都跳转到了<code>www.admintony.com</code>，而规则是填写的是<code>admintony.com/${4}.html</code>，所以出现这个错误。</p>
+<p>&emsp;&emsp;解决方案：将301跳转到<code>www.admintony.com</code>改为跳转到<code>admintony.com</code>即可。</p>
+<ul>
+<li>2.改版前旧链接抓取失败</li>
+</ul>
+<p>&emsp;&emsp;做301跳转的时候，我只把百度收录的页面做了，而那些已经提交到百度数据库的页面，我并没有做301跳转，因此出现此错误。</p>
+<p>&emsp;&emsp;博客一共写了49篇文章了，需要对49篇文章的旧链接都做一个301跳转，主要难题在于收集旧链接，站点已经更换了新链接，因此执笔写下工具来进行收集旧链接。</p>
+<p>&emsp;&emsp;工具原理：正则匹配站点中的文章名称和发布时间，然后构造<code>http://admintony.com/年份/月份/日期/文章名/</code>并保存在<code>url.txt</code>。(工具在最下方)</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1527075119.102919.png" alt=""></p>
+<p>&emsp;&emsp;在<code>blog/source</code>目录下用<a href="##新旧链接301">新旧链接301</a>中的工具生成301跳转页面。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1527075652.2164114.png" alt=""></p>
+<p>&emsp;&emsp;重新发布页面后，重新向百度申请网站规则改版即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding = utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getUrl</span><span class="params">(domain)</span>:</span></span><br><span class="line">    re_title = re.compile(<span class="string">r'&lt;link itemprop="mainEntityOfPage" href="(?:.+)/(.+).html"&gt;'</span>)</span><br><span class="line">    re_date = re.compile(<span class="string">r'datetime="(\d+)-(\d+)-(\d+)T(?:.+)"&gt;'</span>)</span><br><span class="line">    res = requests.get(domain)</span><br><span class="line">    title = re_title.findall(res.text)</span><br><span class="line">    date = re_date.findall(res.text)</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">"url.txt"</span>,<span class="string">"ab"</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> i,j <span class="keyword">in</span> zip(date,title):</span><br><span class="line">            data = <span class="string">"http://admintony.com/&#123;&#125;/&#123;&#125;/&#123;&#125;/&#123;&#125;/\n"</span>.format(i[<span class="number">0</span>],i[<span class="number">1</span>],i[<span class="number">2</span>],j)</span><br><span class="line">            f.write(data.encode(<span class="string">"utf-8"</span>))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    domain = input(<span class="string">'请输入网址：'</span>)</span><br><span class="line">    page_max = input(<span class="string">'请输入一共有多少分页：'</span>)</span><br><span class="line">    page_max = int(page_max)+<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,page_max):</span><br><span class="line">        <span class="keyword">if</span> i == <span class="number">1</span>:</span><br><span class="line">            getUrl(domain)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            getUrl(domain+<span class="string">"/page/&#123;&#125;/"</span>.format(i))</span><br><span class="line">        print(<span class="string">"[+] 正在爬取第&#123;&#125;页"</span>.format(i))</span><br><span class="line">    print(<span class="string">"[+] 爬取完毕，URL保存在url.txt中"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo-SEO优化-网站改版/" rel="tag"># Hexo,SEO优化,网站改版</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/PHP的path-info问题.html" rel="next" title="PHP的path_info问题">
+                <i class="fa fa-chevron-left"></i> PHP的path_info问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="AdminTony" />
+            
+              <p class="site-author-name" itemprop="name">AdminTony</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://t00ls.net/index.php" title="T00ls.net" target="_blank">T00ls.net</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.sqlsec.com/" title="国光" target="_blank">国光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://eternalsakura13.com/" title="Sakura" target="_blank">Sakura</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ares-x.com" title="ares-x" target="_blank">ares-x</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://paper.seebug.org" title="Paper" target="_blank">Paper</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.e-wolf.top/" title="A." target="_blank">A.</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo做SEO优化"><span class="nav-number">1.</span> <span class="nav-text">Hexo做SEO优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首页title优化"><span class="nav-number">1.1.</span> <span class="nav-text">首页title优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成sitemap并提交百度"><span class="nav-number">1.2.</span> <span class="nav-text">生成sitemap并提交百度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加nofollow标签"><span class="nav-number">1.3.</span> <span class="nav-text">添加nofollow标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加robots-txt"><span class="nav-number">1.4.</span> <span class="nav-text">添加robots.txt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文章链接"><span class="nav-number">1.5.</span> <span class="nav-text">修改文章链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#keywords和description"><span class="nav-number">1.6.</span> <span class="nav-text">keywords和description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主动推送插件"><span class="nav-number">1.7.</span> <span class="nav-text">主动推送插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从github迁至coding"><span class="nav-number">1.8.</span> <span class="nav-text">从github迁至coding</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到的问题"><span class="nav-number">2.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网站改版"><span class="nav-number">3.</span> <span class="nav-text">网站改版</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#规则改版"><span class="nav-number">3.1.</span> <span class="nav-text">规则改版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新旧链接301"><span class="nav-number">3.2.</span> <span class="nav-text">新旧链接301</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#补充"><span class="nav-number">4.</span> <span class="nav-text">补充</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AdminTony</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">69.2k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" rel="external nofollow" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" rel="external nofollow" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<br><span>Hosted by <a rel="external nofollow" target="_blank" href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></span>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
