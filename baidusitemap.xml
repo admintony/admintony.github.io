@@ -5,11 +5,11 @@
     
   <url>
     <loc>http://www.admintony.com/CVE-2017-7269.html</loc>
-    <lastmod>2018-09-24T08:45:57.710Z</lastmod>
+    <lastmod>2018-09-24T09:12:24.705Z</lastmod>
     <data>
         <display>
-        <title>CVE-2017-7269</title>
-        <pubTime>2018-09-22T07:46:23.000Z</pubTime>
+        <title>CVE-2017-7269的正确打开方式</title>
+        <pubTime>2018-09-24T23:46:23.000Z</pubTime>
         
         <tag>巅峰极客</tag>
          
@@ -686,9 +686,9 @@
         <title>ACCESS注入之逐字猜解法-Python工具</title>
         <pubTime>2017-12-29T03:21:19.000Z</pubTime>
         
-        <tag>Python</tag>
-         
         <tag>access注入</tag>
+         
+        <tag>Python</tag>
          
          
            
