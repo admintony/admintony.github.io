@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>http://www.admintony.com/penetration_test_best_practice.html</loc>
+    <lastmod>2018-10-01T10:29:09.473Z</lastmod>
+    <data>
+        <display>
+        <title>渗透测试最佳实践</title>
+        <pubTime>2018-05-15T20:00:12.000Z</pubTime>
+        
+        <tag>渗透测试,知识体系,最佳实践</tag>
+         
+         
+           
+             
+              <breadCrumb title="渗透测试" url="http://www.admintony.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+          
+             
+              <breadCrumb title="总结" url="http://www.admintony.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.admintony.com/CVE-2017-7269.html</loc>
     <lastmod>2018-09-26T02:40:43.806Z</lastmod>
     <data>
@@ -115,29 +138,6 @@
           
              
               <breadCrumb title="网鼎杯" url="http://www.admintony.com/categories/%E6%AF%94%E8%B5%9B/CTF/%E7%BD%91%E9%BC%8E%E6%9D%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.admintony.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.html</loc>
-    <lastmod>2018-07-20T03:15:25.244Z</lastmod>
-    <data>
-        <display>
-        <title>渗透测试知识体系</title>
-        <pubTime>2018-05-15T20:00:12.000Z</pubTime>
-        
-        <tag>渗透测试,知识体系</tag>
-         
-         
-           
-             
-              <breadCrumb title="渗透测试" url="http://www.admintony.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-          
-             
-              <breadCrumb title="总结" url="http://www.admintony.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/%E6%80%BB%E7%BB%93/"/>
           
         </display>
     </data>
@@ -686,9 +686,9 @@
         <title>ACCESS注入之逐字猜解法-Python工具</title>
         <pubTime>2017-12-29T03:21:19.000Z</pubTime>
         
-        <tag>Python</tag>
-         
         <tag>access注入</tag>
+         
+        <tag>Python</tag>
          
          
            
