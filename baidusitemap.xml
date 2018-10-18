@@ -5,11 +5,11 @@
     
   <url>
     <loc>http://www.admintony.com/penetration_test_best_practice.html</loc>
-    <lastmod>2018-10-01T10:29:09.473Z</lastmod>
+    <lastmod>2018-10-18T02:06:29.826Z</lastmod>
     <data>
         <display>
         <title>渗透测试最佳实践</title>
-        <pubTime>2018-05-15T20:00:12.000Z</pubTime>
+        <pubTime>2018-10-18T17:00:12.000Z</pubTime>
         
         <tag>渗透测试,知识体系,最佳实践</tag>
          
@@ -924,9 +924,9 @@
         <title>MSSQL手工注入总结</title>
         <pubTime>2017-12-13T01:35:36.000Z</pubTime>
         
-        <tag>渗透测试</tag>
-         
         <tag>MSSQL注入</tag>
+         
+        <tag>渗透测试</tag>
          
          
            
@@ -980,9 +980,9 @@
         <title>DNSLog在渗透中的使用</title>
         <pubTime>2017-12-12T01:23:10.000Z</pubTime>
         
-        <tag>DNSlog</tag>
-         
         <tag>渗透测试</tag>
+         
+        <tag>DNSlog</tag>
          
          
            

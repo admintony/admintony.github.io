@@ -1,3 +1,3 @@
+http://www.admintony.com/penetration_test_best_practice.html
 http://www.admintony.com/CVE-2017-7269.html
 http://www.admintony.com/Java-System-Solutions-SSO-plugin-for-BMC-MyIT-跨站脚本漏洞.html
-http://www.admintony.com/无回显代码执行利用方法.html
