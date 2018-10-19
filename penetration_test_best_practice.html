@@ -395,7 +395,7 @@
 <meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201807/1532053678.0693023.png">
 <meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201807/1532055839.24688.png">
 <meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201807/1532055741.535133.png">
-<meta property="og:updated_time" content="2018-10-19T03:05:47.584Z">
+<meta property="og:updated_time" content="2018-10-19T06:23:04.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="渗透测试最佳实践">
 <meta name="twitter:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1522472345.5964844.png">
@@ -720,7 +720,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  26,970 字
+                  26,988 字
                 </span>
               
 
@@ -1909,6 +1909,7 @@
 <h2 id="XSS产生位置"><a href="#XSS产生位置" class="headerlink" title="XSS产生位置"></a>XSS产生位置</h2><p>&emsp;&emsp;上面在介绍XSS的时候使用的测试环境的XSS产生位置都是在标签内（标签内是指<code>&lt;pre&gt;可控点&lt;/pre&gt;</code>类型的）的，接下来笔者会介绍一下常见的产生位置不在标签内的情况。</p>
 <h3 id="属性中"><a href="#属性中" class="headerlink" title="属性中"></a>属性中</h3><p>&emsp;&emsp;除了上面所说的可控点在标签内的情况，最常见的就是可控点在标签的属性中，形如<code>&lt;input name=&quot;可控点&quot; type=&quot;text&quot;&gt;</code>的。其实上面测试payload中第二种、第三种都是在标签内执行JS的例子。</p>
 <p>&emsp;&emsp;笔者将<code>DVWA</code>的<code>Reflected XSS-medium</code>模块代码改编了一下，形成了属性中触发XSS的案例。</p>
+<p>&emsp;&emsp;直接使用测试Payload：<code>&lt;script&gt;alert(1)&lt;/script&gt;</code>进行检测，如下图：</p>
 <p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539684558.473636.png" alt=""></p>
 <p>&emsp;&emsp;可以看到在该测试模块中，测试payload被原样输出，<code>审查元素-编辑为HTML</code>后看到，<code>&lt;&gt;</code>被HTML实体化了，但是在<code>&lt;pre&gt;</code>标签的<code>id</code>参数中payload也被输出了，那么就想到：闭合<code>id</code>参数的双引号和<code>&lt;pre&gt;</code>标签，再使用<code>&lt;img src=x onerror=alert(1)&gt;</code>来进行触发XSS。完整Payload为：<code>123&quot;&gt;&lt;img src=x onerror=alert(1)&gt;</code></p>
 <p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539916755.9196398.png" alt=""></p>
@@ -2854,7 +2855,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">75.7k</span>
+    <span title="Site words total count">75.8k</span>
   
 </div>
 
