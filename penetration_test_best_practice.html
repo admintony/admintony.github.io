@@ -414,7 +414,7 @@
 <meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201807/1532053678.0693023.png">
 <meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201807/1532055839.24688.png">
 <meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201807/1532055741.535133.png">
-<meta property="og:updated_time" content="2018-10-24T10:17:48.474Z">
+<meta property="og:updated_time" content="2018-10-30T02:28:10.635Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="渗透测试最佳实践">
 <meta name="twitter:image" content="https://blog-1252108140.cosbj.myqcloud.com/201803/1522472345.5964844.png">
@@ -739,7 +739,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  28,745 字
+                  28,747 字
                 </span>
               
 
@@ -2023,7 +2023,7 @@
 <p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1540366271.4369032.png" alt=""></p>
 <p><strong>注意：</strong></p>
 <p>&emsp;&emsp;JavaScript可用编码可以在事件属性内使用，但是事件属性中可用编码不能在JS中使用。</p>
-<h3 id="伪协议"><a href="#伪协议" class="headerlink" title="伪协议"></a>伪协议</h3><p>&emsp;&emsp;攻击者可以借助<code>javascript:</code>和<code>data:</code>协议在标签引入链接内容时，触发XSS漏洞。支持伪协议的标签有：<code>href、lowsrc、bgsound、background、value、action、dynsrc</code></p>
+<h3 id="伪协议"><a href="#伪协议" class="headerlink" title="伪协议"></a>伪协议</h3><p>&emsp;&emsp;攻击者可以借助<code>javascript:</code>和<code>data:</code>协议在标签引入链接内容时，触发XSS漏洞。支持伪协议的标签属性有：<code>href、lowsrc、bgsound、background、value、action、dynsrc</code></p>
 <p>&emsp;&emsp;<code>javascript:</code>协议后可以直接跟javascript代码，如：<code>javascript:alert(1)</code>；而<code>data:</code>协议就比较复杂了，其格式为：<code>data:text/html;编码格式,编码内容</code>，如：<code>data:text/html;base64,PHNjcmlwdD5hbGVydCgnaHR0cDovL3d3dy5hZG1pbnRvbnkuY29tJyk8L3NjcmlwdD4=</code>，其中编码内容的明文为：<code>&lt;script&gt;alert(&#39;http://www.admintony.com&#39;)&lt;/script&gt;</code>。</p>
 <p>&emsp;&emsp;下面笔者将介绍常见的使用伪协议进行测试的案例。</p>
 <ul>
@@ -2737,6 +2737,25 @@
     
 
     <footer class="post-footer">
+      <footer class="post-footer"> 原有内容
+      <div>    
+       
+       
+      <ul class="post-copyright">
+        <li class="post-copyright-author">
+            <strong>本文作者：</strong>AdminTony
+        </li>
+        <li class="post-copyright-link">
+          <strong>本文链接：</strong>
+          <a href="/penetration_test_best_practice.html" title="渗透测试最佳实践">penetration_test_best_practice.html</a>
+        </li>
+        <li class="post-copyright-license">
+          <strong>版权： </strong>
+          本站文章均采用 <a href="http://www.admintony.com/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a> 许可协议，请勿用于商业，转载注明出处！
+        </li>
+      </ul>
+      
+      </div>
       
         <div class="post-tags">
           
