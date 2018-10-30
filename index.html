@@ -494,6 +494,354 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.admintony.com/Metasploit-reading-notes.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AdminTony">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AdminTony's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Metasploit-reading-notes.html" itemprop="url">Metasploit渗透测试魔鬼训练营读书笔记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-30T11:35:59-07:00">
+                2018-10-30
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/Metasploit渗透测试魔鬼训练营/" itemprop="url" rel="index">
+                    <span itemprop="name">Metasploit渗透测试魔鬼训练营</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,194 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1538390759.2159283.png" alt=""></p>
+<p>&emsp;&emsp;最近忙里偷闲，阅读了一下《Metasploit渗透测试魔鬼训练营》，希望能够更加了解Metasploit的框架结构。</p>
+<h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><h2 id="外围信息收集"><a href="#外围信息收集" class="headerlink" title="外围信息收集"></a>外围信息收集</h2><h3 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h3><p>&emsp;&emsp;常用模块有：<code>auxiliary/scanner/http/brute_dir</code>、<code>auxiliary/scanner/http/dir_scanner</code>和<code>auxiliary/scanner/http/dir_listing</code></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1538493762.3073401.png" alt=""></p>
+<p>&emsp;&emsp;用法都比较相似，均可以设置<code>字典路径、代理、目标IP或域名、目标端口、是否为https协议、线程数量</code>等选项。</p>
+<p>&emsp;&emsp;目标域名或IP可以设置多个，所有<code>rhosts</code>的参数都支持以下4种格式：</p>
+<ul>
+<li><p>192.168.27.0/24</p>
+</li>
+<li><p>192.168.27.1-100</p>
+</li>
+<li><p>192.168.27.1 192.168.27.136</p>
+</li>
+<li><p>192.168.27.1</p>
+</li>
+</ul>
+<p>&emsp;&emsp;模块运行效果如下：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1538494806.9071987.png" alt=""></p>
+<p>&emsp;&emsp;该模块自动判断<code>not found</code>的状态码，不太稳定，在测试过程中发现过将<code>302、500</code>当作<code>not found</code>状态码的情况。</p>
+<h3 id="收集邮箱"><a href="#收集邮箱" class="headerlink" title="收集邮箱"></a>收集邮箱</h3><p>&emsp;&emsp;metasploit中有一个根据网站域名在Google、Bing、Yahoo三个搜索引擎搜索暴露邮箱的模块-<code>auxiliary/gather/search_email_collector</code></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1538495854.726905.png" alt=""></p>
+<p>&emsp;&emsp;国内无法访问Google，使用Yahoo搜索报错，因此只能使用bing进行搜索，效果较差，尝试了几个学校的网站，一个邮箱没收集到。</p>
+<h3 id="子域名收集"><a href="#子域名收集" class="headerlink" title="子域名收集"></a>子域名收集</h3><p>&emsp;&emsp;metasploit中<code>auxiliary/gather/searchengine_subdomains_collector</code>模块是通过Bing、Yahoo来进行子域名收集的工具，他支持两种类型，通过根域名和通过IP进行收集。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1538495559.025059.png" alt=""></p>
+<p>&emsp;&emsp;百度的子域名只找到两个，还有些网站子域名都找不到，效果很差劲。</p>
+<h2 id="主机发现"><a href="#主机发现" class="headerlink" title="主机发现"></a>主机发现</h2><p>&emsp;&emsp;metasploit中提供了很多扫描模块，均存放在<code>auxiliary/scanner</code>中。</p>
+<h3 id="arp-sweep"><a href="#arp-sweep" class="headerlink" title="arp_sweep"></a>arp_sweep</h3><p>&emsp;&emsp;<code>auxiliary/scanner/discovery/arp_sweep</code>模块是通过发送ARP请求包来发现存活主机的，其局限性是只能发现局域网中的存活主机。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1538967145.1810653.png" alt=""></p>
+<h3 id="Nmap扫描主机"><a href="#Nmap扫描主机" class="headerlink" title="Nmap扫描主机"></a>Nmap扫描主机</h3><ul>
+<li>nmap -sP 192.168.27.0/24 </li>
+</ul>
+<p>&emsp;&emsp;基于ping的主机扫描</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1538968395.0624897.png" alt=""></p>
+<ul>
+<li>nmap -PU -sn 192.168.27.0/24 </li>
+</ul>
+<p>&emsp;&emsp;通过对开放的UDP端口进行检测判断主机是否存活，<code>-PU</code>检测到主机存活后会列出开放的TCP端口，若要加快速度则用<code>-sn</code>选项告诉Nmap只检测存活，不扫描TCP端口。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1538968606.9494433.png" alt=""></p>
+<h2 id="操作系统辨识"><a href="#操作系统辨识" class="headerlink" title="操作系统辨识"></a>操作系统辨识</h2><p>&emsp;&emsp;操作系统辨识主要用的是nmap的<code>-O</code>选项。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1538969074.8111439.png" alt=""></p>
+<h2 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h2><h3 id="Metasploit的portscan"><a href="#Metasploit的portscan" class="headerlink" title="Metasploit的portscan"></a>Metasploit的portscan</h3><p>&emsp;&emsp;Metasploit中提供了5种端口扫描的模块：</p>
+<ul>
+<li><code>auxiliary/scanner/portscan/tcp</code></li>
+</ul>
+<p>&emsp;&emsp;通过一次完整的TCP连接来判断端口是否开放，这种扫描方式最准确，但扫描速度慢。</p>
+<ul>
+<li><code>auxiliary/scanner/portscan/ack</code></li>
+</ul>
+<p>&emsp;&emsp;通过ACK扫描的方式对防火墙上未被屏蔽的端口进行探测。</p>
+<ul>
+<li><code>auxiliary/scanner/portscan/syn</code></li>
+</ul>
+<p>&emsp;&emsp;通过发送TCP SYN标志的方式探测开放的端口，也是最常用的扫描方式。</p>
+<ul>
+<li><code>auxiliary/scanner/portscan/xmas</code></li>
+</ul>
+<p>&emsp;&emsp;一种更为隐蔽的扫描方式，通过发送FIN、PSH和URG标志，能够躲避一些高级的TCP标记检测器的过滤。</p>
+<ul>
+<li><code>auxiliary/scanner/portscan/ftpbounce</code></li>
+</ul>
+<p>&emsp;&emsp;通过FTP bounce攻击的原理对TCP服务进行枚举，在旧的Solaris和FreeBSD系统的FTP服务中此攻击可以被利用。</p>
+<p>&emsp;&emsp;这些模块需要设置的参数和用法是完全一致的，如下图：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1538980083.463973.png" alt=""></p>
+<h3 id="nmap扫描端口"><a href="#nmap扫描端口" class="headerlink" title="nmap扫描端口"></a>nmap扫描端口</h3><p><strong>常用的Nmap扫描类型选项：</strong></p>
+<ul>
+<li><p>-sT：通过完成一次完整的TCP连接的方式进行端口探测</p>
+</li>
+<li><p>-sS：TCP SYN扫描，速度较<code>-sT</code>选项快很多</p>
+</li>
+<li><p>-sF、-sX、-sN：通过发送一些特殊的标志位以避开设备或软件的检测</p>
+</li>
+<li><p>-sP：通过发送ICMP echo请求探测主机是否存活，原理同Ping</p>
+</li>
+<li><p>-sU：探测目标主机开放了哪些UDP端口</p>
+</li>
+<li><p>-SA：TCP ACK扫描</p>
+</li>
+</ul>
+<p><strong>常用的Nmap扫描选项：</strong></p>
+<ul>
+<li><p>-Pn：在扫描之前，不发送ICMP请求测试目标是否存活</p>
+</li>
+<li><p>-O：探测远程主机的操作系统类型等信息</p>
+</li>
+<li><p>-F：快速扫描模式，只扫描在nmap-services中列出的端口</p>
+</li>
+<li><p>-p：指定希望扫描的端口</p>
+</li>
+</ul>
+<p><strong>常用的Nmap扫描选项组合：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">nmap -sP <span class="number">192.168</span><span class="number">.27</span><span class="number">.0</span>/<span class="number">24</span> <span class="comment"># 扫描存活主机</span></span><br><span class="line">nmap -PU -sn <span class="number">192.168</span><span class="number">.27</span><span class="number">.0</span>/<span class="number">24</span> <span class="comment"># 扫描存活主机（通过发送UDP包方式）</span></span><br><span class="line">nmap -Pn -sS <span class="number">192.168</span><span class="number">.27</span><span class="number">.0</span>/<span class="number">24</span> <span class="comment"># 不ping直接syn方式扫描端口</span></span><br><span class="line">nmap -Pn -sS <span class="number">192.168</span><span class="number">.27</span><span class="number">.0</span>/<span class="number">24</span> -o output.txt <span class="comment"># 保存扫描结果</span></span><br><span class="line">nmap -Pn -sV <span class="number">192.168</span><span class="number">.27</span><span class="number">.1</span> <span class="comment"># 详细列出服务信息</span></span><br><span class="line">nmap -Pn -sT <span class="number">192.168</span><span class="number">.27</span><span class="number">.1</span> <span class="comment"># TCP connect方式扫描端口</span></span><br><span class="line">nmap -Pn <span class="number">192.168</span><span class="number">.27</span><span class="number">.1</span> -p <span class="number">22</span><span class="number">-25</span>,<span class="number">80</span>,<span class="number">110</span><span class="number">-400</span> <span class="comment"># 指定端口进行扫描</span></span><br></pre></td></tr></table></figure>
+<h2 id="查点与爆破"><a href="#查点与爆破" class="headerlink" title="查点与爆破"></a>查点与爆破</h2><p>&emsp;&emsp;通过端口扫描工具搜集到端口以后，需要对端口上运行的服务及其版本进行辨识，还可以对端口上运行的服务进行弱口令爆破。</p>
+<h3 id="辨识服务版本"><a href="#辨识服务版本" class="headerlink" title="辨识服务版本"></a>辨识服务版本</h3><p>&emsp;&emsp;Metasploit中有很多的以<code>_version</code>结尾的辅助模块，其功能是判断服务的版本，可以通过<code>search name:_version</code>进行搜索。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539078709.723105.png" alt=""></p>
+<p>&emsp;&emsp;例如对MySQL服务进行查点：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539079902.2734013.png" alt=""></p>
+<h3 id="爆破弱口令"><a href="#爆破弱口令" class="headerlink" title="爆破弱口令"></a>爆破弱口令</h3><p>&emsp;&emsp;Metasploit中有很多的以<code>_login</code>结尾的辅助模块，其功能是对服务进行弱口令爆破，可以通过<code>search name:_login</code>进行搜索。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539080293.4473786.png" alt=""></p>
+<p>&emsp;&emsp;以MySQL的弱口令爆破为例：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539080163.286934.png" alt=""></p>
+<h1 id="漏洞扫描wmap"><a href="#漏洞扫描wmap" class="headerlink" title="漏洞扫描wmap"></a>漏洞扫描wmap</h1><p>&emsp;&emsp;在Metasploit中提供了这么多的扫描模块，若一个一个的使用去探测会很麻烦并且很浪费时间，因此Metasploit提供了wmap来解决这个问题，wmap可以一次性的去扫描多个模块，并且将扫描结果存放在数据库。</p>
+<h2 id="添加站点"><a href="#添加站点" class="headerlink" title="添加站点"></a>添加站点</h2><p>&emsp;&emsp;wmap在运行之前需要先添加站点，其命令为为<code>wmap_sites</code>：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539330708.2756543.png" alt=""></p>
+<ul>
+<li><p><code>wmap_sites -a domain</code> # 添加站点</p>
+</li>
+<li><p><code>wmap_sites -l</code> # 查看站点</p>
+</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539330866.7328937.png" alt=""></p>
+<ul>
+<li><code>wmap_sites -d ids</code> # 删除站点</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539331016.2004075.png" alt=""></p>
+<h2 id="设置扫描目标"><a href="#设置扫描目标" class="headerlink" title="设置扫描目标"></a>设置扫描目标</h2><p>&emsp;&emsp;在添加完站点以后，需要设置扫描目标才能进行扫描，其命令为<code>wmap_targets</code>:</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539331107.3264704.png" alt=""></p>
+<ul>
+<li><p><code>wmap_targets -t</code> # 设置扫描目标（域名）</p>
+</li>
+<li><p><code>wmap_targets -d</code> # 设置扫描目标（id-&gt;wmap_sites中的id）</p>
+</li>
+<li><p><code>wmap_targets -l</code> # 查看目标列表</p>
+</li>
+<li><p><code>wmap_targets -c</code> # 清除所有目标</p>
+</li>
+</ul>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539331671.0890172.png" alt=""></p>
+<h2 id="开始扫描"><a href="#开始扫描" class="headerlink" title="开始扫描"></a>开始扫描</h2><p>&emsp;&emsp;完成前面两步以后即可开始扫描了，扫描选项命令为<code>wmap_run</code>:</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539333847.6612744.png" alt=""></p>
+<ul>
+<li><p><code>wmap_run -t</code> # 查看扫描模块</p>
+</li>
+<li><p><code>wmap_run -m ^((?!version).*)$</code> # 正则表达式来指定要使用的扫描模块的名称</p>
+</li>
+<li><p><code>wmap_run -p ^(.*(version).*)$</code> # 正则表达式来指定要使用的扫描模块的路径</p>
+</li>
+<li><p><code>wmap_run -e [/path/to/profile]</code> # 加载profile中的模块进行扫描</p>
+</li>
+</ul>
+<p>&emsp;&emsp;profile的模板在<code>/usr/share/metasploit-framework/data/wmap/wmap_sample_profile.txt</code>中。</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539334298.9460204.png" alt=""></p>
+<p>&emsp;&emsp;看到如下图所示，则表示扫描完成:</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539335661.4772139.png" alt=""></p>
+<h2 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h2><p>&emsp;&emsp;查看扫描结果使用的命令为<code>wmap_vulns -l</code></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539335684.1447358.png" alt=""></p>
+<p>&emsp;&emsp;扫描结果的准确性取决于使用模块的准确性，个人觉得Metasploit在Web信息收集等方面准确性还是比较差的。并且在使用wmap时，会将域名转化成IP，遇到只能域名访问的情况就无法扫描了。</p>
+<h1 id="Exploit的使用"><a href="#Exploit的使用" class="headerlink" title="Exploit的使用"></a>Exploit的使用</h1><p>&emsp;&emsp;Windows的Exploit存放在<code>exploit/windows</code>下，linux的Exploit存放在<code>exploit/linux</code>下，除了此两个还有其他的exploit存放目录，如下图：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539338357.8099632.png" alt=""></p>
+<h2 id="选择Exploit"><a href="#选择Exploit" class="headerlink" title="选择Exploit"></a>选择Exploit</h2><p>&emsp;&emsp;在MSF框架中，选择exploit使用的命令是<code>use exploitPath</code>，例如：<code>use exploit/windows/iis/iis_webdav_upload_asp</code>，如下图：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539338505.126129.png" alt=""></p>
+<p>&emsp;&emsp;如果想根据<code>CVE编号</code>或其他编号查找exploit可以使用<code>search</code>命令。</p>
+<h2 id="查看exploit支持的payload"><a href="#查看exploit支持的payload" class="headerlink" title="查看exploit支持的payload"></a>查看exploit支持的payload</h2><p>&emsp;&emsp;不同的exploit支持的payload也有所不同，这是因为漏洞所提供的shellcode空间的大小不同所产生的差异。当然也可以根据自己的需求选择payload，比如MSF在公网可以选择reverse类型的payload让运行MSF的机器监听端口（默认监听端口是4444，可以通过lport选项设置），目标服务器来连接；或者MSF在内网中可以选择bind类型的payload让目标服务器监听端口（默认监听端口也是4444，可以通过lport选项设置），MSF去连接。</p>
+<p>&emsp;&emsp;查看exploit所支持的payload的命令为：<code>show payloads</code></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1539339132.0841444.png" alt=""></p>
+<p>&emsp;&emsp;常用的payload如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">windows/meterpreter/bind_tcp <span class="comment"># meterpreter、 目标监听端口</span></span><br><span class="line">windows/meterpreter/reverse_tcp <span class="comment"># meterpreter、 MSF监听端口</span></span><br><span class="line">windows/shell/bind_tcp <span class="comment"># 反弹shell、 目标监听端口</span></span><br><span class="line">windows/shell/reverse_tcp <span class="comment"># 反弹shell、 MSF监听端口</span></span><br></pre></td></tr></table></figure>
+<h2 id="查看exploit选项"><a href="#查看exploit选项" class="headerlink" title="查看exploit选项"></a>查看exploit选项</h2><p>&emsp;&emsp;不同的exploit都有不同的选项需要设置，查看有哪些选项需要设置的命令为<code>show options</code>：</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1540869934.2483723.png" alt=""></p>
+<p>&emsp;&emsp;设置某个选项，使用的是<code>set</code>命令，比如：<code>set rhost 192.168.27.1</code></p>
+<h2 id="查看目标"><a href="#查看目标" class="headerlink" title="查看目标"></a>查看目标</h2><p>&emsp;&emsp;有些exploit适用于多个操作系统，而如果不设置目标操作系统类型的话，msf默认是一一进行尝试。对于远程溢出漏洞，使用错误的payload进行尝试则会覆盖应有的正确代码，导致漏洞无法再成功利用（如<code>CVE-2017-7269</code>）。因此，如果在信息收集的过程中，你已经知道目标操作系统的类型，则可以自己指定目标类型，来增加成功率。</p>
+<p>&emsp;&emsp;查看支持哪些目标：<code>show targets</code>，设置目标：<code>set target xxx</code></p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201810/1540870338.9872317.png" alt=""></p>
+<h2 id="利用漏洞"><a href="#利用漏洞" class="headerlink" title="利用漏洞"></a>利用漏洞</h2><p>&emsp;&emsp;填写完以上Payload以后，就可以使用<code>exploit</code> 或者 <code>run</code> 指令利用漏洞发起攻击了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.admintony.com/CVE-2017-7269.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2062,196 +2410,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.admintony.com/BootStrap-PHP编写信息系统.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="AdminTony">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AdminTony's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/BootStrap-PHP编写信息系统.html" itemprop="url">BootStrap+PHP编写信息系统</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-12T11:25:16-07:00">
-                2018-05-12
-              </time>
-            
-			
-			
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/PHP/" itemprop="url" rel="index">
-                    <span itemprop="name">PHP</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/PHP/信息系统开发/" itemprop="url" rel="index">
-                    <span itemprop="name">信息系统开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  4,534 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  22 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">|- bs # Bootstrap3的js</span><br><span class="line">|- config # 系统配置文件</span><br><span class="line">|- css # Bootstrap4的js</span><br><span class="line">|- fonts # Bootstrap4的fonts</span><br><span class="line">|- js # Bootstrap4的js</span><br><span class="line">|</span><br><span class="line">|- showItem # 显示物品</span><br><span class="line">|  |- addMes.php # 添加留言</span><br><span class="line">|  |- favorite.php # 收藏物品</span><br><span class="line">|  |- index.php # 显示物品</span><br><span class="line">|</span><br><span class="line">|- uploads # 上传图片存放的目录</span><br><span class="line">|</span><br><span class="line">|- user # 用户相关的目录</span><br><span class="line">|  |- checklogin.php # 登录验证</span><br><span class="line">|  |- delFavo.php # 取消收藏</span><br><span class="line">|  |- delGood.php # 删除物品</span><br><span class="line">|  |- index.php  # 用户首页</span><br><span class="line">|  |- login.php  # 登录界面</span><br><span class="line">|  |- loginout.php # 注销登录</span><br><span class="line">|  |- myFavorite.php # 查看我的收藏</span><br><span class="line">|  |- myGood.php # 查看我发布的物品</span><br><span class="line">|  |- register.php # 注册</span><br><span class="line">|  |- resetPass.php # 修改密码</span><br><span class="line">|</span><br><span class="line">|- addGood.php # 发布物品</span><br><span class="line">|- addMess.php # 发布留言</span><br><span class="line">|- header.php  # 站点头部文件</span><br><span class="line">|- index.php # 主页</span><br><span class="line">|- upload_file.php # 上传文件</span><br><span class="line">|- db.sql # 数据库文件</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/BootStrap-PHP编写信息系统.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2306,7 +2464,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -2317,7 +2475,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2328,7 +2486,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-count">108</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2413,7 +2571,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">77.5k</span>
+    <span title="Site words total count">79.7k</span>
   
 </div>
 

@@ -4,6 +4,35 @@
 
     
   <url>
+    <loc>http://www.admintony.com/Metasploit-reading-notes.html</loc>
+    <lastmod>2018-10-30T03:37:14.644Z</lastmod>
+    <data>
+        <display>
+        <title>Metasploit渗透测试魔鬼训练营读书笔记</title>
+        <pubTime>2018-10-30T18:35:59.000Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+        <tag>Metasploit</tag>
+         
+        <tag>Metasploit渗透测试魔鬼训练营</tag>
+         
+        <tag>nmap</tag>
+         
+         
+           
+             
+              <breadCrumb title="读书笔记" url="http://www.admintony.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+          
+             
+              <breadCrumb title="Metasploit渗透测试魔鬼训练营" url="http://www.admintony.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/Metasploit%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E9%AD%94%E9%AC%BC%E8%AE%AD%E7%BB%83%E8%90%A5/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.admintony.com/penetration_test_best_practice.html</loc>
     <lastmod>2018-10-30T02:28:10.635Z</lastmod>
     <data>
@@ -216,9 +245,9 @@
         <title>初识Metasploit</title>
         <pubTime>2018-03-17T15:43:29.000Z</pubTime>
         
-        <tag>MSF</tag>
-         
         <tag>Metasploit</tag>
+         
+        <tag>MSF</tag>
          
         <tag>docker</tag>
          
@@ -924,9 +953,9 @@
         <title>MSSQL手工注入总结</title>
         <pubTime>2017-12-13T01:35:36.000Z</pubTime>
         
-        <tag>MSSQL注入</tag>
-         
         <tag>渗透测试</tag>
+         
+        <tag>MSSQL注入</tag>
          
          
            
@@ -980,9 +1009,9 @@
         <title>DNSLog在渗透中的使用</title>
         <pubTime>2017-12-12T01:23:10.000Z</pubTime>
         
-        <tag>渗透测试</tag>
-         
         <tag>DNSlog</tag>
+         
+        <tag>渗透测试</tag>
          
          
            
