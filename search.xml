@@ -343,8 +343,8 @@
         <category>越权</category>
       </categories>
       <tags>
-        <tag>西华升腾</tag>
         <tag>越权</tag>
+        <tag>西华升腾</tag>
         <tag>数据泄露</tag>
       </tags>
   </entry>
@@ -464,8 +464,8 @@
         <category>MSSQL手工注入</category>
       </categories>
       <tags>
-        <tag>渗透测试</tag>
         <tag>MSSQL注入</tag>
+        <tag>渗透测试</tag>
       </tags>
   </entry>
   <entry>
@@ -491,8 +491,8 @@
         <category>DNSLOG</category>
       </categories>
       <tags>
-        <tag>DNSlog</tag>
         <tag>渗透测试</tag>
+        <tag>DNSlog</tag>
       </tags>
   </entry>
   <entry>
@@ -672,8 +672,8 @@
       </categories>
       <tags>
         <tag>渗透测试</tag>
-        <tag>MySQL提权</tag>
         <tag>提权</tag>
+        <tag>MySQL提权</tag>
       </tags>
   </entry>
   <entry>
