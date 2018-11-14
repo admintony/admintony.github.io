@@ -4,29 +4,6 @@
 
     
   <url>
-    <loc>http://www.admintony.com/penetration_test_best_practice.html</loc>
-    <lastmod>2018-11-06T03:43:25.183Z</lastmod>
-    <data>
-        <display>
-        <title>渗透测试最佳实践</title>
-        <pubTime>2018-10-18T17:00:12.000Z</pubTime>
-        
-        <tag>渗透测试,知识体系,最佳实践</tag>
-         
-         
-           
-             
-              <breadCrumb title="渗透测试" url="http://www.admintony.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-          
-             
-              <breadCrumb title="总结" url="http://www.admintony.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/%E6%80%BB%E7%BB%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.admintony.com/Excel-4-0-macros.html</loc>
     <lastmod>2018-10-30T05:28:10.255Z</lastmod>
     <data>
@@ -61,9 +38,9 @@
         <title>Metasploit渗透测试魔鬼训练营读书笔记</title>
         <pubTime>2018-10-28T18:35:59.000Z</pubTime>
         
-        <tag>读书笔记</tag>
-         
         <tag>Metasploit</tag>
+         
+        <tag>读书笔记</tag>
          
         <tag>Metasploit渗透测试魔鬼训练营</tag>
          
@@ -272,9 +249,9 @@
         <title>初识Metasploit</title>
         <pubTime>2018-03-17T15:43:29.000Z</pubTime>
         
-        <tag>Metasploit</tag>
-         
         <tag>MSF</tag>
+         
+        <tag>Metasploit</tag>
          
         <tag>docker</tag>
          
