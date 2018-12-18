@@ -4,8 +4,33 @@
 
     
   <url>
+    <loc>http://www.admintony.com/csrf-and-json.html</loc>
+    <lastmod>2018-12-18T10:02:38.469Z</lastmod>
+    <data>
+        <display>
+        <title>提交json数组的CSRF利用思路</title>
+        <pubTime>2018-12-18T09:57:58.000Z</pubTime>
+        
+        <tag>CSRF</tag>
+         
+        <tag>307+redirect</tag>
+         
+         
+           
+             
+              <breadCrumb title="渗透测试" url="http://www.admintony.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+          
+             
+              <breadCrumb title="CSRF" url="http://www.admintony.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/CSRF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.admintony.com/thinkPHPBatchPoc.html</loc>
-    <lastmod>2018-12-13T13:21:06.673Z</lastmod>
+    <lastmod>2018-12-13T13:21:25.578Z</lastmod>
     <data>
         <display>
         <title>thinkPHP代码执行批量检测工具</title>

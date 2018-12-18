@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.admintony.com/csrf-and-json.html</loc>
+    
+    <lastmod>2018-12-18T10:02:38.469Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.admintony.com/thinkPHPBatchPoc.html</loc>
     
-    <lastmod>2018-12-13T13:21:06.673Z</lastmod>
+    <lastmod>2018-12-13T13:21:25.578Z</lastmod>
     
   </url>
   
