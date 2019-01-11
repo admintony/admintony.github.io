@@ -4,6 +4,36 @@
 
     
   <url>
+    <loc>http://www.admintony.com/copyright.html</loc>
+    <lastmod>2019-01-11T16:41:25.091Z</lastmod>
+    <data>
+        <display>
+        <title>打击盗版，支持原创 | 暨COSIntelligentUpload更新通知</title>
+        <pubTime>2019-01-11T16:39:00.000Z</pubTime>
+        
+        <tag>支持原创</tag>
+         
+        <tag>打击盗版</tag>
+         
+        <tag>COSIntelligentUpload</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python" url="http://www.admintony.com/categories/Python/"/>
+          
+             
+              <breadCrumb title="原创工具" url="http://www.admintony.com/categories/Python/%E5%8E%9F%E5%88%9B%E5%B7%A5%E5%85%B7/"/>
+          
+             
+              <breadCrumb title="COSIntelligentUpload" url="http://www.admintony.com/categories/Python/%E5%8E%9F%E5%88%9B%E5%B7%A5%E5%85%B7/COSIntelligentUpload/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.admintony.com/Pentest-example-1.html</loc>
     <lastmod>2018-12-30T15:29:51.204Z</lastmod>
     <data>
@@ -814,9 +844,9 @@
         <title>ACCESS注入之逐字猜解法-Python工具</title>
         <pubTime>2017-12-29T03:21:19.000Z</pubTime>
         
-        <tag>Python</tag>
-         
         <tag>access注入</tag>
+         
+        <tag>Python</tag>
          
          
            
@@ -842,9 +872,9 @@
         <title>子域名发现工具</title>
         <pubTime>2017-12-23T03:13:29.000Z</pubTime>
         
-        <tag>digger-子域名发现工具</tag>
-         
         <tag>原创工具</tag>
+         
+        <tag>digger-子域名发现工具</tag>
          
          
            
