@@ -80,7 +80,7 @@
 <meta property="og:site_name" content="AdminTony&#39;s Blog">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201902/1550208197.4855173.png">
-<meta property="og:updated_time" content="2019-02-15T05:26:44.837Z">
+<meta property="og:updated_time" content="2019-02-15T05:32:49.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="URL相关Bypass总结">
 <meta name="twitter:image" content="https://blog-1252108140.cosbj.myqcloud.com/201902/1550208197.4855173.png">
@@ -412,7 +412,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  642 字
+                  648 字
                 </span>
               
 
@@ -451,22 +451,14 @@
       
         <p><img src="https://blog-1252108140.cosbj.myqcloud.com/201902/1550208197.4855173.png" alt=""></p>
 <a id="more"></a>
-<h1 id="任意URL跳转绕过"><a href="#任意URL跳转绕过" class="headerlink" title="任意URL跳转绕过"></a>任意URL跳转绕过</h1><p>常规绕过方式：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--以下绕过方法均跳转到admintony.com--&gt;</span></span><br><span class="line">http://admintony.com?jd.com</span><br><span class="line">http://admintony.com#jd.com</span><br><span class="line">http://admintony.com/jd.com</span><br><span class="line">http://admintony.com\jd.com</span><br><span class="line">http://admintony.com\\jd.com</span><br><span class="line">http://jd.com@admintony.com</span><br><span class="line">http://jd.com.admintony.com</span><br></pre></td></tr></table></figure>
-<p>HPP参数污染绕过：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://sso.jd.com/?redir=http://jd.com&amp;redir=a@admintony.com</span><br><span class="line"></span><br><span class="line">那么跳转会变成：Location:http://jd.com,@admintony.com</span><br></pre></td></tr></table></figure>
-<p>畸形绕过：</p>
-<p>昨晚遇到一个情况，当redir的参数为：<code>http://localhost?.dianping.com</code>时，正常跳转到localhost，当参数为：<code>http://localhost.?.dianping.com</code>时依然正常跳转，但是在<code>localhost</code>的<code>.</code>后面加上任意数字或字母，马上就跳转到<code>m.dianping.com</code>了，因此使用数字地址进行任意URL跳转。</p>
-<ul>
-<li>数字地址计算方式1</li>
-</ul>
-<p>可以是十六进制，八进制等。<br>115.239.210.26  &gt;&gt;&gt;  16373751032<br>首先把这四段数字给分别转成16进制，结果：73 ef d2 1a<br>然后把 73efd21a 这十六进制一起转换成8进制<br>记得访问的时候加0表示使用八进制(可以是一个0也可以是多个0 跟XSS中多加几个0来绕过过滤一样)，十六进制加0x。</p>
+<h1 id="任意URL跳转绕过"><a href="#任意URL跳转绕过" class="headerlink" title="任意URL跳转绕过"></a>任意URL跳转绕过</h1><h2 id="常规绕过方式"><a href="#常规绕过方式" class="headerlink" title="常规绕过方式"></a>常规绕过方式</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--以下绕过方法均跳转到admintony.com--&gt;</span></span><br><span class="line">http://admintony.com?jd.com</span><br><span class="line">http://admintony.com#jd.com</span><br><span class="line">http://admintony.com/jd.com</span><br><span class="line">http://admintony.com\jd.com</span><br><span class="line">http://admintony.com\\jd.com</span><br><span class="line">http://jd.com@admintony.com</span><br><span class="line">http://jd.com.admintony.com</span><br></pre></td></tr></table></figure>
+<h2 id="HPP参数污染绕过"><a href="#HPP参数污染绕过" class="headerlink" title="HPP参数污染绕过"></a>HPP参数污染绕过</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://sso.jd.com/?redir=http://jd.com&amp;redir=a@admintony.com</span><br><span class="line"></span><br><span class="line">那么跳转会变成：Location:http://jd.com,@admintony.com</span><br></pre></td></tr></table></figure>
+<h2 id="畸形绕过"><a href="#畸形绕过" class="headerlink" title="畸形绕过"></a>畸形绕过</h2><p>昨晚遇到一个情况，当redir的参数为：<code>http://localhost?.dianping.com</code>时，正常跳转到localhost，当参数为：<code>http://localhost.?.dianping.com</code>时依然正常跳转，但是在<code>localhost</code>的<code>.</code>后面加上任意数字或字母，马上就跳转到<code>m.dianping.com</code>了，因此使用数字地址进行任意URL跳转。</p>
+<h3 id="数字地址计算方式1"><a href="#数字地址计算方式1" class="headerlink" title="数字地址计算方式1"></a>数字地址计算方式1</h3><p>可以是十六进制，八进制等。<br>115.239.210.26  &gt;&gt;&gt;  16373751032<br>首先把这四段数字给分别转成16进制，结果：73 ef d2 1a<br>然后把 73efd21a 这十六进制一起转换成8进制<br>记得访问的时候加0表示使用八进制(可以是一个0也可以是多个0 跟XSS中多加几个0来绕过过滤一样)，十六进制加0x。</p>
 <p>访问：<a href="http://016373751032" target="_blank" rel="noopener">http://016373751032</a> ,即可访问到百度。</p>
-<ul>
-<li>数字地址计算方式2</li>
-</ul>
-<p>111.13.100.92 转成数字地址的方式为：111<em>256</em>256<em>256 + 13</em>256<em>256+100</em>256+92*1<br>这样得到：1863148636</p>
+<h3 id="数字地址计算方式2"><a href="#数字地址计算方式2" class="headerlink" title="数字地址计算方式2"></a>数字地址计算方式2</h3><p>111.13.100.92 转成数字地址的方式为：111<em>256</em>256<em>256 + 13</em>256<em>256+100</em>256+92*1<br>这样得到：1863148636</p>
 <p>这种数字地址不需要在前面加0，即访问：<a href="http://1863148636" target="_blank" rel="noopener">http://1863148636</a> 即可访问到百度。</p>
+<p><a href="https://ip.911cha.com/" target="_blank" rel="noopener">数字地址计算</a></p>
 <h1 id="跨域资源访问绕过"><a href="#跨域资源访问绕过" class="headerlink" title="跨域资源访问绕过"></a>跨域资源访问绕过</h1><p>由于Origin中不存在带path情况，所以跨域资源访问绕过方式只有以下几点：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://www.jd.com.admintony.com</span><br><span class="line">http://hhjd.com</span><br><span class="line">http://m.jd.com-.admintony.com #适用于匹配jd.com后面是数字、字符、"."的情况。</span><br></pre></td></tr></table></figure>
 <h1 id="CSRF的refer绕过"><a href="#CSRF的refer绕过" class="headerlink" title="CSRF的refer绕过"></a>CSRF的refer绕过</h1><h2 id="从域名下手"><a href="#从域名下手" class="headerlink" title="从域名下手"></a>从域名下手</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http://admintony.com/?jd.com</span><br><span class="line">http://admintony.com/#jd.com</span><br><span class="line">http://admintony.com/jd.com/</span><br><span class="line">http://jd.com.admintony.com</span><br></pre></td></tr></table></figure>
@@ -717,7 +709,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#任意URL跳转绕过"><span class="nav-number">1.</span> <span class="nav-text">任意URL跳转绕过</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跨域资源访问绕过"><span class="nav-number">2.</span> <span class="nav-text">跨域资源访问绕过</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSRF的refer绕过"><span class="nav-number">3.</span> <span class="nav-text">CSRF的refer绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#从域名下手"><span class="nav-number">3.1.</span> <span class="nav-text">从域名下手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他方式"><span class="nav-number">3.2.</span> <span class="nav-text">其他方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSRF绕过方式"><span class="nav-number">4.</span> <span class="nav-text">SSRF绕过方式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#任意URL跳转绕过"><span class="nav-number">1.</span> <span class="nav-text">任意URL跳转绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常规绕过方式"><span class="nav-number">1.1.</span> <span class="nav-text">常规绕过方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HPP参数污染绕过"><span class="nav-number">1.2.</span> <span class="nav-text">HPP参数污染绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#畸形绕过"><span class="nav-number">1.3.</span> <span class="nav-text">畸形绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数字地址计算方式1"><span class="nav-number">1.3.1.</span> <span class="nav-text">数字地址计算方式1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字地址计算方式2"><span class="nav-number">1.3.2.</span> <span class="nav-text">数字地址计算方式2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跨域资源访问绕过"><span class="nav-number">2.</span> <span class="nav-text">跨域资源访问绕过</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSRF的refer绕过"><span class="nav-number">3.</span> <span class="nav-text">CSRF的refer绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#从域名下手"><span class="nav-number">3.1.</span> <span class="nav-text">从域名下手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他方式"><span class="nav-number">3.2.</span> <span class="nav-text">其他方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSRF绕过方式"><span class="nav-number">4.</span> <span class="nav-text">SSRF绕过方式</span></a></li></ol></div>
             
 
           </div>
