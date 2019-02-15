@@ -4,6 +4,40 @@
 
     
   <url>
+    <loc>http://www.admintony.com/redict-bypass.html</loc>
+    <lastmod>2019-02-15T05:26:44.837Z</lastmod>
+    <data>
+        <display>
+        <title>URL相关Bypass总结</title>
+        <pubTime>2019-02-15T05:24:18.000Z</pubTime>
+        
+        <tag>URL相关Bypass总结</tag>
+         
+        <tag>URL跳转</tag>
+         
+        <tag>CORS绕过</tag>
+         
+        <tag>Refer绕过</tag>
+         
+        <tag>SSRF绕过</tag>
+         
+         
+           
+             
+              <breadCrumb title="渗透测试" url="http://www.admintony.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+          
+             
+              <breadCrumb title="逻辑漏洞" url="http://www.admintony.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/"/>
+          
+             
+              <breadCrumb title="URL相关Bypass总结" url="http://www.admintony.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/URL%E7%9B%B8%E5%85%B3Bypass%E6%80%BB%E7%BB%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.admintony.com/copyright.html</loc>
     <lastmod>2019-01-11T16:41:25.091Z</lastmod>
     <data>
@@ -94,9 +128,9 @@
         <title>thinkPHP代码执行批量检测工具</title>
         <pubTime>2018-12-13T13:19:02.000Z</pubTime>
         
-        <tag>thinkPHP</tag>
-         
         <tag>代码执行</tag>
+         
+        <tag>thinkPHP</tag>
          
          
            
@@ -872,9 +906,9 @@
         <title>子域名发现工具</title>
         <pubTime>2017-12-23T03:13:29.000Z</pubTime>
         
-        <tag>原创工具</tag>
-         
         <tag>digger-子域名发现工具</tag>
+         
+        <tag>原创工具</tag>
          
          
            

