@@ -3,6 +3,38 @@
 
 
     
+  <url>
+    <loc>http://www.admintony.com/mysqli.html</loc>
+    <lastmod>2020-06-12T06:20:29.209Z</lastmod>
+    <data>
+        <display>
+        <title>某CTF中两道注入的总结</title>
+        <pubTime>2020-06-12T05:57:13.000Z</pubTime>
+        
+        <tag>CTF</tag>
+         
+        <tag>MySQL</tag>
+         
+        <tag>SQLi</tag>
+         
+        <tag>bind-SQLi</tag>
+         
+         
+           
+             
+              <breadCrumb title="渗透测试" url="http://www.admintony.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+          
+             
+              <breadCrumb title="SQL注入" url="http://www.admintony.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/SQL%E6%B3%A8%E5%85%A5/"/>
+          
+             
+              <breadCrumb title="MySQLi" url="http://www.admintony.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/SQL%E6%B3%A8%E5%85%A5/MySQLi/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
     
   <url>

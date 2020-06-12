@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.admintony.com/mysqli.html</loc>
+    
+    <lastmod>2020-06-12T06:20:29.209Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.admintony.com/about/test-xss.html</loc>
     
     <lastmod>2019-11-28T04:53:13.517Z</lastmod>
