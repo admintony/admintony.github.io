@@ -365,7 +365,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  472 字
+                  555 字
                 </span>
               
 
@@ -403,34 +403,14 @@
 
       
         
-          
-            <h1 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h1><p>先下载cna插件 和 相应系统的CrossC2文件：</p>
-<p><a href="https://github.com/gloxec/CrossC2/releases/" target="_blank" rel="noopener">https://github.com/gloxec/CrossC2/releases/</a></p>
-<p>tips：这里就很坑了，作者的文档没有写太清楚，百度上面的几个文章都是写的下载genCrossC2.Linux，直接调用api可以生成木马，但是cna插件怎么都生不成插件。后来想到可能是要把这个对应版本的CrossC2放到本地才行，一试果然。</p>
-<p>修改插件中的</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$genCC2 = "d:/genCrossC2.Win.exe";  # <span class="tag">&lt;<span class="name">--------</span> <span class="attr">fix</span></span></span><br></pre></td></tr></table></figure>
-<p>这就安装好了。</p>
-<h1 id="使用方法（kali，win缺少dll）"><a href="#使用方法（kali，win缺少dll）" class="headerlink" title="使用方法（kali，win缺少dll）"></a>使用方法（kali，win缺少dll）</h1><p>其实在总结这个使用方法的时候，遇到了很多很多的坑，比如windows下，运行genCrossC2缺少dll，Linux下生成的木马上不了线，因为证书问题。所以如果你想少走点弯路，请做好下面的每一步。</p>
-<p>1）下载服务器上cs的证书，位置在CS根目录的.cobaltstrike.beacon_keys,这个必须要下载，最开始我觉得服务器上的文件和我本地一样（整个目录copy上去的），然后就怎么也上不了线。</p>
-<p>2）生成木马时，要注意以下点：</p>
-<ul>
-<li><p>1.证书必须是从服务器上下载的证书</p>
-</li>
-<li><p>2.listener必须是https的，因为这个插件只支持https</p>
-</li>
-</ul>
-<p><img src="https://blog-1252108140.cosbj.myqcloud.com/202006/1592673698.3063986.png" alt=""></p>
-<p><img src="https://blog-1252108140.cosbj.myqcloud.com/202006/1592673772.9835627.png" alt=""></p>
-<p>显示这样说明生成成功了，然后直接复制命令到linux中执行即可上线。</p>
-<p><img src="https://blog-1252108140.cosbj.myqcloud.com/202006/1592675063.0669074.png" alt=""></p>
-<p>当然也可以直接调用接口来生成马：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/root/cs3.14/genCrossC2.Linux IP 88 /tmp/keys null Linux x64 /tmp/CrossC2-test</span><br></pre></td></tr></table></figure>
-<h1 id="推荐下我的知识星球"><a href="#推荐下我的知识星球" class="headerlink" title="推荐下我的知识星球"></a>推荐下我的知识星球</h1><p><img src="https://blog-1252108140.cosbj.myqcloud.com/202007/1593874865.8339186.png" alt=""></p>
-<p>经常会分享一些挖洞知识，前言技巧，优秀文章等，欢迎各位加入。</p>
-<p>投稿可享受免费加入，投稿要求：原创首发内容，且一个月内禁止发布在其他媒体或博客，内容要求图文并茂，不可是网上烂大街的文章。</p>
-<p>投稿邮箱：<a href="mailto:78941695@qq.com" target="_blank" rel="noopener">78941695@qq.com</a></p>
-
-          
+          <p>CS有一个很大的缺点就是只能上线Windows主机，遇到linux和mac有点束手无策，后来发现CrossC2插件可以完美解决这个问题，但是使用文档不太清晰，所以我自己搭建一套环境，菜了很多坑，输出一份详细的安装&amp;使用文档。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/CobaltStrike-tips-1.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2359,7 +2339,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">60.0k</span>
+    <span title="Site words total count">60.1k</span>
   
 </div>
 
