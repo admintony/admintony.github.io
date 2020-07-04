@@ -4,6 +4,25 @@
 
     
   <url>
+    <loc>http://www.admintony.com/CobaltStrike-tips-1.html</loc>
+    <lastmod>2020-07-04T15:04:46.484Z</lastmod>
+    <data>
+        <display>
+        <title>CS解决Linux、MacOS上线</title>
+        <pubTime>2020-07-04T14:59:49.000Z</pubTime>
+        
+        <tag>渗透测试</tag>
+         
+        <tag>CobaltStrike</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.admintony.com/mysqli.html</loc>
     <lastmod>2020-06-12T06:20:29.209Z</lastmod>
     <data>
@@ -1263,9 +1282,9 @@
         <title>DNSLog在渗透中的使用</title>
         <pubTime>2017-12-11T09:23:10.000Z</pubTime>
         
-        <tag>DNSlog</tag>
-         
         <tag>渗透测试</tag>
+         
+        <tag>DNSlog</tag>
          
          
            

